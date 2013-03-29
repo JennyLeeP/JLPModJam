@@ -256,14 +256,14 @@ public class BlockPortalDreamLand extends BlockPortal
                 WorldServer worldserver1 = minecraftserver.worldServerForDimension(DreamLand.dimensionID);
                 if(dimID == DreamLand.dimensionID)
                 {
-                	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, 0, worldserver1, worldserver, new DreamLandTeleporter(worldserver));
+                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, DreamLand.dimensionID, new DreamLandTeleporter(worldserver1));
                     //par5Entity.travelToDimension(0);
                 } else {
                 	//System.out.println("teleporting");
-                	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, dimID, worldserver, worldserver1, new DreamLandTeleporter(worldserver1));
+                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, DreamLand.dimensionID, new DreamLandTeleporter(worldserver1));
                     par5Entity.travelToDimension(DreamLand.dimensionID);
                 }
-                //par5Entity.travelToDimension(Atum.dimensionID);
+                //par5Entity.travelToDimension(DreamLand.dimensionID);
         	}
         	
         }
