@@ -3,7 +3,6 @@ package dreamLand;
 
 
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
@@ -58,7 +57,7 @@ public class DreamLand {
 		config.save();
 		portal = (BlockPortalDreamLand) new BlockPortalDreamLand(DreamLandPortalID).setUnlocalizedName("portal");
 		portalObsidian = new BlockDreamLand(PortalObsidianID).setUnlocalizedName("portalObsidian");
-		itemlighter = new ItemLighter(itemLighterId - 256);
+		itemlighter = new ItemLighter(itemLighterId - 256).setUnlocalizedName("itemLighter");
 	}
 
 
@@ -68,13 +67,15 @@ public class DreamLand {
 
 		GameRegistry.registerBlock(portalObsidian, "Obsidiatal");
 		GameRegistry.registerBlock(portal, "DreamLand_Portal");
+		GameRegistry.registerItem(itemlighter, "Boom Stick");
+		
 		
 		LanguageRegistry.addName(portal, "Portal");
 		LanguageRegistry.addName(portalObsidian, "Obsidiatal");
 		LanguageRegistry.addName(itemlighter, "Boom Stick");
 
 		GameRegistry.addRecipe(new ItemStack(portalObsidian), new Object[] {"XXX", "XOX", "XXX", 'X', Block.obsidian, 'O', Block.blockDiamond});
-		//GameRegistry.addRecipe(new ItemStack(bootsPravlon), new Object[] {"X X", "X X", 'X', ingotPravlon });
+		GameRegistry.addRecipe(new ItemStack(itemlighter), new Object[] {"  X", " X ", "X  ", 'X', Item.emerald });
 	}
 
 	@PostInit
