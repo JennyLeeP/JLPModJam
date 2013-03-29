@@ -1,9 +1,11 @@
-package dreamLand;
+package dreamLand.blocks;
 
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dreamLand.DreamLand;
+import dreamLand.DreamLandTeleporter;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
@@ -14,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -26,27 +29,13 @@ public class BlockPortalDreamLand extends BlockPortal
 	{
 			super(par1);
 			this.setCreativeTab(CreativeTabs.tabBlock);
+			this.setTickRandomly(true);
 	}
 	public void registerIcons(IconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon(DreamLand.modid + ":" + this.getUnlocalizedName2());
 	}
-	/**
-     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
-     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
-     */
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
-     */
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
+	
 
     /**
      * Checks to see if this location is valid to create a portal and will return True if it does. Args: world, x, y, z
@@ -74,6 +63,53 @@ public class BlockPortalDreamLand extends BlockPortal
                 }
             }
         }
+    }
+    /**
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
+     */
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    {
+        return null;
+    }
+
+    /**
+     * Updates the blocks bounds based on its current state. Args: world, x, y, z
+     */
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    {
+        float f;
+        float f1;
+        if (par1IBlockAccess.getBlockId(par2 - 1, par3, par4) != this.blockID && par1IBlockAccess.getBlockId(par2 + 1, par3, par4) != this.blockID)
+        {
+            f = 0.125F;
+            f1 = 0.5F;
+            this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f1, 0.5F + f, 1.0F, 0.5F + f1);
+        }
+        else
+        {
+            f = 0.5F;
+            f1 = 0.125F;
+            this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f1, 0.5F + f, 1.0F, 0.5F + f1);
+        }
+        
+    }
+
+    /**
+     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
+     */
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    /**
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
+     */
+    public boolean renderAsNormalBlock()
+    {
+        return false;
     }
 	public boolean tryToCreatePortal(World par1World, int par2, int par3, int par4)
     {
@@ -117,7 +153,7 @@ public class BlockPortalDreamLand extends BlockPortal
 
                         if (flag)
                         {
-                            if (j1 != DreamLand.portalObsidian.blockID)//change to my block name TODO
+                            if (j1 != DreamLand.portalObsidian.blockID)
                             {
                                 return false;
                             }
@@ -239,31 +275,26 @@ public class BlockPortalDreamLand extends BlockPortal
     {
         if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null)
         {
-        	if(par5Entity instanceof EntityPlayer)
-        	{
-        		//((EntityPlayer)par5Entity).sendChatToPlayer("Traveling to new dim");
-        	}
-            //par5Entity.setInPortal();
-        	//if(par5Entity.getPortalCooldown() == 0)
-        	//if(Math.random() > 0.999)
+        	
         	
         	if(par5Entity.timeUntilPortal == 0 && par5Entity instanceof EntityPlayerMP)
         	{
-        		par5Entity.timeUntilPortal = 0;
+        		par5Entity.timeUntilPortal = 100;
         		MinecraftServer minecraftserver = MinecraftServer.getServer();
         		int dimID = par5Entity.dimension;
                 WorldServer worldserver = minecraftserver.worldServerForDimension(dimID);
                 WorldServer worldserver1 = minecraftserver.worldServerForDimension(DreamLand.dimensionID);
                 if(dimID == DreamLand.dimensionID)
                 {
-                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, DreamLand.dimensionID, new DreamLandTeleporter(worldserver1));
-                    //par5Entity.travelToDimension(0);
+                	((EntityPlayerMP)par5Entity).sendChatToPlayer("Moving from  " + dimID + " to OverWorld");
+                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new DreamLandTeleporter(worldserver));
+                    
                 } else {
-                	//System.out.println("teleporting");
+                	((EntityPlayerMP)par5Entity).sendChatToPlayer("Moving from " + dimID + " to dreamland");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, DreamLand.dimensionID, new DreamLandTeleporter(worldserver1));
                     par5Entity.travelToDimension(DreamLand.dimensionID);
                 }
-                //par5Entity.travelToDimension(DreamLand.dimensionID);
+                //remove due to weirdness in teleporting . par5Entity.travelToDimension(DreamLand.dimensionID);
         	}
         	
         }

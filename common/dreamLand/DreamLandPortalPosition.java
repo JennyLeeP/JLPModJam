@@ -1,6 +1,8 @@
 package dreamLand;
 
-public class DreamLandPortalPosition {
+import net.minecraft.util.ChunkCoordinates;
+
+public class DreamLandPortalPosition extends ChunkCoordinates{
 // Thank you Rebelkeithy
 	public long field_85087_d;
 

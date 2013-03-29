@@ -24,16 +24,13 @@ public class DreamLandTeleporter extends Teleporter
     private final LongHashMap field_85191_c = new LongHashMap();
     private final List field_85190_d = new ArrayList();
     
-	public DreamLandTeleporter(WorldServer par1WorldServer) {
+	public DreamLandTeleporter(WorldServer par1WorldServer) 
+	{
 		super(par1WorldServer);
         this.worldServerInstance = par1WorldServer;
         this.random = new Random(par1WorldServer.getSeed());
 	}
-
-	/**
-     * Place an entity in a nearby portal, creating one if necessary.
-     */
-    @Override
+	@Override
     public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
     {
         if (this.worldServerInstance.provider.dimensionId != 1)
@@ -71,8 +68,7 @@ public class DreamLandTeleporter extends Teleporter
             par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
         }
     }
-
-    /**
+	/**
      * Place an entity in a nearby portal which already exists.
      */
     @Override
@@ -259,7 +255,6 @@ public class DreamLandTeleporter extends Teleporter
             return false;
         }
     }
-
     @Override
     public boolean makePortal(Entity par1Entity)
     {

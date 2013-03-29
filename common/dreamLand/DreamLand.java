@@ -17,6 +17,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import dreamLand.blocks.BlockDreamLand;
+import dreamLand.blocks.BlockPortalDreamLand;
+import dreamLand.world.DreamLandWorldProvider;
 
 @Mod(modid = DreamLand.modid, name = "DreamLand", version = DreamLand.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -24,6 +27,9 @@ public class DreamLand {
 
 	public static final String VERSION = "1.0";
 	public static final String modid = "DreamLand";
+	
+	@Instance("DreamLand")
+	public static DreamLand instance;
 
 	@SidedProxy(clientSide = "dreamLand.ClientProxy", serverSide = "dreamLand.CommonProxy")
 	public static CommonProxy proxy;
@@ -37,8 +43,7 @@ public class DreamLand {
 	
 	static boolean enableDreamDimension;
 
-	@Instance("DreamLand")
-	public static DreamLand instance;
+	
 
 
 	@PreInit
@@ -54,6 +59,7 @@ public class DreamLand {
 		int PortalObsidianID = config.getBlock("portalObsidian", 4001).getInt(4001);
 		
 		config.save();
+		
 		portal = (BlockPortalDreamLand) new BlockPortalDreamLand(DreamLandPortalID).setUnlocalizedName("portal");
 		portalObsidian = new BlockDreamLand(PortalObsidianID).setUnlocalizedName("portalObsidian");
 		itemlighter = new ItemLighter(itemLighterId - 256).setUnlocalizedName("itemLighter");
@@ -62,8 +68,7 @@ public class DreamLand {
 
 	@Init
 	public void init(FMLInitializationEvent evt) {
-		proxy.registerRenderThings();
-
+		
 		GameRegistry.registerBlock(portalObsidian, "Obsidiatal");
 		GameRegistry.registerBlock(portal, "DreamLand_Portal");
 		GameRegistry.registerItem(itemlighter, "Boom Stick");
@@ -76,8 +81,8 @@ public class DreamLand {
 		GameRegistry.addRecipe(new ItemStack(portalObsidian), new Object[] {"XXX", "XOX", "XXX", 'X', Block.obsidian, 'O', Block.blockDiamond});
 		GameRegistry.addRecipe(new ItemStack(itemlighter), new Object[] {"  X", " X ", "X  ", 'X', Item.emerald });
 		
-		
-		DimensionManager.registerDimension(DreamLand.dimensionID, 0);
+		DimensionManager.registerProviderType(DreamLand.dimensionID, DreamLandWorldProvider.class, true);
+		DimensionManager.registerDimension(DreamLand.dimensionID, DreamLand.dimensionID);
 		
 		
 	}
