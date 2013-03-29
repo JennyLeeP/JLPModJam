@@ -2,41 +2,87 @@ package dreamLand;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemMonsterPlacer;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockPortalDreamLand extends BlockPortal
 {
 
 
-	public BlockPortalDreamLand(int id, int texture)
+	public BlockPortalDreamLand(int par1)
 	{
-			super(id);
+			super(par1);
 			this.setCreativeTab(CreativeTabs.tabBlock);
 	}
-	public String getTextureFile()
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		return "/someblock.png";
+		this.blockIcon = par1IconRegister.registerIcon(DreamLand.modid + ":" + this.getUnlocalizedName2());
 	}
-	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
-	{
-		super.updateTick(par1World, par2, par3, par4, par5Random);
-		
-	}
+	/**
+     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
+     */
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    /**
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
+     */
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    /**
+     * Checks to see if this location is valid to create a portal and will return True if it does. Args: world, x, y, z
+     */
+    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+        super.updateTick(par1World, par2, par3, par4, par5Random);
+
+        if (par1World.provider.isSurfaceWorld() && par5Random.nextInt(2000) < par1World.difficultySetting)
+        {
+            int l;
+
+            for (l = par3; !par1World.doesBlockHaveSolidTopSurface(par2, l, par4) && l > 0; --l)
+            {
+                ;
+            }
+
+            if (l > 0 && !par1World.isBlockNormalCube(par2, l + 1, par4))
+            {
+                Entity entity = ItemMonsterPlacer.spawnCreature(par1World, 57, (double)par2 + 0.5D, (double)l + 1.1D, (double)par4 + 0.5D);
+
+                if (entity != null)
+                {
+                    entity.timeUntilPortal = entity.getPortalCooldown();
+                }
+            }
+        }
+    }
 	public boolean tryToCreatePortal(World par1World, int par2, int par3, int par4)
     {
         byte b0 = 0;
         byte b1 = 0;
 
-        if (par1World.getBlockId(par2 - 1, par3, par4) == Block.blockNetherQuartz.blockID|| par1World.getBlockId(par2 + 1, par3, par4) == Block.blockNetherQuartz.blockID)
+        if (par1World.getBlockId(par2 - 1, par3, par4) == DreamLand.portalObsidian.blockID|| par1World.getBlockId(par2 + 1, par3, par4) == DreamLand.portalObsidian.blockID)
         {
             b0 = 1;
         }
 
-        if (par1World.getBlockId(par2, par3, par4 - 1) == Block.blockNetherQuartz.blockID || par1World.getBlockId(par2, par3, par4 + 1) == Block.blockNetherQuartz.blockID)
+        if (par1World.getBlockId(par2, par3, par4 - 1) == DreamLand.portalObsidian.blockID || par1World.getBlockId(par2, par3, par4 + 1) == DreamLand.portalObsidian.blockID)
         {
             b1 = 1;
         }
@@ -68,7 +114,7 @@ public class BlockPortalDreamLand extends BlockPortal
 
                         if (flag)
                         {
-                            if (j1 != Block.blockNetherQuartz.blockID)//change to my block name TODO
+                            if (j1 != DreamLand.portalObsidian.blockID)//change to my block name TODO
                             {
                                 return false;
                             }
@@ -85,7 +131,7 @@ public class BlockPortalDreamLand extends BlockPortal
             {
                 for (i1 = 0; i1 < 3; ++i1)
                 {
-                    par1World.setBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l, Block.portal.blockID, 0, 2);
+                    par1World.setBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l, DreamLand.portal.blockID, 0, 2);
                 }
             }
 
@@ -115,7 +161,7 @@ public class BlockPortalDreamLand extends BlockPortal
             ;
         }
 
-        if (par1World.getBlockId(par2, i1 - 1, par4) != Block.blockNetherQuartz.blockID)
+        if (par1World.getBlockId(par2, i1 - 1, par4) != DreamLand.portalObsidian.blockID)
         {
             par1World.setBlockToAir(par2, par3, par4);
         }
@@ -128,7 +174,7 @@ public class BlockPortalDreamLand extends BlockPortal
                 ;
             }
 
-            if (j1 == 3 && par1World.getBlockId(par2, i1 + j1, par4) == Block.blockNetherQuartz.blockID)
+            if (j1 == 3 && par1World.getBlockId(par2, i1 + j1, par4) == DreamLand.portalObsidian.blockID)
             {
                 boolean flag = par1World.getBlockId(par2 - 1, par3, par4) == this.blockID || par1World.getBlockId(par2 + 1, par3, par4) == this.blockID;
                 boolean flag1 = par1World.getBlockId(par2, par3, par4 - 1) == this.blockID || par1World.getBlockId(par2, par3, par4 + 1) == this.blockID;
@@ -139,7 +185,7 @@ public class BlockPortalDreamLand extends BlockPortal
                 }
                 else
                 {
-                    if ((par1World.getBlockId(par2 + b0, par3, par4 + b1) != Block.blockNetherQuartz.blockID || par1World.getBlockId(par2 - b0, par3, par4 - b1) != this.blockID) && (par1World.getBlockId(par2 - b0, par3, par4 - b1) != Block.obsidian.blockID || par1World.getBlockId(par2 + b0, par3, par4 + b1) != this.blockID))
+                    if ((par1World.getBlockId(par2 + b0, par3, par4 + b1) != DreamLand.portalObsidian.blockID || par1World.getBlockId(par2 - b0, par3, par4 - b1) != this.blockID) && (par1World.getBlockId(par2 - b0, par3, par4 - b1) != DreamLand.portalObsidian.blockID || par1World.getBlockId(par2 + b0, par3, par4 + b1) != this.blockID))
                     {
                         par1World.setBlockToAir(par2, par3, par4);
                     }
@@ -150,5 +196,107 @@ public class BlockPortalDreamLand extends BlockPortal
                 par1World.setBlockToAir(par2, par3, par4);
             }
         }
+    }
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates.  Args: blockAccess, x, y, z, side
+     */
+    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    {
+        if (par1IBlockAccess.getBlockId(par2, par3, par4) == this.blockID)
+        {
+            return false;
+        }
+        else
+        {
+            boolean flag = par1IBlockAccess.getBlockId(par2 - 1, par3, par4) == this.blockID && par1IBlockAccess.getBlockId(par2 - 2, par3, par4) != this.blockID;
+            boolean flag1 = par1IBlockAccess.getBlockId(par2 + 1, par3, par4) == this.blockID && par1IBlockAccess.getBlockId(par2 + 2, par3, par4) != this.blockID;
+            boolean flag2 = par1IBlockAccess.getBlockId(par2, par3, par4 - 1) == this.blockID && par1IBlockAccess.getBlockId(par2, par3, par4 - 2) != this.blockID;
+            boolean flag3 = par1IBlockAccess.getBlockId(par2, par3, par4 + 1) == this.blockID && par1IBlockAccess.getBlockId(par2, par3, par4 + 2) != this.blockID;
+            boolean flag4 = flag || flag1;
+            boolean flag5 = flag2 || flag3;
+            return flag4 && par5 == 4 ? true : (flag4 && par5 == 5 ? true : (flag5 && par5 == 2 ? true : flag5 && par5 == 3));
+        }
+    }
+
+    /**
+     * Returns the quantity of items to drop on block destruction.
+     */
+    public int quantityDropped(Random par1Random)
+    {
+        return 0;
+    }
+
+    /**
+     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
+     */
+    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
+    {
+        if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null)
+        {
+            par5Entity.setInPortal();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
+     */
+    public int getRenderBlockPass()
+    {
+        return 1;
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * A randomly called display update to be able to add particles or other items for display
+     */
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+        if (par5Random.nextInt(100) == 0)
+        {
+            par1World.playSound((double)par2 + 0.5D, (double)par3 + 0.5D, (double)par4 + 0.5D, "portal.portal", 0.5F, par5Random.nextFloat() * 0.4F + 0.8F, false);
+        }
+
+        for (int l = 0; l < 4; ++l)
+        {
+            double d0 = (double)((float)par2 + par5Random.nextFloat());
+            double d1 = (double)((float)par3 + par5Random.nextFloat());
+            double d2 = (double)((float)par4 + par5Random.nextFloat());
+            double d3 = 0.0D;
+            double d4 = 0.0D;
+            double d5 = 0.0D;
+            int i1 = par5Random.nextInt(2) * 2 - 1;
+            d3 = ((double)par5Random.nextFloat() - 0.5D) * 0.5D;
+            d4 = ((double)par5Random.nextFloat() - 0.5D) * 0.5D;
+            d5 = ((double)par5Random.nextFloat() - 0.5D) * 0.5D;
+
+            if (par1World.getBlockId(par2 - 1, par3, par4) != this.blockID && par1World.getBlockId(par2 + 1, par3, par4) != this.blockID)
+            {
+                d0 = (double)par2 + 0.5D + 0.25D * (double)i1;
+                d3 = (double)(par5Random.nextFloat() * 2.0F * (float)i1);
+            }
+            else
+            {
+                d2 = (double)par4 + 0.5D + 0.25D * (double)i1;
+                d5 = (double)(par5Random.nextFloat() * 2.0F * (float)i1);
+            }
+
+            par1World.spawnParticle("portal", d0, d1, d2, d3, d4, d5);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
+     */
+    public int idPicked(World par1World, int par2, int par3, int par4)
+    {
+        return 0;
     }
 }
