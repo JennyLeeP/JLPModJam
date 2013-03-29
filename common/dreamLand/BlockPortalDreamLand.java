@@ -10,9 +10,13 @@ import net.minecraft.block.BlockPortal;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemMonsterPlacer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class BlockPortalDreamLand extends BlockPortal
 {
@@ -235,7 +239,33 @@ public class BlockPortalDreamLand extends BlockPortal
     {
         if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null)
         {
-            par5Entity.setInPortal();
+        	if(par5Entity instanceof EntityPlayer)
+        	{
+        		//((EntityPlayer)par5Entity).sendChatToPlayer("Traveling to new dim");
+        	}
+            //par5Entity.setInPortal();
+        	//if(par5Entity.getPortalCooldown() == 0)
+        	//if(Math.random() > 0.999)
+        	
+        	if(par5Entity.timeUntilPortal == 0 && par5Entity instanceof EntityPlayerMP)
+        	{
+        		par5Entity.timeUntilPortal = 0;
+        		MinecraftServer minecraftserver = MinecraftServer.getServer();
+        		int dimID = par5Entity.dimension;
+                WorldServer worldserver = minecraftserver.worldServerForDimension(dimID);
+                WorldServer worldserver1 = minecraftserver.worldServerForDimension(DreamLand.dimensionID);
+                if(dimID == DreamLand.dimensionID)
+                {
+                	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, 0, worldserver1, worldserver, new DreamLandTeleporter(worldserver));
+                    //par5Entity.travelToDimension(0);
+                } else {
+                	//System.out.println("teleporting");
+                	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, dimID, worldserver, worldserver1, new DreamLandTeleporter(worldserver1));
+                    par5Entity.travelToDimension(DreamLand.dimensionID);
+                }
+                //par5Entity.travelToDimension(Atum.dimensionID);
+        	}
+        	
         }
     }
 

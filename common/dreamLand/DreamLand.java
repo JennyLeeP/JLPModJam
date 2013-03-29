@@ -1,11 +1,10 @@
 package dreamLand;
 
-
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -33,7 +32,7 @@ public class DreamLand {
 	public static BlockPortalDreamLand portal;
 	public static Item itemlighter;
 	
-	public static int dimension = 21;
+	public static int dimensionID = 21;
 	
 	
 	static boolean enableDreamDimension;
@@ -76,6 +75,11 @@ public class DreamLand {
 
 		GameRegistry.addRecipe(new ItemStack(portalObsidian), new Object[] {"XXX", "XOX", "XXX", 'X', Block.obsidian, 'O', Block.blockDiamond});
 		GameRegistry.addRecipe(new ItemStack(itemlighter), new Object[] {"  X", " X ", "X  ", 'X', Item.emerald });
+		
+		
+		DimensionManager.registerDimension(DreamLand.dimensionID, 0);
+		
+		
 	}
 
 	@PostInit
