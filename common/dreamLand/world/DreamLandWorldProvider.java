@@ -18,7 +18,7 @@ public class DreamLandWorldProvider extends WorldProvider{
      */
 	public void registerWorldChunkManager()
 	{
-		this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.mushroomIsland, 0.8F, 0.1F);
+		this.worldChunkMgr = new WorldChunkManagerHell(DreamLand.dreamIsland, 0.8F, 0.1F);
 		this.dimensionId = DreamLand.dimensionID;
 		
 	}
