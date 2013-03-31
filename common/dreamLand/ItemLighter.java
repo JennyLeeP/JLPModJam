@@ -30,6 +30,7 @@ public class ItemLighter extends Item{
 		{
 			DreamLand.portal.tryToCreatePortal(par3World, par4, par5 + 1, par6);
 		}
+		
 		return true;
 		
 	}

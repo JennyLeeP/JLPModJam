@@ -51,10 +51,13 @@ public class DreamLand {
 	public static Block dreamQuartz;
 	public static Block dreamDirt;
 	public static Block dreamSand;
+	public static Block oreLucidity;
+	public static Block oreStarcesium;
 	
 	public static BlockPortalDreamLand portal;
 	
 	public static Item itemlighter;
+	public static Item itemLucidity;
 	public static Item itemSwordPhantomIron;
 	
 	public static int dimensionID = 21;
@@ -76,6 +79,7 @@ public class DreamLand {
 		
 		int itemLighterId = config.getItem("itemLighter", 30000).getInt(30000);
 		int swordPhantomId = config.getItem("itemSwordPhantomIron", 30001).getInt(30001);
+		int itemLucidityID = config.getItem("itemLucidity", 30002).getInt(30002);
 		
 		int DreamLandPortalID = config.getBlock("blockPortal", 4000).getInt(4000);
 		int PortalObsidianID = config.getBlock("portalObsidian", 4001).getInt(4001);
@@ -83,20 +87,25 @@ public class DreamLand {
 		int DreamQuartzID = config.getBlock("dreamQuartz", 4003).getInt(4003);
 		int DreamDirtID = config.getBlock("dreamDirt", 4004).getInt(4004);
 		int DreamSandID = config.getBlock("dreamSand", 4005).getInt(4005);
+		int OreLucidityID = config.getBlock("oreLucidity", 4006).getInt(4006);
+		int OreStarCesiumID = config.getBlock("oreStarcesium", 4007).getInt(4007);
+		
 		config.save();
 		//Blocks
 		portal = (BlockPortalDreamLand) new BlockPortalDreamLand(DreamLandPortalID).setUnlocalizedName("portal");
 		
 		portalObsidian = new BlockDreamLand(PortalObsidianID).setUnlocalizedName("portalObsidian").setHardness(2.0F);
-		dreamStone = new BlockDreamLand(DreamStoneID).setUnlocalizedName("dreamStone").setUnlocalizedName("dreamStone").setHardness(2.0F);
-		dreamQuartz = new BlockDreamLand(DreamQuartzID).setUnlocalizedName("dreamQuartz").setUnlocalizedName("dreamQuartz").setHardness(2.0F);
-		dreamDirt = new BlockDreamLand(DreamDirtID).setUnlocalizedName("dreamDirt").setUnlocalizedName("dreamDirt").setHardness(2.0F);
-		dreamSand = new BlockDreamLand(DreamSandID).setUnlocalizedName("dreamSand").setUnlocalizedName("dreamSand").setHardness(2.0F);
+		dreamStone = new BlockDreamLand(DreamStoneID).setUnlocalizedName("dreamStone").setHardness(2.0F);
+		dreamQuartz = new BlockDreamLand(DreamQuartzID).setUnlocalizedName("dreamQuartz").setHardness(2.0F);
+		dreamDirt = new BlockDreamLand(DreamDirtID).setUnlocalizedName("dreamDirt").setHardness(2.0F);
+		dreamSand = new BlockDreamLand(DreamSandID).setUnlocalizedName("dreamSand").setHardness(2.0F);
+		oreLucidity = new BlockDreamLand(OreLucidityID, itemLucidityID).setUnlocalizedName("oreLucidity").setHardness(2.0F);
+		oreStarcesium = new BlockDreamLand(OreStarCesiumID, Item.netherStar.itemID).setUnlocalizedName("oreStarCesium").setHardness(2.0F);
 		
 		//Items
 		itemlighter = new ItemLighter(itemLighterId - 256).setUnlocalizedName("itemLighter");
 		itemSwordPhantomIron = new ItemDreamSword(swordPhantomId - 256, toolPhantomIron).setUnlocalizedName("itemSwordPhantomIron");
-		
+		itemLucidity = new DreamLandItems(itemLucidityID - 256).setUnlocalizedName("itemLucidity");
 		
 		
 		dreamIsland = (new BiomeGenDreamLand(100)).setBiomeName("DreamLand");
@@ -117,9 +126,12 @@ public class DreamLand {
 		GameRegistry.registerBlock(dreamQuartz, "Dream_Quartz");
 		GameRegistry.registerBlock(dreamDirt, "Dream_Dirt");
 		GameRegistry.registerBlock(dreamSand, "Dream_Sand");
+		GameRegistry.registerBlock(oreLucidity, "OreLucidity");
+		GameRegistry.registerBlock(oreStarcesium, "OreStarCesium");
 		
 		GameRegistry.registerItem(itemlighter, "Boom Stick");
 		GameRegistry.registerItem(itemSwordPhantomIron, "Phantom Sword");
+		GameRegistry.registerItem(itemLucidity, "Lucidity");
 		
 		LanguageRegistry.addName(portal, "Portal");
 		LanguageRegistry.addName(portalObsidian, "ShadowStone");
@@ -127,12 +139,19 @@ public class DreamLand {
 		LanguageRegistry.addName(dreamQuartz, "Surrealite");
 		LanguageRegistry.addName(dreamDirt, "Chaotic Earth");
 		LanguageRegistry.addName(dreamSand, "Dream_Sand");
+		LanguageRegistry.addName(oreLucidity, "OreLucidity");
+		LanguageRegistry.addName(oreStarcesium, "OreStarCesium");
 		
+		LanguageRegistry.addName(itemlighter, "Igniter");
 		LanguageRegistry.addName(itemSwordPhantomIron, "Phantom Sword");
+		LanguageRegistry.addName(itemLucidity, "Lucidity");
+		
+		// Creative Tab
+		LanguageRegistry.instance().addStringLocalization("itemGroup.tabDreamLand", "en_US", "Dreamland");
 
 		GameRegistry.addRecipe(new ItemStack(portalObsidian), new Object[] {"XXX", "XOX", "XXX", 'X', Block.obsidian, 'O', Block.blockDiamond});
 		GameRegistry.addRecipe(new ItemStack(itemlighter), new Object[] {"  X", " X ", "X  ", 'X', Item.emerald });
-		GameRegistry.addRecipe(new ItemStack(itemSwordPhantomIron), new Object[] {" X ", " X ", " X ", 'X', Item.emerald, 'O', Item.diamond});
+		GameRegistry.addRecipe(new ItemStack(itemSwordPhantomIron), new Object[] {" O ", " O ", " X ", 'X', Item.emerald, 'O', Item.diamond});
 		
 		DimensionManager.registerProviderType(DreamLand.dimensionID, DreamLandWorldProvider.class, true);
 		DimensionManager.registerDimension(DreamLand.dimensionID, DreamLand.dimensionID);

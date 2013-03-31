@@ -19,6 +19,6 @@ public class DreamLandTabs extends CreativeTabs {
 	@Override
 	public ItemStack getIconItemStack()
 	{
-		return new ItemStack(DreamLand.itemlighter);
+		return new ItemStack(DreamLand.itemSwordPhantomIron);
 	}
 }
