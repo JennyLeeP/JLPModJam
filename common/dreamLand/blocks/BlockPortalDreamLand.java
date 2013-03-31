@@ -292,7 +292,7 @@ public class BlockPortalDreamLand extends BlockPortal
                 } else {
                 	((EntityPlayerMP)par5Entity).sendChatToPlayer("Moving from " + dimID + " to dreamland");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, DreamLand.dimensionID, new DreamLandTeleporter(worldserver1));
-                    par5Entity.travelToDimension(DreamLand.dimensionID);
+                    //par5Entity.travelToDimension(DreamLand.dimensionID);
                 }
                 //remove due to weirdness in teleporting . par5Entity.travelToDimension(DreamLand.dimensionID);
         	}

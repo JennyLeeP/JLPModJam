@@ -39,6 +39,7 @@ public class DreamLand {
 	public static Block portalObsidian;
 	public static Block dreamStone;
 	public static Block dreamQuartz;
+	public static Block dreamDirt;
 	
 	public static BlockPortalDreamLand portal;
 	public static Item itemlighter;
@@ -64,18 +65,18 @@ public class DreamLand {
 		int PortalObsidianID = config.getBlock("portalObsidian", 4001).getInt(4001);
 		int DreamStoneID = config.getBlock("dreamStone", 4002).getInt(4002);
 		int DreamQuartzID = config.getBlock("dreamQuartz", 4003).getInt(4003);
-		
+		int DreamDirtID = config.getBlock("dreamDirt", 4004).getInt(4004);
 		config.save();
 		
 		portal = (BlockPortalDreamLand) new BlockPortalDreamLand(DreamLandPortalID).setUnlocalizedName("portal");
 		
-		portalObsidian = new BlockDreamLand(PortalObsidianID).setUnlocalizedName("portalObsidian");
-		dreamStone = new BlockDreamLand(DreamStoneID).setUnlocalizedName("dreamStone").setUnlocalizedName("dreamStone");
-		dreamQuartz = new BlockDreamLand(DreamQuartzID).setUnlocalizedName("dreamQuartz").setUnlocalizedName("dreamQuartz");
-		
+		portalObsidian = new BlockDreamLand(PortalObsidianID).setUnlocalizedName("portalObsidian").setHardness(2.0F);
+		dreamStone = new BlockDreamLand(DreamStoneID).setUnlocalizedName("dreamStone").setUnlocalizedName("dreamStone").setHardness(2.0F);
+		dreamQuartz = new BlockDreamLand(DreamQuartzID).setUnlocalizedName("dreamQuartz").setUnlocalizedName("dreamQuartz").setHardness(2.0F);
+		dreamDirt = new BlockDreamLand(DreamDirtID).setUnlocalizedName("dreamDirt").setUnlocalizedName("dreamDirt").setHardness(2.0F);
 		itemlighter = new ItemLighter(itemLighterId - 256).setUnlocalizedName("itemLighter");
 		
-		dreamIsland = (new BiomeGenDreamLand(100)).setColor(16421912).setBiomeName("DreamLand");
+		dreamIsland = (new BiomeGenDreamLand(100)).setBiomeName("DreamLand").setTemperatureRainfall(2.0F, 0.0F);
 	}
 	
 
@@ -86,14 +87,16 @@ public class DreamLand {
 		GameRegistry.registerBlock(portal, "DreamLand_Portal");
 		GameRegistry.registerBlock(dreamStone, "Dream_Stone");
 		GameRegistry.registerBlock(dreamQuartz, "Dream_Quartz");
+		GameRegistry.registerBlock(dreamDirt, "Dream_Dirt");
 		
 		GameRegistry.registerItem(itemlighter, "Boom Stick");
 		
 		
 		LanguageRegistry.addName(portal, "Portal");
 		LanguageRegistry.addName(portalObsidian, "ShadowStone");
-		LanguageRegistry.addName(dreamStone, "Surrealite");
-		LanguageRegistry.addName(dreamQuartz, "SoldjerStone");
+		LanguageRegistry.addName(dreamStone, "SoldjerStone");
+		LanguageRegistry.addName(dreamQuartz, "Surrealite");
+		LanguageRegistry.addName(dreamDirt, "Chaotic Earth");
 		
 		LanguageRegistry.addName(itemlighter, "Boom Stick");
 

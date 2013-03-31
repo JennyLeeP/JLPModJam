@@ -3,7 +3,6 @@ package dreamLand.world;
 import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.biome.BiomeEndDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
@@ -21,10 +20,10 @@ public class BiomeGenDreamLand extends BiomeGenBase{
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
-        //this.spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 10, 4, 4));
-        this.sTopBlock = (short)DreamLand.dreamQuartz.blockID;
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 10, 4, 4));
+        this.sTopBlock = (short)DreamLand.dreamDirt.blockID;
         this.sFillerBlock = (short)DreamLand.dreamStone.blockID;
-        //this.theBiomeDecorator = new BiomeEndDecorator(this);
+        this.theBiomeDecorator = new BiomeDecoratorDreamLand(this);
     }
 
 	/**
