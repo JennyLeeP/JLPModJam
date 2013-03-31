@@ -33,6 +33,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenSpikes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
@@ -51,6 +53,7 @@ public class ChunkProviderDreamLand implements IChunkProvider {
     private World worldObj;
     private double[] densities;
     
+   
 
     /** The biomes that are used to generate the chunk */
     private BiomeGenBase[] biomesForGeneration;
@@ -61,6 +64,7 @@ public class ChunkProviderDreamLand implements IChunkProvider {
     double[] noiseData5;
     int[][] field_73203_h = new int[32][32];
 	private double[] stoneNoise;
+
 
     public ChunkProviderDreamLand(World par1World, long par2)
     {
@@ -81,11 +85,11 @@ public class ChunkProviderDreamLand implements IChunkProvider {
         this.noiseGen5 = noiseGens[4];
    }
 
-    public void generateTerrain(int par1, int par2, short[] par3ArrayOfShort, BiomeGenBase[] par4ArrayOfBiomeGenBase)
+    public void generateTerrain(int par1, int par2, short[] par3ArrayOfShort)
     {
-        short b0 = 2;
+        byte b0 = 2;
         int k = b0 + 1;
-        short b1 = 50;//island height
+        short b1 = 40;//island height
         int l = b0 + 1;
         this.densities = this.initializeNoiseField(this.densities, par1 * b0, 0, par2 * b0, k, b1, l);
 
@@ -148,6 +152,9 @@ public class ChunkProviderDreamLand implements IChunkProvider {
             }
         }
     }
+    /**
+     * Replaces the stone that was placed in with blocks that match the biome
+     */
     public void replaceBlocksForBiome(int par1, int par2, short[] par3ArrayOfByte, BiomeGenBase[] par4ArrayOfBiomeGenBase)
     {
         //ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, par1, par2, par3ArrayOfByte, par4ArrayOfBiomeGenBase);
@@ -163,7 +170,7 @@ public class ChunkProviderDreamLand implements IChunkProvider {
             for (int l = 0; l < 16; ++l)
             {
                 BiomeGenBase biomegenbase = par4ArrayOfBiomeGenBase[l + k * 16];
-                float f = biomegenbase.getFloatTemperature();//temperature
+                float f = biomegenbase.getFloatTemperature();
                 int i1 = (int)(this.stoneNoise[k + l * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int j1 = -1;
                 short b1 = ((BiomeGenDreamLand)biomegenbase).sTopBlock;
@@ -175,7 +182,7 @@ public class ChunkProviderDreamLand implements IChunkProvider {
 
                     if (k1 <= 0 + this.rand.nextInt(5))
                     {
-                        //par3ArrayOfByte[l1] = (short)Block.bedrock.blockID;
+                        //par3ArrayOfByte[l1] = (byte)Block.bedrock.blockID;
                     }
                     else
                     {
@@ -185,7 +192,7 @@ public class ChunkProviderDreamLand implements IChunkProvider {
                         {
                             j1 = -1;
                         }
-                        else if (b3 == DreamLand.dreamStone.blockID)//must equal this to start
+                        else if (b3 == DreamLand.dreamStone.blockID)
                         {
                             if (j1 == -1)
                             {
@@ -196,11 +203,11 @@ public class ChunkProviderDreamLand implements IChunkProvider {
                                 }
                                 else if (k1 >= b0 - 4 && k1 <= b0 + 1)
                                 {
-                                    b1 = ((BiomeGenDreamLand)biomegenbase).topBlock;
-                                    b2 = ((BiomeGenDreamLand)biomegenbase).fillerBlock;
+                                    b1 = ((BiomeGenDreamLand)biomegenbase).sTopBlock;
+                                    b2 = ((BiomeGenDreamLand)biomegenbase).sFillerBlock;
                                 }
 
-                                if (k1 < b0 && b1 == 0)//generates water or ice depending on temp...f == temp
+                                if (k1 < b0 && b1 == 0)
                                 {
                                     if (f < 0.15F)
                                     {
@@ -228,10 +235,10 @@ public class ChunkProviderDreamLand implements IChunkProvider {
                                 --j1;
                                 par3ArrayOfByte[l1] = b2;
 
-                                if (j1 == 0 && b2 == DreamLand.dreamStone.blockID)
+                                if (j1 == 0 && b2 == DreamLand.dreamSand.blockID)
                                 {
                                     j1 = this.rand.nextInt(4);
-                                    b2 = (short)DreamLand.portalObsidian.blockID;
+                                    b2 = (short)DreamLand.dreamStone.blockID;
                                 }
                             }
                         }
@@ -257,15 +264,9 @@ public class ChunkProviderDreamLand implements IChunkProvider {
     {
         this.rand.setSeed((long)par1 * 341873128712L + (long)par2 * 132897987541L);
         short[] abyte = new short[32768];
-        this.generateTerrain(par1, par2, abyte, biomesForGeneration);
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
-        
+        this.generateTerrain(par1, par2, abyte);
         this.replaceBlocksForBiome(par1, par2, abyte, this.biomesForGeneration);
-        
-
-        
-
-        
         short[] ashort = new short[32768];
         int yMax = 32768/256;
         for(int x = 0; x < 16; x++)
@@ -280,7 +281,6 @@ public class ChunkProviderDreamLand implements IChunkProvider {
         		}
         	}
         }
-        
         Chunk chunk = new Chunk(this.worldObj, ashort, new byte[32768], par1, par2);
         byte[] abyte1 = chunk.getBiomeArray();
 
@@ -451,15 +451,15 @@ public class ChunkProviderDreamLand implements IChunkProvider {
      */
     public void populate(IChunkProvider par1IChunkProvider, int par2, int par3)
     {
-        BlockSand.fallInstantly = true;
-
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(par1IChunkProvider, worldObj, worldObj.rand, par2, par3, false));
-
+    	BlockSand.fallInstantly = true;
         int k = par2 * 16;
         int l = par3 * 16;
-        boolean flag = false;
         BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(k + 16, l + 16);
-        biomegenbase.decorate(this.worldObj, this.worldObj.rand, k, l);
+        this.rand.setSeed(this.worldObj.getSeed());
+        long i1 = this.rand.nextLong() / 2L * 2L + 1L;
+        long j1 = this.rand.nextLong() / 2L * 2L + 1L;
+        this.rand.setSeed((long)par2 * i1 + (long)par3 * j1 ^ this.worldObj.getSeed());
+        boolean flag = false;
 
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, worldObj, worldObj.rand, par2, par3, false));
 

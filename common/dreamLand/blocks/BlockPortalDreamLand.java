@@ -28,7 +28,7 @@ public class BlockPortalDreamLand extends BlockPortal
 	public BlockPortalDreamLand(int par1)
 	{
 			super(par1);
-			this.setCreativeTab(CreativeTabs.tabBlock);
+			this.setCreativeTab(DreamLand.tabDreamLand);
 			this.setTickRandomly(true);
 	}
 	public void registerIcons(IconRegister par1IconRegister)

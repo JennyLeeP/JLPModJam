@@ -4,10 +4,12 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenSpikes;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND;
 public class BiomeDecoratorDreamLand extends BiomeDecorator {
 	
@@ -49,7 +51,8 @@ public class BiomeDecoratorDreamLand extends BiomeDecorator {
             //EntityDragon entitydragon = new EntityDragon(this.currentWorld);
             //entitydragon.setLocationAndAngles(0.0D, 128.0D, 0.0D, this.randomGenerator.nextFloat() * 360.0F, 0.0F);
             //this.currentWorld.spawnEntityInWorld(entitydragon);
-        }
         
+     
+        }
     }
 }

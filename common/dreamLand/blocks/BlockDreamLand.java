@@ -1,5 +1,6 @@
 package dreamLand.blocks;
 
+
 import dreamLand.DreamLand;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,7 +13,7 @@ public class BlockDreamLand extends Block{
 	public BlockDreamLand(int par1)
 	{
 			super(par1, Material.rock);
-			this.setCreativeTab(CreativeTabs.tabBlock);
+			this.setCreativeTab(DreamLand.tabDreamLand);
 	}
 	public void registerIcons(IconRegister par1IconRegister)
 	{
