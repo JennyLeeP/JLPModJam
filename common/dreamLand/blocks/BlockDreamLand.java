@@ -15,7 +15,7 @@ public class BlockDreamLand extends Block{
 	
 	public BlockDreamLand(int par1)
 	{
-			super(par1, Material.rock);
+			super(par1, Material.ground);
 			dropid = this.blockID;
 			this.setCreativeTab(DreamLand.tabDreamLand);
 	}
@@ -25,7 +25,7 @@ public class BlockDreamLand extends Block{
 		this.setCreativeTab(DreamLand.tabDreamLand);
 	}
 	
-	
+
 	@Override
 	public int idDropped(int var1, Random var2, int var3) {
 		return dropid;

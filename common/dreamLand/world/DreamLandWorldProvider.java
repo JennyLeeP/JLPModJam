@@ -28,7 +28,7 @@ public class DreamLandWorldProvider extends WorldProvider{
      */
 	public IChunkProvider createChunkGenerator()
 	{
-		return new ChunkProviderDreamLand(this.worldObj, worldObj.getSeed());
+		return new ChunkProviderDreamLand(this.worldObj, this.worldObj.getSeed(), true);
 	}
 	
 }
