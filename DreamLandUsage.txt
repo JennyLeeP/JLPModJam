@@ -1,4 +1,5 @@
 DreamLand is a mod for Minecraft that adds a whole new dimension to the game.  
+Made for version 1.5.1 of Minecraft - and using version .611 of MCForge
 
 Th plan was for it to be the "DreamLand" where our friend stevie could find new and interesting trees and creatures. 
 He would not have to work so hard for diamonds and nether stars.
