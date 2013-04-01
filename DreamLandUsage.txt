@@ -1,0 +1,39 @@
+DreamLand is a mod for Minecraft that adds a whole new dimension to the game.  
+
+Th plan was for it to be the "DreamLand" where our friend stevie could find new and interesting trees and creatures. 
+He would not have to work so hard for diamonds and nether stars.
+
+A place where the cake is not a lie.
+
+so what is there .
+
+New terrain gen with all custom blocks.
+A custom portal that leads to this dimension.
+
+to build the portal - place Shadow Stone in a ring ("same as nether portal") lite it  with the igniter, "purple Rod".
+
+Once lite jump in and travel to the dream  :)
+
+there you will find all of the custom blocks.
+
+All of the items/blocks got names resembling the online names of some of my friends. "Just for fun"
+
+the ores are:
+
+starCesium = drops netherStars.  rare - like 1 to a chunk(Ore gen is not working yet- unfinished)
+lucidity = drops lucidity.  was going to be the base item for crafting items from the Dreamland(unfinshed)
+
+
+items:
+sparkilng sapling = was to be plantable to grow the trees native to the Dreamworld. Beautifull tall trees that shined in the sun. These trees were going to drop a fruit that would have given stevie a temporary special ability.
+
+and then there is the sword.  kills enemies with ease, but also right clicking it onto any block will turn that block into cake.
+
+this is all very unfinished, I do hope to finish it at some point.
+
+enjoy :) - JennyLeeP
+
+you can find me on MCforums as : Jennyleep
+
+or at http://www.qubetubers.com, we have a mumble server where I am always on.
+I am also around the irc channels as JennyLeeP
