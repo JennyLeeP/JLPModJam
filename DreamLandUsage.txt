@@ -1,7 +1,7 @@
 DreamLand is a mod for Minecraft that adds a awesome new dimension to the game.  
 Made for version 1.5.1 of Minecraft - and using version .611 of MCForge
 
-Th plan was for it to be the "DreamLand" where our friend Stevie could find new and interestingtrees and creatures. 
+The plan was for it to be the "DreamLand" where our friend Stevie could find new and interesting trees and creatures. 
 He would not have to work so hard for diamonds and nether stars.
 
 A place where the cake is not a lie.
@@ -11,9 +11,9 @@ So, what is there?
 New terrain gen with all custom blocks.
 A custom portal that leads to this dimension.
 
-To build the portal - place Shadow Stone in a ring ("same as nether portal") lite it  with the igniter, "purple Rod".
+To build the portal - place Shadow Stone in a ring ("same as nether portal") light it with an igniter, "purple rod".
 
-Once lit jump in and travel to the dream  :) (because that's how dreams work, am I right? :P)
+Once lit jump in and travel to the dream  :) (because that's how dreams work, right :P)
 
 There, you will find all of the custom blocks.
 
@@ -21,20 +21,20 @@ All of the items/blocks are named after the online aliases of some of my friends
 
 The ores are:
 
-starCesium = drops netherStars.  rare - like 1 to a chunk(Ore gen is not working yet- unfinished)
-lucidity = drops lucidity.  was going to be the base item for crafting items from the Dreamland(unfinshed)
+StarCesium = drops Nether Stars.  Rare - like 1 per chunk (Ore gen is not working yet (unfinished)
+Lucidity = drops Lucidity.  Was going to be the base item for crafting items from the Dreamland (unfinshed)
 
 
-items:
-sparkilng sapling = was to be plantable to grow the trees native to the Dreamworld. Beautifull tall trees that shined in the sun. These trees were going to drop a fruit that would have given stevie a temporary special ability.
+Items:
+Sparkilng Sapling = was to be plantable to grow the trees native to the Dreamworld. Beautiful tall trees that shined in the sun. These trees were going to drop a fruit that would have given Stevie a temporary special ability.
 
-and then there is the sword.  kills enemies with ease, but also right clicking it onto any block will turn that block into cake.
+And then there is the sword.  Kills enemies with ease, but also right clicking it onto any block will turn that block into cake. (omnomnom :3)
 
-this is all very unfinished, I do hope to finish it at some point.
+This is all very unfinished, I do hope to finish it at some point.
 
-enjoy :) - JennyLeeP
+Enjoy :) - JennyLeeP
 
-you can find me on MCforums as : Jennyleep
+You can find me on MCforums as JennyLeeP
 
-or at http://www.qubetubers.com, we have a mumble server where I am always on.
-I am also around the irc channels as JennyLeeP
+Or at http://www.qubetubers.com, we have a Mumble server which I am always on.
+I am also around the IRC channels as JennyLeeP
