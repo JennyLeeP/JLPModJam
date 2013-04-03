@@ -7,7 +7,6 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
 import cpw.mods.fml.common.Mod;
@@ -74,54 +73,37 @@ public class DreamLand {
 
     @PreInit
     public void preInit(FMLPreInitializationEvent evt) {
-        Configuration config = new Configuration(evt.getSuggestedConfigurationFile());
-        config.load();
-        // General
-        enableDreamDimension = config.get("general", "enableDreamDimension", true).getBoolean(true);
 
-        int itemLighterId = config.getItem("itemLighter", 30000).getInt(30000);
-        int swordPhantomId = config.getItem("itemSwordPhantomIron", 30001).getInt(30001);
-        int itemLucidityID = config.getItem("itemLucidity", 30002).getInt(30002);
-        int itemSparklingSaplingID = config.getItem("itemSparklingSapling", 30003).getInt(30003);
-
-        int DreamLandPortalID = config.getBlock("blockPortal", 4000).getInt(4000);
-        int PortalObsidianID = config.getBlock("portalObsidian", 4001).getInt(4001);
-        int DreamStoneID = config.getBlock("dreamStone", 4002).getInt(4002);
-        int DreamQuartzID = config.getBlock("dreamQuartz", 4003).getInt(4003);
-        int DreamDirtID = config.getBlock("dreamDirt", 4004).getInt(4004);
-        int DreamSandID = config.getBlock("dreamGravel", 4005).getInt(4005);
-        int OreLucidityID = config.getBlock("oreLucidity", 4006).getInt(4006);
-        int OreStarCesiumID = config.getBlock("oreStarcesium", 4007).getInt(4007);
-        int DreamGrassID = config.getBlock("dreamGrass", 4008).getInt(4008);
-
-        config.save();
+        // Loads the Config File
+        Config.init(evt);
+        
         // Blocks
-        portal = (BlockPortalDreamLand) new BlockPortalDreamLand(DreamLandPortalID)
+        portal = (BlockPortalDreamLand) new BlockPortalDreamLand(Config.DreamLandPortalID)
                 .setUnlocalizedName("portal");
 
-        portalObsidian = new BlockDreamLand(PortalObsidianID).setUnlocalizedName("portalObsidian")
+        portalObsidian = new BlockDreamLand(Config.PortalObsidianID).setUnlocalizedName("portalObsidian")
                 .setHardness(3.0F);
-        dreamStone = new BlockDreamLand(DreamStoneID).setUnlocalizedName("dreamStone").setHardness(
+        dreamStone = new BlockDreamLand(Config.DreamStoneID).setUnlocalizedName("dreamStone").setHardness(
                 2.0F);
-        dreamQuartz = new BlockDreamLand(DreamQuartzID).setUnlocalizedName("dreamQuartz")
+        dreamQuartz = new BlockDreamLand(Config.DreamQuartzID).setUnlocalizedName("dreamQuartz")
                 .setStepSound(Block.soundStoneFootstep).setHardness(2.0F);
-        dreamDirt = new BlockDreamLand(DreamDirtID).setUnlocalizedName("dreamDirt")
+        dreamDirt = new BlockDreamLand(Config.DreamDirtID).setUnlocalizedName("dreamDirt")
                 .setStepSound(Block.soundGrassFootstep).setHardness(0.6F);
-        dreamGravel = new BlockDreamLand(DreamSandID).setUnlocalizedName("cyaGravel")
+        dreamGravel = new BlockDreamLand(Config.DreamSandID).setUnlocalizedName("cyaGravel")
                 .setHardness(1.0F).setStepSound(Block.soundGravelFootstep);
-        oreLucidity = new BlockDreamLand(OreLucidityID, itemLucidityID).setUnlocalizedName(
+        oreLucidity = new BlockDreamLand(Config.OreLucidityID, Config.itemLucidityID).setUnlocalizedName(
                 "oreLucidity").setHardness(2.0F);
-        oreStarcesium = new BlockDreamLand(OreStarCesiumID, Item.netherStar.itemID)
+        oreStarcesium = new BlockDreamLand(Config.OreStarCesiumID, Item.netherStar.itemID)
                 .setUnlocalizedName("oreStarCesium").setHardness(2.0F);
-        dreamGrass = new BlockDreamGrass(DreamGrassID).setHardness(0.6F)
+        dreamGrass = new BlockDreamGrass(Config.DreamGrassID).setHardness(0.6F)
                 .setStepSound(Block.soundGrassFootstep).setUnlocalizedName("grass");
 
         // Items
-        itemlighter = new ItemLighter(itemLighterId - 256).setUnlocalizedName("itemLighter");
-        itemSwordPhantomIron = new ItemDreamSword(swordPhantomId - 256, toolPhantomIron)
+        itemlighter = new ItemLighter(Config.itemLighterId - 256).setUnlocalizedName("itemLighter");
+        itemSwordPhantomIron = new ItemDreamSword(Config.swordPhantomId - 256, toolPhantomIron)
                 .setUnlocalizedName("itemSwordPhantomIron");
-        itemLucidity = new DreamLandItems(itemLucidityID - 256).setUnlocalizedName("itemLucidity");
-        itemSparklingSapling = new sparklingSapling(itemSparklingSaplingID - 256)
+        itemLucidity = new DreamLandItems(Config.itemLucidityID - 256).setUnlocalizedName("itemLucidity");
+        itemSparklingSapling = new sparklingSapling(Config.itemSparklingSaplingID - 256)
                 .setUnlocalizedName("sparklingSapling");
 
         dreamIsland = (new BiomeGenDreamLand(100)).setColor(6316128).setBiomeName("Dream Land")
