@@ -18,7 +18,7 @@ public class Config {
     public static boolean enableDreamDimension;
 
     public static Property ids;
-    
+
     public static int[] defaultIDs = { Block.cactus.blockID, Block.tallGrass.blockID,
             Block.dirt.blockID, Block.grass.blockID, Block.carrot.blockID, Block.crops.blockID,
             DreamGrassID, DreamDirtID };
@@ -31,11 +31,6 @@ public class Config {
 
         try{
             config.load();
-
-            // General
-            enableDreamDimension = config.get("general", "enableDreamDimension", true).getBoolean(
-                    true);
-            ids = config.get("general", "White List:", defaultIDs);
 
             // Item
             itemLighterId = config.getItem("itemLighter", 30000).getInt(30000);
@@ -53,6 +48,11 @@ public class Config {
             OreLucidityID = config.getBlock("oreLucidity", 4006).getInt(4006);
             OreStarCesiumID = config.getBlock("oreStarcesium", 4007).getInt(4007);
             DreamGrassID = config.getBlock("dreamGrass", 4008).getInt(4008);
+
+            // General
+            enableDreamDimension = config.get("general", "enableDreamDimension", true).getBoolean(
+                    true);
+            ids = config.get("general", "White List:", defaultIDs);
 
         }catch(Exception e){
             FMLLog.log(Level.SEVERE, e, DreamLand.modid

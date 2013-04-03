@@ -41,11 +41,8 @@ public class ItemDreamSword extends ItemSword {
         for (int i : id)
             ids.add(i);
 
-        while (ids.iterator().hasNext()){
-            // Value is equal to a int value
-            if (ids.iterator().next().equals(world.getBlockId(x, y, z))){
-                return world.setBlock(x, y, z, Block.cake.blockID);
-            }
+        if (ids.contains(world.getBlockId(x, y, z))){
+            return world.setBlock(x, y, z, Block.cake.blockID);
         }
         return false;
     }
