@@ -21,7 +21,7 @@ public class DreamLandTeleporter extends Teleporter {
     /** A private Random() function in Teleporter */
     private final Random random;
     private final LongHashMap field_85191_c = new LongHashMap();
-    private final List field_85190_d = new ArrayList();
+    private final List<Long> field_85190_d = new ArrayList<Long>();
 
     public DreamLandTeleporter(WorldServer par1WorldServer) {
         super(par1WorldServer);
@@ -423,7 +423,7 @@ public class DreamLandTeleporter extends Teleporter {
     @Override
     public void func_85189_a(long par1) {
         if ((par1 % 100L) == 0L){
-            Iterator iterator = field_85190_d.iterator();
+            Iterator<Long> iterator = field_85190_d.iterator();
             long j = par1 - 600L;
 
             while (iterator.hasNext()){

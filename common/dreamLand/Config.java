@@ -11,9 +11,19 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class Config {
 
-    public static int itemLighterId, swordPhantomId, itemLucidityID, itemSparklingSaplingID,
-            DreamLandPortalID, PortalObsidianID, DreamStoneID, DreamQuartzID, DreamDirtID,
-            DreamSandID, OreLucidityID, OreStarCesiumID, DreamGrassID;
+    public static int itemLighterId;
+    public static int swordPhantomId;
+    public static int itemLucidityID;
+    public static int itemSparklingSaplingID;
+    public static int DreamLandPortalID;
+    public static int PortalObsidianID;
+    public static int DreamStoneID;
+    public static int DreamQuartzID;
+    public static int DreamDirtID;
+    public static int DreamSandID;
+    public static int OreLucidityID;
+    public static int OreStarCesiumID;
+    public static int DreamGrassID;
 
     public static boolean enableDreamDimension;
 

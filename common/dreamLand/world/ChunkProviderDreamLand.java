@@ -607,7 +607,7 @@ public class ChunkProviderDreamLand implements IChunkProvider {
      * given location.
      */
     @Override
-    public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3,
+    public List<?> getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3,
             int par4) {
         BiomeGenBase biomegenbase = worldObj.getBiomeGenForCoords(par2, par4);
         return biomegenbase == null ? null
