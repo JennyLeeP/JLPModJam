@@ -1,15 +1,8 @@
 package dreamLand;
 
-import dreamLand.CommonProxy;
 
-public class ClientProxy extends CommonProxy{
+public class ClientProxy extends CommonProxy {
 
-	
-	
-	//Todo Stuff
-	
-	
-	
-	
-	
+    // Todo Stuff
+
 }

@@ -1,25 +1,25 @@
-DreamLand is a mod for Minecraft that adds a awesome new dimension to the game.  
+DreamLand is a mod for Minecraft that adds a whole new dimension to the game.  
 Made for version 1.5.1 of Minecraft - and using version .611 of MCForge
 
-Th plan was for it to be the "DreamLand" where our friend Stevie could find new and interestingtrees and creatures. 
+Th plan was for it to be the "DreamLand" where our friend stevie could find new and interesting trees and creatures. 
 He would not have to work so hard for diamonds and nether stars.
 
 A place where the cake is not a lie.
 
-So, what is there?
+so what is there .
 
 New terrain gen with all custom blocks.
 A custom portal that leads to this dimension.
 
-To build the portal - place Shadow Stone in a ring ("same as nether portal") lite it  with the igniter, "purple Rod".
+to build the portal - place Shadow Stone in a ring ("same as nether portal") lite it  with the igniter, "purple Rod".
 
-Once lit jump in and travel to the dream  :) (because that's how dreams work, am I right? :P)
+Once lite jump in and travel to the dream  :)
 
-There, you will find all of the custom blocks.
+there you will find all of the custom blocks.
 
-All of the items/blocks are named after the online aliases of some of my friends, just for fun! :P
+All of the items/blocks got names resembling the online names of some of my friends. "Just for fun"
 
-The ores are:
+the ores are:
 
 starCesium = drops netherStars.  rare - like 1 to a chunk(Ore gen is not working yet- unfinished)
 lucidity = drops lucidity.  was going to be the base item for crafting items from the Dreamland(unfinshed)

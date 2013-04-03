@@ -2,9 +2,9 @@ package dreamLand;
 
 public class CommonProxy {
 
-	public void registerRenderThings() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void registerRenderThings() {
+        // TODO Auto-generated method stub
+
+    }
 
 }
