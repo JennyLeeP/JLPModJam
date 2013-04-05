@@ -397,6 +397,7 @@ public class WorldGenDreamLandTrees extends WorldGenerator {
         int i = worldObj.getBlockId(basePos[0], basePos[1] - 1, basePos[2]);
 
         Block soil = Block.blocksList[i];
+        @SuppressWarnings("unused")
         boolean isValidSoil = true || ((soil != null) && soil.canSustainPlant(worldObj, basePos[0],
                 basePos[1] - 1, basePos[2], ForgeDirection.UP, (BlockSapling) Block.sapling));
         if (!isValidSoil){

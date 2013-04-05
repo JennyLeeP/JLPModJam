@@ -48,6 +48,7 @@ public class BiomeDecoratorDreamLand extends BiomeDecorator {
     public short sTopBlock;
     public short sFillerBlock;
     // public boolean
+    @SuppressWarnings("unused")
     private WorldGenDreamLandTrees treeGenerator;
 
     public BiomeDecoratorDreamLand(BiomeGenBase par1BiomeGenBase) {

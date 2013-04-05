@@ -30,10 +30,11 @@ public class ItemDreamSword extends ItemSword {
         world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.pop", 1.0F,
                 (itemRand.nextFloat() * 0.4F) + 0.8F);
 
-        return checkBlock(x, y, z, world);
+        return makeCake(x, y, z, world, itemStack, player);
     }
 
-    public boolean checkBlock(int x, int y, int z, World world) {
+    public boolean makeCake(int x, int y, int z, World world, ItemStack itemStack,
+            EntityPlayer player) {
 
         int[] id = Config.ids.getIntList();
 
@@ -42,6 +43,7 @@ public class ItemDreamSword extends ItemSword {
             ids.add(i);
 
         if (ids.contains(world.getBlockId(x, y, z))){
+            itemStack.damageItem(1, player);
             return world.setBlock(x, y, z, Block.cake.blockID);
         }
         return false;

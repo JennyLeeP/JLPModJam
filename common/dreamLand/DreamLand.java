@@ -32,7 +32,7 @@ import dreamLand.world.DreamLandWorldProvider;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class DreamLand {
 
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "0.1";
     public static final String modid = "DreamLand";
 
     @Instance("DreamLand")
@@ -108,6 +108,8 @@ public class DreamLand {
 
         dreamIsland = (new BiomeGenDreamLand(100)).setColor(6316128).setBiomeName("Dream Land")
                 .setMinMaxHeight(0.3F, 2.0F).setTemperatureRainfall(0.2F, 0.3F);
+        
+        //proxy.initCapes();
     }
 
     @Init
