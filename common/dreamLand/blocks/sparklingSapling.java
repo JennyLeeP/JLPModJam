@@ -16,7 +16,7 @@ public class sparklingSapling extends Item {
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":sparklingSapling");
+        iconIndex = par1IconRegister.registerIcon(Archive.texture + "sparklingSapling");
     }
 
     /*

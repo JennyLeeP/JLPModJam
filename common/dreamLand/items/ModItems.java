@@ -16,7 +16,7 @@ public class ModItems {
     public static void init() {
 
         itemlighter = new ItemLighter(Config.itemLighterId - 256)
-                .setUnlocalizedName(Archive.itemlighter);
+                .setUnlocalizedName(Archive.itemLighter);
 
         itemSwordPhantomIron = new ItemDreamSword(Config.swordPhantomId - 256,
                 DreamLand.toolPhantomIron).setUnlocalizedName(Archive.itemSwordPhantomIron);

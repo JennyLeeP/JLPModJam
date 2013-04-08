@@ -45,7 +45,7 @@ public class DreamLand {
 
     // Declares a new Creative Tab
     public static CreativeTabs tabDreamLand = new DreamLandTabs(CreativeTabs.getNextID(),
-            "tabDreamLand");
+            Archive.tabDreamLand);
 
     @PreInit
     public void preInit(FMLPreInitializationEvent evt) {

@@ -24,7 +24,7 @@ public class ItemDreamSword extends ItemSword {
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":swordPhantomIron");
+        iconIndex = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2());
     }
 
     @Override

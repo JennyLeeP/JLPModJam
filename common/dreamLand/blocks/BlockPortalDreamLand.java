@@ -30,7 +30,7 @@ public class BlockPortalDreamLand extends BlockPortal {
 
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(Archive.modID + ":"
+        blockIcon = par1IconRegister.registerIcon(Archive.texture
                 + this.getUnlocalizedName2());
     }
 

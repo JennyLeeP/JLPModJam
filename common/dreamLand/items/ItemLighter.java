@@ -20,7 +20,7 @@ public class ItemLighter extends Item {
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":boomStick");
+        iconIndex = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2());
     }
 
     @Override

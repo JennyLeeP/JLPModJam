@@ -14,6 +14,6 @@ public class DreamLandItems extends Item {
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":Lucidity");
+        iconIndex = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2());
     }
 }

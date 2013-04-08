@@ -37,7 +37,7 @@ public class ModBlocks {
         dreamDirt = new BlockDreamLand(Config.DreamDirtID).setUnlocalizedName(Archive.dreamDirt)
                 .setStepSound(Block.soundGrassFootstep).setHardness(0.6F);
 
-        dreamGravel = new BlockDreamLand(Config.DreamSandID).setUnlocalizedName(Archive.dreamGravel)
+        dreamGravel = new BlockDreamGravel(Config.DreamSandID).setUnlocalizedName(Archive.dreamGravel)
                 .setHardness(1.0F).setStepSound(Block.soundGravelFootstep);
 
         dreamGrass = new BlockDreamGrass(Config.DreamGrassID).setHardness(0.6F)

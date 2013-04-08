@@ -66,22 +66,24 @@ public class Config {
     }
 
     private static void configItems(Configuration config) {
-        itemLighterId = config.getItem("itemLighter", 30000).getInt(30000);
-        swordPhantomId = config.getItem("itemSwordPhantomIron", 30001).getInt(30001);
-        itemLucidityID = config.getItem("itemLucidity", 30002).getInt(30002);
-        itemSparklingSaplingID = config.getItem("itemSparklingSapling", 30003).getInt(30003);
+        int iID = 30000;
+        itemLighterId = config.getItem(Archive.itemLighter, iID++).getInt();
+        swordPhantomId = config.getItem(Archive.itemSwordPhantomIron, iID++).getInt();
+        itemLucidityID = config.getItem(Archive.itemLucidity, iID++).getInt();
+        itemSparklingSaplingID = config.getItem(Archive.itemSparklingSapling, iID++).getInt();
     }
 
     private static void configBlocks(Configuration config) {
-        DreamLandPortalID = config.getBlock("blockPortal", 4000).getInt(4000);
-        PortalObsidianID = config.getBlock("portalObsidian", 4001).getInt(4001);
-        DreamStoneID = config.getBlock("dreamStone", 4002).getInt(4002);
-        DreamQuartzID = config.getBlock("dreamQuartz", 4003).getInt(4003);
-        DreamDirtID = config.getBlock("dreamDirt", 4004).getInt(4004);
-        DreamSandID = config.getBlock("dreamGravel", 4005).getInt(4005);
-        OreLucidityID = config.getBlock("oreLucidity", 4006).getInt(4006);
-        OreStarCesiumID = config.getBlock("oreStarcesium", 4007).getInt(4007);
-        DreamGrassID = config.getBlock("dreamGrass", 4008).getInt(4008);
+        int bID = 4000;
+        DreamLandPortalID = config.getBlock(Archive.portal, bID++).getInt();
+        PortalObsidianID = config.getBlock(Archive.portalObsidian, bID++).getInt();
+        DreamStoneID = config.getBlock(Archive.dreamStone, bID++).getInt();
+        DreamQuartzID = config.getBlock(Archive.dreamQuartz, bID++).getInt();
+        DreamDirtID = config.getBlock(Archive.dreamDirt, bID++).getInt();
+        DreamSandID = config.getBlock(Archive.dreamGravel, bID++).getInt();
+        OreLucidityID = config.getBlock(Archive.oreLucidity, bID++).getInt();
+        OreStarCesiumID = config.getBlock(Archive.oreStarcesium, bID++).getInt();
+        DreamGrassID = config.getBlock(Archive.dreamGrass, bID++).getInt();
     }
 
     private static void setDefaults() {
@@ -91,10 +93,11 @@ public class Config {
     }
 
     private static void configGeneral(Configuration config) {
-        enableDreamDimension = config.get("general", "enableDreamDimension", true).getBoolean(true);
+        String general = "General";
+        enableDreamDimension = config.get(general, "enableDreamDimension", true).getBoolean(true);
 
-        dimensionID = config.get("general", "Dimension ID: ", 21).getInt(21);
+        dimensionID = config.get(general, "Dimension ID: ", 21).getInt();
 
-        ids = config.get("general", "White List:", defaultIDs);
+        ids = config.get(general, "White List:", defaultIDs);
     }
 }

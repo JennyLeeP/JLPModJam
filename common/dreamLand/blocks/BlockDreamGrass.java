@@ -100,11 +100,13 @@ public class BlockDreamGrass extends Block {
      * is the only chance you get to register icons.
      */
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(Archive.modID + ":dreamGrass_side");
-        iconDreamGrassTop = par1IconRegister.registerIcon(Archive.modID + ":dreamGrass_top");
+        blockIcon = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2()
+                + "_side");
+        iconDreamGrassTop = par1IconRegister.registerIcon(Archive.texture
+                + this.getUnlocalizedName2() + "_top");
         // this.iconSnowSide = par1IconRegister.registerIcon("snow_side");
-        iconDreamGrassSideOverlay = par1IconRegister.registerIcon(Archive.modID
-                + ":dreamGrass_side_overlay");
+        iconDreamGrassSideOverlay = par1IconRegister.registerIcon(Archive.texture
+                + this.getUnlocalizedName2() + "_side_overlay");
     }
 
     @Override
