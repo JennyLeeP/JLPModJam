@@ -1,5 +1,7 @@
-package dreamLand;
+package dreamLand.items;
 
+import dreamLand.DreamLand;
+import dreamLand.utils.Archive;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 
@@ -12,6 +14,6 @@ public class DreamLandItems extends Item {
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(DreamLand.modid + ":Lucidity");
+        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":Lucidity");
     }
 }

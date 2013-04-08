@@ -1,10 +1,13 @@
-package dreamLand;
+package dreamLand.items;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import dreamLand.DreamLand;
+import dreamLand.blocks.ModBlocks;
+import dreamLand.utils.Archive;
 
 public class ItemLighter extends Item {
 
@@ -17,7 +20,7 @@ public class ItemLighter extends Item {
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(DreamLand.modid + ":boomStick");
+        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":boomStick");
     }
 
     @Override
@@ -25,8 +28,8 @@ public class ItemLighter extends Item {
             World par3World, int par4, int par5, int par6, int par7, float par8, float par9,
             float par10) {
         int blockID = par3World.getBlockId(par4, par5, par6);
-        if (blockID == DreamLand.portalObsidian.blockID){
-            DreamLand.portal.tryToCreatePortal(par3World, par4, par5 + 1, par6);
+        if (blockID == ModBlocks.portalObsidian.blockID){
+            ModBlocks.portal.tryToCreatePortal(par3World, par4, par5 + 1, par6);
         }
 
         return true;

@@ -1,4 +1,4 @@
-package dreamLand.world;
+package dreamLand.world.terrain;
 
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.MINESHAFT;
@@ -39,7 +39,8 @@ import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import dreamLand.DreamLand;
+import dreamLand.blocks.ModBlocks;
+import dreamLand.world.biome.BiomeGenDreamLand;
 
 public class ChunkProviderDreamLand implements IChunkProvider {
 
@@ -198,7 +199,7 @@ public class ChunkProviderDreamLand implements IChunkProvider {
 
                             for (int k2 = 0; k2 < 4; ++k2){
                                 if ((d16 += d15) > 0.0D){
-                                    par3ArrayOfByte[j2 += short1] = (short) DreamLand.dreamStone.blockID;
+                                    par3ArrayOfByte[j2 += short1] = (short) ModBlocks.dreamStone.blockID;
                                 }else if (((k1 * 8) + l1) < b2){
                                     par3ArrayOfByte[j2 += short1] = (short) Block.waterStill.blockID;
                                 }else{
@@ -250,11 +251,11 @@ public class ChunkProviderDreamLand implements IChunkProvider {
 
                         if (b3 == 0){
                             j1 = -1;
-                        }else if (b3 == DreamLand.dreamStone.blockID){
+                        }else if (b3 == ModBlocks.dreamStone.blockID){
                             if (j1 == -1){
                                 if (i1 <= 0){
                                     b1 = 0;
-                                    b2 = (short) DreamLand.dreamStone.blockID;
+                                    b2 = (short) ModBlocks.dreamStone.blockID;
                                 }else if ((k1 >= (b0 - 4)) && (k1 <= (b0 + 1))){
                                     b1 = ((BiomeGenDreamLand) biomegenbase).sTopBlock;
                                     b2 = ((BiomeGenDreamLand) biomegenbase).sFillerBlock;
@@ -279,9 +280,9 @@ public class ChunkProviderDreamLand implements IChunkProvider {
                                 --j1;
                                 par3ArrayOfByte[l1] = b2;
 
-                                if ((j1 == 0) && (b2 == DreamLand.dreamGravel.blockID)){
+                                if ((j1 == 0) && (b2 == ModBlocks.dreamGravel.blockID)){
                                     j1 = rand.nextInt(4);
-                                    b2 = (short) DreamLand.dreamStone.blockID;
+                                    b2 = (short) ModBlocks.dreamStone.blockID;
                                 }
                             }
                         }

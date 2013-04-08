@@ -1,4 +1,4 @@
-package dreamLand;
+package dreamLand.utils.portal;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,6 +13,7 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.PortalPosition;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
+import dreamLand.blocks.ModBlocks;
 
 public class DreamLandTeleporter extends Teleporter {
 
@@ -51,7 +52,7 @@ public class DreamLandTeleporter extends Teleporter {
                         int i2 = (k + (i1 * b1)) - (l * b0);
                         boolean flag = j1 < 0;
                         worldServerInstance.setBlock(k1, l1, i2,
-                                flag ? DreamLand.portalObsidian.blockID : 0);
+                                flag ? ModBlocks.portalObsidian.blockID : 0);
                     }
                 }
             }
@@ -95,8 +96,8 @@ public class DreamLandTeleporter extends Teleporter {
                     double d6 = (l1 + 0.5D) - par1Entity.posZ;
 
                     for (int i2 = worldServerInstance.getActualHeight() - 1; i2 >= 0; --i2){
-                        if (worldServerInstance.getBlockId(k1, i2, l1) == DreamLand.portal.blockID){
-                            while (worldServerInstance.getBlockId(k1, i2 - 1, l1) == DreamLand.portal.blockID){
+                        if (worldServerInstance.getBlockId(k1, i2, l1) == ModBlocks.portal.blockID){
+                            while (worldServerInstance.getBlockId(k1, i2 - 1, l1) == ModBlocks.portal.blockID){
                                 --i2;
                             }
 
@@ -127,19 +128,19 @@ public class DreamLandTeleporter extends Teleporter {
             d4 = k + 0.5D;
             int j2 = -1;
 
-            if (worldServerInstance.getBlockId(i - 1, j, k) == DreamLand.portal.blockID){
+            if (worldServerInstance.getBlockId(i - 1, j, k) == ModBlocks.portal.blockID){
                 j2 = 2;
             }
 
-            if (worldServerInstance.getBlockId(i + 1, j, k) == DreamLand.portal.blockID){
+            if (worldServerInstance.getBlockId(i + 1, j, k) == ModBlocks.portal.blockID){
                 j2 = 0;
             }
 
-            if (worldServerInstance.getBlockId(i, j, k - 1) == DreamLand.portal.blockID){
+            if (worldServerInstance.getBlockId(i, j, k - 1) == ModBlocks.portal.blockID){
                 j2 = 3;
             }
 
-            if (worldServerInstance.getBlockId(i, j, k + 1) == DreamLand.portal.blockID){
+            if (worldServerInstance.getBlockId(i, j, k + 1) == ModBlocks.portal.blockID){
                 j2 = 1;
             }
 
@@ -387,7 +388,7 @@ public class DreamLandTeleporter extends Teleporter {
                         i4 = (j2 + ((i3 - 1) * l5)) - (k2 * k5);
                         flag = l2 < 0;
                         worldServerInstance.setBlock(k3, j3, i4,
-                                flag ? DreamLand.portalObsidian.blockID : 0);
+                                flag ? ModBlocks.portalObsidian.blockID : 0);
                     }
                 }
             }
@@ -401,7 +402,7 @@ public class DreamLandTeleporter extends Teleporter {
                     i4 = j2 + ((i3 - 1) * l5);
                     flag = (i3 == 0) || (i3 == 3) || (l2 == -1) || (l2 == 3);
                     worldServerInstance.setBlock(k3, j3, i4,
-                            flag ? DreamLand.portalObsidian.blockID : DreamLand.portal.blockID, 0,
+                            flag ? ModBlocks.portalObsidian.blockID : ModBlocks.portal.blockID, 0,
                             2);
                 }
             }

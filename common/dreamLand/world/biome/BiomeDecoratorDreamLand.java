@@ -1,4 +1,4 @@
-package dreamLand.world;
+package dreamLand.world.biome;
 
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CACTUS;
@@ -23,6 +23,8 @@ import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.Ev
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.REDSTONE;
 
 import java.util.Random;
+
+import dreamLand.world.terrain.WorldGenDreamLandTrees;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;

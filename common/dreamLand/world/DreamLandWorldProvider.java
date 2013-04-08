@@ -4,6 +4,8 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import dreamLand.DreamLand;
+import dreamLand.utils.Config;
+import dreamLand.world.terrain.ChunkProviderDreamLand;
 
 public class DreamLandWorldProvider extends WorldProvider {
 
@@ -18,7 +20,7 @@ public class DreamLandWorldProvider extends WorldProvider {
     @Override
     public void registerWorldChunkManager() {
         worldChunkMgr = new WorldChunkManagerHell(DreamLand.dreamIsland, 0.8F, 0.1F);
-        dimensionId = DreamLand.dimensionID;
+        dimensionId = Config.dimensionID;
 
     }
 

@@ -1,7 +1,11 @@
-package dreamLand;
+package dreamLand.items;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dreamLand.DreamLand;
+import dreamLand.utils.Archive;
+import dreamLand.utils.Config;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -13,14 +17,14 @@ import net.minecraft.world.World;
 
 public class ItemDreamSword extends ItemSword {
 
-    protected ItemDreamSword(int var1, EnumToolMaterial var2) {
+    public ItemDreamSword(int var1, EnumToolMaterial var2) {
         super(var1, var2);
         this.setCreativeTab(DreamLand.tabDreamLand);
     }
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(DreamLand.modid + ":swordPhantomIron");
+        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":swordPhantomIron");
     }
 
     @Override

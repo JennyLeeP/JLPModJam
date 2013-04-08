@@ -7,7 +7,7 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.storage.ISaveHandler;
-import dreamLand.DreamLandTeleporter;
+import dreamLand.utils.portal.DreamLandTeleporter;
 
 public class DreamLandWorldServer extends WorldServer {
 

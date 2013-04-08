@@ -3,6 +3,7 @@ package dreamLand.blocks;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import dreamLand.DreamLand;
+import dreamLand.utils.Archive;
 
 public class sparklingSapling extends Item {
 
@@ -16,7 +17,7 @@ public class sparklingSapling extends Item {
 
     @Override
     public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(DreamLand.modid + ":sparklingSapling");
+        iconIndex = par1IconRegister.registerIcon(Archive.modID + ":sparklingSapling");
     }
     /*
      * protected boolean canThisPlantGrowOnThisBlockID(int i) { return i ==

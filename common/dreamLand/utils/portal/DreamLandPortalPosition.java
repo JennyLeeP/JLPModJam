@@ -1,4 +1,4 @@
-package dreamLand;
+package dreamLand.utils.portal;
 
 import net.minecraft.util.ChunkCoordinates;
 

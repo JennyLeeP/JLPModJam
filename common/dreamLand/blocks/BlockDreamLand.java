@@ -6,9 +6,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import dreamLand.DreamLand;
+import dreamLand.utils.Archive;
 
 public class BlockDreamLand extends Block {
 
+    int dropid;
+    
     public BlockDreamLand(int par1) {
         super(par1, Material.ground);
         dropid = blockID;
@@ -28,9 +31,7 @@ public class BlockDreamLand extends Block {
 
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(DreamLand.modid + ":"
+        blockIcon = par1IconRegister.registerIcon(Archive.modID + ":"
                 + this.getUnlocalizedName2());
     }
-
-    int dropid;
 }

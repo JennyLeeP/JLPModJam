@@ -1,9 +1,10 @@
-package dreamLand.world;
+package dreamLand.world.biome;
 
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import dreamLand.DreamLand;
+import dreamLand.blocks.ModBlocks;
+import dreamLand.world.terrain.WorldGenDreamLandTrees;
 
 public class BiomeGenDreamLand extends BiomeGenBase {
 
@@ -17,8 +18,8 @@ public class BiomeGenDreamLand extends BiomeGenBase {
         super(par1);
 
         // System.out.println("Silverfish");//test line TODO
-        sTopBlock = (short) DreamLand.dreamGrass.blockID;
-        sFillerBlock = (short) DreamLand.dreamDirt.blockID;
+        sTopBlock = (short) ModBlocks.dreamGrass.blockID;
+        sFillerBlock = (short) ModBlocks.dreamDirt.blockID;
         theBiomeDecorator.treesPerChunk = 10;
         treeGenerator = new WorldGenDreamLandTrees(true);
         /*

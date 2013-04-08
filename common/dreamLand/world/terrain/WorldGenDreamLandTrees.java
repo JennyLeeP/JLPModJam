@@ -1,4 +1,4 @@
-package dreamLand.world;
+package dreamLand.world.terrain;
 
 import java.util.Random;
 

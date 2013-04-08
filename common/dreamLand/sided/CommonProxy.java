@@ -1,4 +1,4 @@
-package dreamLand;
+package dreamLand.sided;
 
 public class CommonProxy {
     // TODO More Stuff
@@ -7,5 +7,6 @@ public class CommonProxy {
         // TODO Auto-generated method stub
     }
     
-    //public void initCapes() {}
+    // Cape Method
+    public void initCapes() {}
 }

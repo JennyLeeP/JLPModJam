@@ -16,7 +16,9 @@ import net.minecraft.world.WorldServer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.DreamLandTeleporter;
+import dreamLand.utils.Archive;
+import dreamLand.utils.Config;
+import dreamLand.utils.portal.DreamLandTeleporter;
 
 public class BlockPortalDreamLand extends BlockPortal {
 
@@ -28,7 +30,7 @@ public class BlockPortalDreamLand extends BlockPortal {
 
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(DreamLand.modid + ":"
+        blockIcon = par1IconRegister.registerIcon(Archive.modID + ":"
                 + this.getUnlocalizedName2());
     }
 
@@ -115,13 +117,13 @@ public class BlockPortalDreamLand extends BlockPortal {
         byte b0 = 0;
         byte b1 = 0;
 
-        if ((par1World.getBlockId(par2 - 1, par3, par4) == DreamLand.portalObsidian.blockID)
-                || (par1World.getBlockId(par2 + 1, par3, par4) == DreamLand.portalObsidian.blockID)){
+        if ((par1World.getBlockId(par2 - 1, par3, par4) == ModBlocks.portalObsidian.blockID)
+                || (par1World.getBlockId(par2 + 1, par3, par4) == ModBlocks.portalObsidian.blockID)){
             b0 = 1;
         }
 
-        if ((par1World.getBlockId(par2, par3, par4 - 1) == DreamLand.portalObsidian.blockID)
-                || (par1World.getBlockId(par2, par3, par4 + 1) == DreamLand.portalObsidian.blockID)){
+        if ((par1World.getBlockId(par2, par3, par4 - 1) == ModBlocks.portalObsidian.blockID)
+                || (par1World.getBlockId(par2, par3, par4 + 1) == ModBlocks.portalObsidian.blockID)){
             b1 = 1;
         }
 
@@ -144,7 +146,7 @@ public class BlockPortalDreamLand extends BlockPortal {
                         int j1 = par1World.getBlockId(par2 + (b0 * l), par3 + i1, par4 + (b1 * l));
 
                         if (flag){
-                            if (j1 != DreamLand.portalObsidian.blockID){
+                            if (j1 != ModBlocks.portalObsidian.blockID){
                                 return false;
                             }
                         }else if ((j1 != 0) && (j1 != Block.fire.blockID)){
@@ -157,7 +159,7 @@ public class BlockPortalDreamLand extends BlockPortal {
             for (l = 0; l < 2; ++l){
                 for (i1 = 0; i1 < 3; ++i1){
                     par1World.setBlock(par2 + (b0 * l), par3 + i1, par4 + (b1 * l),
-                            DreamLand.portal.blockID, 0, 2);
+                            ModBlocks.portal.blockID, 0, 2);
                 }
             }
 
@@ -187,7 +189,7 @@ public class BlockPortalDreamLand extends BlockPortal {
             ;
         }
 
-        if (par1World.getBlockId(par2, i1 - 1, par4) != DreamLand.portalObsidian.blockID){
+        if (par1World.getBlockId(par2, i1 - 1, par4) != ModBlocks.portalObsidian.blockID){
             par1World.setBlockToAir(par2, par3, par4);
         }else{
             int j1;
@@ -197,7 +199,7 @@ public class BlockPortalDreamLand extends BlockPortal {
             }
 
             if ((j1 == 3)
-                    && (par1World.getBlockId(par2, i1 + j1, par4) == DreamLand.portalObsidian.blockID)){
+                    && (par1World.getBlockId(par2, i1 + j1, par4) == ModBlocks.portalObsidian.blockID)){
                 boolean flag = (par1World.getBlockId(par2 - 1, par3, par4) == blockID)
                         || (par1World.getBlockId(par2 + 1, par3, par4) == blockID);
                 boolean flag1 = (par1World.getBlockId(par2, par3, par4 - 1) == blockID)
@@ -206,9 +208,9 @@ public class BlockPortalDreamLand extends BlockPortal {
                 if (flag && flag1){
                     par1World.setBlockToAir(par2, par3, par4);
                 }else{
-                    if (((par1World.getBlockId(par2 + b0, par3, par4 + b1) != DreamLand.portalObsidian.blockID) || (par1World
+                    if (((par1World.getBlockId(par2 + b0, par3, par4 + b1) != ModBlocks.portalObsidian.blockID) || (par1World
                             .getBlockId(par2 - b0, par3, par4 - b1) != blockID))
-                            && ((par1World.getBlockId(par2 - b0, par3, par4 - b1) != DreamLand.portalObsidian.blockID) || (par1World
+                            && ((par1World.getBlockId(par2 - b0, par3, par4 - b1) != ModBlocks.portalObsidian.blockID) || (par1World
                                     .getBlockId(par2 + b0, par3, par4 + b1) != blockID))){
                         par1World.setBlockToAir(par2, par3, par4);
                     }
@@ -268,8 +270,8 @@ public class BlockPortalDreamLand extends BlockPortal {
                 int dimID = par5Entity.dimension;
                 WorldServer worldserver = minecraftserver.worldServerForDimension(dimID);
                 WorldServer worldserver1 = minecraftserver
-                        .worldServerForDimension(DreamLand.dimensionID);
-                if (dimID == DreamLand.dimensionID){
+                        .worldServerForDimension(Config.dimensionID);
+                if (dimID == Config.dimensionID){
                     ((EntityPlayerMP) par5Entity).sendChatToPlayer("Moving from  " + dimID
                             + " to OverWorld");
                     minecraftserver.getConfigurationManager().transferPlayerToDimension(
@@ -279,7 +281,7 @@ public class BlockPortalDreamLand extends BlockPortal {
                     ((EntityPlayerMP) par5Entity).sendChatToPlayer("Moving from " + dimID
                             + " to dreamland");
                     minecraftserver.getConfigurationManager().transferPlayerToDimension(
-                            (EntityPlayerMP) par5Entity, DreamLand.dimensionID,
+                            (EntityPlayerMP) par5Entity, Config.dimensionID,
                             new DreamLandTeleporter(worldserver1));
                     // par5Entity.travelToDimension(DreamLand.dimensionID);
                 }
