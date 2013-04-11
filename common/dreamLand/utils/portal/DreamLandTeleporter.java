@@ -86,7 +86,7 @@ public class DreamLandTeleporter extends Teleporter {
             i = portalposition.posX;
             j = portalposition.posY;
             k = portalposition.posZ;
-            portalposition.field_85087_d = worldServerInstance.getTotalWorldTime();
+            portalposition.lastUpdateTime = worldServerInstance.getTotalWorldTime();
             flag = false;
         }else{
             for (k1 = l - short1; k1 <= (l + short1); ++k1){
@@ -144,10 +144,10 @@ public class DreamLandTeleporter extends Teleporter {
                 j2 = 1;
             }
 
-            int k2 = par1Entity.func_82148_at();
+            int k2 = par1Entity.func_82143_as();
 
             if (j2 > -1){
-                int l2 = Direction.field_71578_g[j2];
+                int l2 = Direction.rotateLeft[j2];
                 int i3 = Direction.offsetX[j2];
                 int j3 = Direction.offsetZ[j2];
                 int k3 = Direction.offsetX[l2];
@@ -158,8 +158,8 @@ public class DreamLandTeleporter extends Teleporter {
                         || !worldServerInstance.isAirBlock(i + i3, j + 1, k + j3);
 
                 if (flag1 && flag2){
-                    j2 = Direction.footInvisibleFaceRemap[j2];
-                    l2 = Direction.footInvisibleFaceRemap[l2];
+                    j2 = Direction.rotateOpposite[j2];
+                    l2 = Direction.rotateOpposite[l2];
                     i3 = Direction.offsetX[j2];
                     j3 = Direction.offsetZ[j2];
                     k3 = Direction.offsetX[l2];
@@ -195,10 +195,10 @@ public class DreamLandTeleporter extends Teleporter {
                 if (j2 == k2){
                     f3 = 1.0F;
                     f4 = 1.0F;
-                }else if (j2 == Direction.footInvisibleFaceRemap[k2]){
+                }else if (j2 == Direction.rotateOpposite[k2]){
                     f3 = -1.0F;
                     f4 = -1.0F;
-                }else if (j2 == Direction.enderEyeMetaToDirection[k2]){
+                }else if (j2 == Direction.rotateRight[k2]){
                     f5 = 1.0F;
                     f6 = -1.0F;
                 }else{
@@ -422,7 +422,7 @@ public class DreamLandTeleporter extends Teleporter {
     }
 
     @Override
-    public void func_85189_a(long par1) {
+    public void removeStalePortalLocations(long par1) {
         if ((par1 % 100L) == 0L){
             Iterator<Long> iterator = field_85190_d.iterator();
             long j = par1 - 600L;
@@ -432,7 +432,7 @@ public class DreamLandTeleporter extends Teleporter {
                 PortalPosition portalposition = (PortalPosition) field_85191_c.getValueByKey(olong
                         .longValue());
 
-                if ((portalposition == null) || (portalposition.field_85087_d < j)){
+                if ((portalposition == null) || (portalposition.lastUpdateTime < j)){
                     iterator.remove();
                     field_85191_c.remove(olong.longValue());
                 }

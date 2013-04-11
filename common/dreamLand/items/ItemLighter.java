@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
 import dreamLand.blocks.ModBlocks;
 import dreamLand.utils.Archive;
@@ -19,8 +21,10 @@ public class ItemLighter extends Item {
     }
 
     @Override
-    public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2());
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister) {
+        this.itemIcon = par1IconRegister.registerIcon(Archive.texture
+                + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 
     @Override

@@ -1,9 +1,11 @@
 package dreamLand.items;
 
-import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import dreamLand.DreamLand;
+import dreamLand.utils.Archive;
 
 public class DreamLandItems extends Item {
 
@@ -13,7 +15,9 @@ public class DreamLandItems extends Item {
     }
 
     @Override
-    public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2());
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister) {
+        this.itemIcon = par1IconRegister.registerIcon(Archive.texture
+                + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 }

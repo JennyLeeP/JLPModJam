@@ -3,10 +3,6 @@ package dreamLand.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
-import dreamLand.utils.Config;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +10,11 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import dreamLand.DreamLand;
+import dreamLand.utils.Archive;
+import dreamLand.utils.Config;
 
 public class ItemDreamSword extends ItemSword {
 
@@ -23,8 +24,10 @@ public class ItemDreamSword extends ItemSword {
     }
 
     @Override
-    public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2());
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister) {
+        this.itemIcon = par1IconRegister.registerIcon(Archive.texture
+                + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 
     @Override

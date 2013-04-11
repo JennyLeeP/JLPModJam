@@ -1,5 +1,7 @@
-package dreamLand.blocks;
+package dreamLand.items;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import dreamLand.DreamLand;
@@ -15,8 +17,10 @@ public class sparklingSapling extends Item {
     }
 
     @Override
-    public void updateIcons(IconRegister par1IconRegister) {
-        iconIndex = par1IconRegister.registerIcon(Archive.texture + "sparklingSapling");
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister) {
+        this.itemIcon = par1IconRegister.registerIcon(Archive.texture
+                + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 
     /*
