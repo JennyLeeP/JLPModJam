@@ -1,4 +1,4 @@
-package dreamLand;
+package dreamLand.world.terrain;
 
 public class WorldGenSparklingTree {
 
