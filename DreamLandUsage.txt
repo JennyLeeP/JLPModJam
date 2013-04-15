@@ -1,40 +1,40 @@
-DreamLand is a mod for Minecraft that adds a awesome new dimension to the game.  
+DreamLand is a mod for Minecraft that adds a whole new dimension to the game.  
 Made for version 1.5.1 of Minecraft - and using version .611 of MCForge
 
-The plan was for it to be the "DreamLand" where our friend Stevie could find new and interesting trees and creatures. 
+Th plan was for it to be the "DreamLand" where our friend stevie could find new and interesting trees and creatures. 
 He would not have to work so hard for diamonds and nether stars.
 
 A place where the cake is not a lie.
 
-So, what is there?
+so what is there .
 
 New terrain gen with all custom blocks.
 A custom portal that leads to this dimension.
 
-To build the portal - place Shadow Stone in a ring ("same as nether portal") light it with an igniter, "purple rod".
+to build the portal - place Shadow Stone in a ring ("same as nether portal") lite it  with the igniter, "purple Rod".
 
-Once lit jump in and travel to the dream  :) (because that's how dreams work, right :P)
+Once lite jump in and travel to the dream  :)
 
-There, you will find all of the custom blocks.
+there you will find all of the custom blocks.
 
-All of the items/blocks are named after the online aliases of some of my friends, just for fun! :P
+All of the items/blocks got names resembling the online names of some of my friends. "Just for fun"
 
-The ores are:
+the ores are:
 
-StarCesium = drops Nether Stars.  Rare - like 1 per chunk (Ore gen is not working yet (unfinished)
-Lucidity = drops Lucidity.  Was going to be the base item for crafting items from the Dreamland (unfinshed)
+starCesium = drops netherStars.  rare - like 1 to a chunk(Ore gen is not working yet- unfinished)
+lucidity = drops lucidity.  was going to be the base item for crafting items from the Dreamland(unfinshed)
 
 
-Items:
-Sparkilng Sapling = was to be plantable to grow the trees native to the Dreamworld. Beautiful tall trees that shined in the sun. These trees were going to drop a fruit that would have given Stevie a temporary special ability.
+items:
+sparkilng sapling = was to be plantable to grow the trees native to the Dreamworld. Beautifull tall trees that shined in the sun. These trees were going to drop a fruit that would have given stevie a temporary special ability.
 
-And then there is the sword.  Kills enemies with ease, but also right clicking it onto any block will turn that block into cake. (omnomnom :3)
+and then there is the sword.  kills enemies with ease, but also right clicking it onto any block will turn that block into cake.
 
-This is all very unfinished, I do hope to finish it at some point.
+this is all very unfinished, I do hope to finish it at some point.
 
-Enjoy :) - JennyLeeP
+enjoy :) - JennyLeeP
 
-You can find me on MCforums as JennyLeeP
+you can find me on MCforums as : Jennyleep
 
-Or at http://www.qubetubers.com, we have a Mumble server which I am always on.
-I am also around the IRC channels as JennyLeeP
+or at http://www.qubetubers.com, we have a mumble server where I am always on.
+I am also around the irc channels as JennyLeeP

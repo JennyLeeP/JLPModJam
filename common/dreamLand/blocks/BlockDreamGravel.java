@@ -2,25 +2,19 @@ package dreamLand.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import dreamLand.DreamLand;
 import dreamLand.utils.Archive;
 
-public class BlockDreamLand extends Block {
+public class BlockDreamGravel extends BlockSand {
 
     int dropid;
-    
-    public BlockDreamLand(int par1) {
-        super(par1, Material.ground);
-        dropid = blockID;
-        this.setCreativeTab(DreamLand.tabDreamLand);
-    }
 
-    public BlockDreamLand(int id, int drop) {
-        super(id, Material.rock);
-        dropid = drop;
+    public BlockDreamGravel(int id) {
+        super(id, Material.ground);
+        dropid = blockID;
         this.setCreativeTab(DreamLand.tabDreamLand);
     }
 
@@ -31,7 +25,6 @@ public class BlockDreamLand extends Block {
 
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(Archive.texture
-                + this.getUnlocalizedName2());
+        blockIcon = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2());
     }
 }
