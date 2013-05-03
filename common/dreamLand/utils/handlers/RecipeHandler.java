@@ -1,4 +1,4 @@
-package dreamLand.utils.hadlers;
+package dreamLand.utils.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

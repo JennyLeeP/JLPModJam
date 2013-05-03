@@ -12,8 +12,19 @@
 	<entry key="tile.dreamQuartz.name">Surrealite</entry>
 	<entry key="tile.dreamDirt.name">Chaotic Earth</entry>
 	<entry key="tile.cyaGravel.name">CyaGravel</entry>
+	<entry key="tile.dreamCobble.name">Cobble</entry>
+	<entry key="tile.dreamSand.name">Soft Sand</entry>
 	<entry key="tile.dreamGrass.name">Water Grass</entry>
 	<entry key="tile.oreLucidity.name">Lucidity Ore</entry>
 	<entry key="tile.oreStarCesium.name">Star Cesium Ore</entry>
 	<entry key="itemGroup.tabDreamLand">Dream Land</entry>
-</properties>
+	<entry key="tile.nmGrass.name">Mara Grass</entry>
+	<entry key="tile.nmDirt.name">Mara Dirt</entry>
+	<entry key="tile.nmStone.name">Mara Stone</entry>
+	<entry key="tile.nmGravel.name">Mara Gravel</entry>
+	<entry key="tile.nmSand.name">Mara Sand</entry>
+	<entry key="tile.nmCobble.name">Mara Cobble</entry>
+	<entry key="tile.nmStairs.name">Mara Cobble Stairs</entry>
+	<entry key="tile.dreamStairs.name">Dream Cobble Stairs</entry>
+	<entry key="tile.nmCobbleWall.name">Mara Cobble Wall</entry>
+	<entry key="tile.dreamCobbleWall.name">Dream Cobble Wall</entry></properties>

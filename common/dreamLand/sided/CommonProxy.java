@@ -9,4 +9,9 @@ public class CommonProxy {
     
     // Cape Method
     public void initCapes() {}
+
+	public void registerRenderers() {
+		// TODO Auto-generated method stub
+		
+	}
 }

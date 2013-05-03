@@ -1,4 +1,4 @@
-package dreamLand.utils.hadlers;
+package dreamLand.utils.handlers;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import dreamLand.utils.Archive;

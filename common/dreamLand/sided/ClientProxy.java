@@ -1,15 +1,34 @@
 package dreamLand.sided;
 
-import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import dreamLand.entity.EntityNMCreeper;
+import dreamLand.entity.EntityPhoenix;
+import dreamLand.entity.EntitySonicCreeper;
+import dreamLand.render.RenderNMCreeper;
+import dreamLand.render.RenderPhoenix;
+import dreamLand.render.RenderSonicCreeper;
+
+import jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
 public class ClientProxy extends CommonProxy {
-    // TODO More Stuff
+	
+	public void registerRenderers() {
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntitySonicCreeper.class, new RenderSonicCreeper());
+		RenderingRegistry.registerEntityRenderingHandler(EntityNMCreeper.class, new RenderNMCreeper());
+		RenderingRegistry.registerEntityRenderingHandler(EntityPhoenix.class, new RenderPhoenix());
+		
+	}
 
     // Code that adds capes :D Github link for it to work:
     // https://github.com/jadar/DeveloperCapesAPI
-    @Override
+	
+	@Override
     public void initCapes() {
-        // link for the file that makes the capes work
-        DeveloperCapesAPI.init("http://db.tt/Pkbjs1uR");
+     // link for the file "capes.txt" - that makes the capes work
+    
+    DeveloperCapesAPI.getInstance().init("http://pwebg.com/Minecraft/Downloads/capes.txt");
+    
     }
+    
 }

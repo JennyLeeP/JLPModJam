@@ -2,17 +2,17 @@ package dreamLand.blocks;
 
 import java.util.Random;
 
+import dreamLand.DreamLand;
+import dreamLand.utils.Archive;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
 
-public class BlockDreamGravel extends BlockSand {
+public class BlockDreamSand extends BlockSand{
 
-    int dropid;
+	int dropid;
 
-    public BlockDreamGravel(int id) {
+    public BlockDreamSand(int id) {
         super(id, Material.sand);
         dropid = blockID;
         this.setCreativeTab(DreamLand.tabDreamLand);

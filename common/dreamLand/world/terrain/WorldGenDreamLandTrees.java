@@ -2,6 +2,8 @@ package dreamLand.world.terrain;
 
 import java.util.Random;
 
+import dreamLand.blocks.ModBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.util.MathHelper;
@@ -155,10 +157,10 @@ public class WorldGenDreamLandTrees extends WorldGenerator {
                     aint1[b2] = aint[b2] + k1;
                     int l1 = worldObj.getBlockId(aint1[0], aint1[1], aint1[2]);
 
-                    if ((l1 != 0) && (l1 != Block.leaves.blockID)){
+                    if ((l1 != 0) && (l1 != ModBlocks.dreamLeaves.blockID)){
                         ++k1;
                     }else{
-                        if (par6 != Block.leaves.blockID){
+                        if (par6 != ModBlocks.dreamLeaves.blockID){
                             this.setBlockAndMetadata(worldObj, aint1[0], aint1[1], aint1[2], par6,
                                     0);
                         }
@@ -207,7 +209,7 @@ public class WorldGenDreamLandTrees extends WorldGenerator {
 
         for (int i1 = par2 + leafDistanceLimit; l < i1; ++l){
             float f = this.leafSize(l - par2);
-            this.genTreeLayer(par1, l, par3, f, (byte) 1, Block.leaves.blockID);
+            this.genTreeLayer(par1, l, par3, f, (byte) 1, ModBlocks.dreamLeaves.blockID);
         }
     }
 
@@ -300,18 +302,18 @@ public class WorldGenDreamLandTrees extends WorldGenerator {
         int l = basePos[2];
         int[] aint = new int[] { i, j, l };
         int[] aint1 = new int[] { i, k, l };
-        this.placeBlockLine(aint, aint1, Block.wood.blockID);
+        this.placeBlockLine(aint, aint1, ModBlocks.dreamLogs.blockID);
 
         if (trunkSize == 2){
             ++aint[0];
             ++aint1[0];
-            this.placeBlockLine(aint, aint1, Block.wood.blockID);
+            this.placeBlockLine(aint, aint1, ModBlocks.dreamLogs.blockID);
             ++aint[2];
             ++aint1[2];
-            this.placeBlockLine(aint, aint1, Block.wood.blockID);
+            this.placeBlockLine(aint, aint1, ModBlocks.dreamLogs.blockID);
             aint[0] += -1;
             aint1[0] += -1;
-            this.placeBlockLine(aint, aint1, Block.wood.blockID);
+            this.placeBlockLine(aint, aint1, ModBlocks.dreamLogs.blockID);
         }
     }
 
@@ -330,7 +332,7 @@ public class WorldGenDreamLandTrees extends WorldGenerator {
             int k = aint[1] - basePos[1];
 
             if (this.leafNodeNeedsBase(k)){
-                this.placeBlockLine(aint, aint2, (byte) Block.wood.blockID);
+                this.placeBlockLine(aint, aint2, (byte) ModBlocks.dreamLogs.blockID);
             }
         }
     }
@@ -378,7 +380,7 @@ public class WorldGenDreamLandTrees extends WorldGenerator {
                 aint3[b3] = MathHelper.floor_double(par1ArrayOfInteger[b3] + (i * d1));
                 int k = worldObj.getBlockId(aint3[0], aint3[1], aint3[2]);
 
-                if ((k != 0) && (k != Block.leaves.blockID)){
+                if ((k != 0) && (k != ModBlocks.dreamLeaves.blockID)){
                     break;
                 }
             }

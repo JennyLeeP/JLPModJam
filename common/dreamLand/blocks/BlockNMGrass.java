@@ -13,16 +13,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
 import dreamLand.utils.Archive;
 
-public class BlockDreamGrass extends Block {
+public class BlockNMGrass extends Block{
 
-    @SideOnly(Side.CLIENT)
-    private Icon iconDreamGrassTop;
+	@SideOnly(Side.CLIENT)
+    private Icon iconNMGrassTop;
     @SideOnly(Side.CLIENT)
     private Icon iconSnowSide;
     @SideOnly(Side.CLIENT)
-    private Icon iconDreamGrassSideOverlay;
+    private Icon iconNMGrassSideOverlay;
 
-    public BlockDreamGrass(int par1) {
+    public BlockNMGrass(int par1) {
         super(par1, Material.grass);
         this.setTickRandomly(true);
         this.setCreativeTab(DreamLand.tabDreamLand);
@@ -34,7 +34,7 @@ public class BlockDreamGrass extends Block {
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
     public Icon getIcon(int par1, int par2) {
-        return par1 == 1 ? iconDreamGrassTop : (par1 == 0 ? ModBlocks.dreamDirt
+        return par1 == 1 ? iconNMGrassTop : (par1 == 0 ? ModBlocks.nmDirt
                 .getBlockTextureFromSide(par1) : blockIcon);
     }
 
@@ -46,7 +46,7 @@ public class BlockDreamGrass extends Block {
         if (!par1World.isRemote){
             if ((par1World.getBlockLightValue(par2, par3 + 1, par4) < 4)
                     && (par1World.getBlockLightOpacity(par2, par3 + 1, par4) > 2)){
-                par1World.setBlock(par2, par3, par4, ModBlocks.dreamDirt.blockID);
+                par1World.setBlock(par2, par3, par4, ModBlocks.nmDirt.blockID);
             }else if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9){
                 for (int l = 0; l < 4; ++l){
                     int i1 = (par2 + par5Random.nextInt(3)) - 1;
@@ -54,10 +54,10 @@ public class BlockDreamGrass extends Block {
                     int k1 = (par4 + par5Random.nextInt(3)) - 1;
                     par1World.getBlockId(i1, j1 + 1, k1);
 
-                    if ((par1World.getBlockId(i1, j1, k1) == ModBlocks.dreamDirt.blockID)
+                    if ((par1World.getBlockId(i1, j1, k1) == ModBlocks.nmDirt.blockID)
                             && (par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4)
                             && (par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2)){
-                        par1World.setBlock(i1, j1, k1, ModBlocks.dreamGrass.blockID);// /find
+                        par1World.setBlock(i1, j1, k1, ModBlocks.nmGrass.blockID);// /find
                                                                                      // replacement
                                                                                      // TODO
                     }
@@ -71,7 +71,7 @@ public class BlockDreamGrass extends Block {
      */
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
-        return ModBlocks.dreamDirt.idDropped(0, par2Random, par3);
+        return ModBlocks.nmDirt.idDropped(0, par2Random, par3);
     }
 
     @Override
@@ -82,9 +82,9 @@ public class BlockDreamGrass extends Block {
     public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4,
             int par5) {
         if (par5 == 1){
-            return iconDreamGrassTop;
+            return iconNMGrassTop;
         }else if (par5 == 0){
-            return ModBlocks.dreamDirt.getBlockTextureFromSide(par5);
+            return ModBlocks.nmDirt.getBlockTextureFromSide(par5);
         }else{
             Material material = par1IBlockAccess.getBlockMaterial(par2, par3 + 1, par4);
             return (material != Material.snow) && (material != Material.craftedSnow) ? blockIcon
@@ -101,13 +101,10 @@ public class BlockDreamGrass extends Block {
     public void registerIcons(IconRegister par1IconRegister) {
         blockIcon = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2()
                 + "_side");
-        iconDreamGrassTop = par1IconRegister.registerIcon(Archive.texture
+        iconNMGrassTop = par1IconRegister.registerIcon(Archive.texture
                 + this.getUnlocalizedName2() + "_top");
         // this.iconSnowSide = par1IconRegister.registerIcon("snow_side");
-        iconDreamGrassSideOverlay = par1IconRegister.registerIcon(Archive.texture
+        iconNMGrassSideOverlay = par1IconRegister.registerIcon(Archive.texture
                 + this.getUnlocalizedName2() + "_side_overlay");
     }
-
-    
-
 }

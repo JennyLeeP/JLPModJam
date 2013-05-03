@@ -18,15 +18,31 @@ public class Config {
     public static int itemSparklingSaplingID;
 
     // Blocks
+    	//Dream Dimension
     public static int DreamLandPortalID;
     public static int PortalObsidianID;
     public static int DreamStoneID;
-    public static int DreamQuartzID;
+    public static int DreamQuartzID;//maybe change to something else
     public static int DreamDirtID;
     public static int DreamSandID;
     public static int OreLucidityID;
     public static int OreStarCesiumID;
     public static int DreamGrassID;
+    public static int DreamGravelID;
+    public static int DreamCobbleID;
+    public static int DreamStairsID;
+    public static int DreamWallID;
+    public static int DreamLogsID;
+    public static int DreamPlanksID;
+    public static int DreamLeavesID;
+    public static int DreamSaplingsID;
+    public static int NMGrassID;
+    public static int NMDirtID;
+    public static int NMStoneID;
+    public static int NMGravelID;
+    public static int NMSandID;
+    public static int NMCobbleID;
+    public static int NMStairsID;
 
     // Enable Dimension
     public static boolean enableDreamDimension;
@@ -80,10 +96,25 @@ public class Config {
         DreamStoneID = config.getBlock(Archive.dreamStone, bID++).getInt();
         DreamQuartzID = config.getBlock(Archive.dreamQuartz, bID++).getInt();
         DreamDirtID = config.getBlock(Archive.dreamDirt, bID++).getInt();
-        DreamSandID = config.getBlock(Archive.dreamGravel, bID++).getInt();
+        DreamSandID = config.getBlock(Archive.dreamSand, bID++).getInt();
         OreLucidityID = config.getBlock(Archive.oreLucidity, bID++).getInt();
         OreStarCesiumID = config.getBlock(Archive.oreStarcesium, bID++).getInt();
         DreamGrassID = config.getBlock(Archive.dreamGrass, bID++).getInt();
+        DreamGravelID = config.getBlock(Archive.dreamGravel, bID++).getInt();
+        DreamCobbleID = config.getBlock(Archive.dreamCobble, bID++).getInt();
+        DreamStairsID = config.getBlock(Archive.dreamStairs, bID++).getInt();
+        DreamWallID = config.getBlock(Archive.dreamWall, bID++).getInt();
+        DreamLogsID = config.getBlock(Archive.dreamLogs, bID++).getInt();
+        DreamPlanksID = config.getBlock(Archive.dreamPlanks, bID++).getInt();
+        DreamLeavesID = config.getBlock(Archive.dreamLeaves, bID++).getInt();
+        DreamSaplingsID = config.getBlock(Archive.dreamSaplings, bID++).getInt();
+        NMGrassID = config.getBlock(Archive.nmGrass, bID++).getInt();
+        NMDirtID = config.getBlock(Archive.nmDirt, bID++).getInt();
+        NMStoneID = config.getBlock(Archive.nmStone, bID++).getInt();
+        NMGravelID = config.getBlock(Archive.nmGravel, bID++).getInt();
+        NMSandID = config.getBlock(Archive.nmSand, bID++).getInt();
+        NMCobbleID = config.getBlock(Archive.nmCobble, bID++).getInt();
+        NMStairsID = config.getBlock(Archive.nmStairs, bID++).getInt();
     }
 
     private static void setDefaults() {
