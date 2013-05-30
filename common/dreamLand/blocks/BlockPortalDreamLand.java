@@ -261,8 +261,7 @@ public class BlockPortalDreamLand extends BlockPortal {
      * block). Args: world, x, y, z, entity
      */
     @Override
-    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4,
-            Entity par5Entity) {
+    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity) {
         if ((par5Entity.ridingEntity == null) && (par5Entity.riddenByEntity == null)){
 
             if ((par5Entity.timeUntilPortal == 0) && (par5Entity instanceof EntityPlayerMP)){
@@ -273,21 +272,14 @@ public class BlockPortalDreamLand extends BlockPortal {
                 WorldServer worldserver1 = minecraftserver
                         .worldServerForDimension(Config.dimensionID);
                 if (dimID == Config.dimensionID){
-                    ((EntityPlayerMP) par5Entity).sendChatToPlayer("Moving from  " + dimID
-                            + " to OverWorld");
                     minecraftserver.getConfigurationManager().transferPlayerToDimension(
                             (EntityPlayerMP) par5Entity, 0, new DreamLandTeleporter(worldserver));
-
                 }else{
-                    ((EntityPlayerMP) par5Entity).sendChatToPlayer("Moving from " + dimID
-                            + " to dreamland");
                     minecraftserver.getConfigurationManager().transferPlayerToDimension(
                             (EntityPlayerMP) par5Entity, Config.dimensionID,
                             new DreamLandTeleporter(worldserver1));
-                    // par5Entity.travelToDimension(DreamLand.dimensionID);
                 }
-                // remove due to weirdness in teleporting .
-                // par5Entity.travelToDimension(DreamLand.dimensionID);
+               
             }
 
         }

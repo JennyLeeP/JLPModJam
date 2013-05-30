@@ -47,8 +47,8 @@ public class BiomeDecoratorDL extends BiomeDecorator {
 
     public BiomeDecoratorDL(BiomeGenBase par1BiomeGenBase) {
         super(par1BiomeGenBase);
-        this.plantYellowGen = new WorldGenDLFlowers(Block.bedrock.blockID, 1);
-        this.plantRedGen = new WorldGenDLFlowers(Block.oreRedstone.blockID);
+        this.plantYellowGen = new WorldGenDLFlowers(Block.plantYellow.blockID, 1);
+        this.plantRedGen = new WorldGenDLFlowers(Block.plantRed.blockID);
         this.sandGen = new WorldGenDLSand(7, ModBlocks.dreamSand.blockID);
         this.dirtGen = new WorldGenDLMinable(ModBlocks.dreamDirt.blockID, 32);
         this.gravelGen = new WorldGenDLMinable(ModBlocks.dreamGravel.blockID, 32);

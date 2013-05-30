@@ -3,6 +3,7 @@ package dreamLand.utils;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dreamLand.blocks.ModBlocks;
@@ -35,6 +36,8 @@ public class Registry {
         registerMobs();
 
         registerDimension();
+        
+        registerEvents();
 
         RecipeHandler.add();
     }
@@ -155,5 +158,8 @@ public class Registry {
         DimensionManager.registerProviderType(Config.dimensionNMID, NightMareWorldProvider.class, true);//boolean = to keep Dim loaded or not
         
         DimensionManager.registerDimension(Config.dimensionNMID, Config.dimensionNMID);
+    }
+    private static void registerEvents(){
+        MinecraftForge.EVENT_BUS.register(new EventHookContainerClass());
     }
 }
