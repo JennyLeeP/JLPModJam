@@ -9,20 +9,26 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenForest;
-import net.minecraft.world.gen.feature.WorldGenHugeTrees;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
+import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.terraingen.TerrainGen;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
 import dreamLand.utils.Archive;
-import dreamLand.world.terrain.WorldGenBigSparklingTree;
+import dreamLand.world.terrain.trees.WorldGenAshTrees;
+import dreamLand.world.terrain.trees.WorldGenBigSparklingTree;
+import dreamLand.world.terrain.trees.WorldGenBrilliantTrees;
+import dreamLand.world.terrain.trees.WorldGenDarkTrees;
+import dreamLand.world.terrain.trees.WorldGenDeathTrees;
+import dreamLand.world.terrain.trees.WorldGenFrigidTrees;
+import dreamLand.world.terrain.trees.WorldGenInfernalTrees;
+import dreamLand.world.terrain.trees.WorldGenLifeTrees;
 
 public class BlockDreamSaplings extends BlockFlower {
 
-	public static final String[] DREAM_WOOD_TYPES = new String[] {"sparkling"};
-    private static final String[] field_94370_b = new String[] {"sparkling_sapling"};
+	public static final String[] DREAM_WOOD_TYPES = new String[] {"sparkling", "ash", "brilliant", "dark", "frigid", "infernal","life","death"};
+    private static final String[] DreamSaplings = new String[] {"sparkling_sapling", "ash_sapling", "brilliant_sapling", "dark_sapling", "frigid_sapling", "infernal_sapling","life_sapling","death sapling"};
     @SideOnly(Side.CLIENT)
     private Icon[] saplingIcon;
 
@@ -45,7 +51,7 @@ public class BlockDreamSaplings extends BlockFlower {
 
             if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9 && par5Random.nextInt(7) == 0)
             {
-                this.func_96477_c(par1World, par2, par3, par4, par5Random);
+                this.markOrGrowMarked(par1World, par2, par3, par4, par5Random);
             }
         }
     }
@@ -57,11 +63,11 @@ public class BlockDreamSaplings extends BlockFlower {
      */
     public Icon getIcon(int par1, int par2)
     {
-        par2 &= 3;
+        par2 &= 7;
         return this.saplingIcon[par2];
     }
 
-    public void func_96477_c(World par1World, int par2, int par3, int par4, Random par5Random)
+    public void markOrGrowMarked(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         int l = par1World.getBlockMetadata(par2, par3, par4);
 
@@ -78,33 +84,54 @@ public class BlockDreamSaplings extends BlockFlower {
     /**
      * Attempts to grow a sapling into a tree
      */
-    public void growTree(World par1World, int par2, int par3, int par4, Random par5Random)
+    public void growTree(World par1World, int chunkX, int chunkY, int chunkZ, Random par5Random)
     {
-        //if (!TerrainGen.saplingGrowTree(par1World, par5Random, par2, par3, par4)) return;
+        if (!TerrainGen.saplingGrowTree(par1World, par5Random, chunkX, chunkY, chunkZ)) return;
 
-        int l = par1World.getBlockMetadata(par2, par3, par4) & 3;
+        int l = par1World.getBlockMetadata(chunkX, chunkY, chunkZ) & 7;
         Object object = null;
         int i1 = 0;
         int j1 = 0;
         boolean flag = false;
-
-        if (l == 1)
+        if (l == 1)//Meta Sapling 1
         {
-            object = new WorldGenTaiga2(true);
+            object = new WorldGenAshTrees(true);
         }
-        else if (l == 2)
-        {
-            object = new WorldGenForest(true);
-        }
-        else if (l == 3)
+        else if (l == 2)//Meta Sapling 2
         {
             for (i1 = 0; i1 >= -1; --i1)
             {
                 for (j1 = 0; j1 >= -1; --j1)
                 {
-                    if (this.isSameSapling(par1World, par2 + i1, par3, par4 + j1, 3) && this.isSameSapling(par1World, par2 + i1 + 1, par3, par4 + j1, 3) && this.isSameSapling(par1World, par2 + i1, par3, par4 + j1 + 1, 3) && this.isSameSapling(par1World, par2 + i1 + 1, par3, par4 + j1 + 1, 3))
+                    if (this.isSameSapling(par1World, chunkX + i1, chunkY, chunkZ + j1, 2) && this.isSameSapling(par1World, chunkX + i1 + 1, chunkY, chunkZ + j1, 2) && this.isSameSapling(par1World, chunkX + i1, chunkY, chunkZ + j1 + 1, 2) && this.isSameSapling(par1World, chunkX + i1 + 1, chunkY, chunkZ + j1 + 1, 2))
                     {
-                        object = new WorldGenHugeTrees(true, 10 + par5Random.nextInt(20), 3, 3);
+                        object = new WorldGenBrilliantTrees(true);
+                        flag = true;
+                        break;
+                    }
+                }
+
+                if (object != null)
+                {
+                    break;
+                }
+            }
+            if (object == null)
+            {
+                j1 = 0;
+                i1 = 0;
+                object = new WorldGenTrees(true, 4 + par5Random.nextInt(7), 3, 3, false);
+            }
+        }
+        else if (l == 3)//Meta Sapling 3 = vanilla jungle
+        {
+            for (i1 = 0; i1 >= -1; --i1)
+            {
+                for (j1 = 0; j1 >= -1; --j1)
+                {
+                    if (this.isSameSapling(par1World, chunkX + i1, chunkY, chunkZ + j1, 3) && this.isSameSapling(par1World, chunkX + i1 + 1, chunkY, chunkZ + j1, 3) && this.isSameSapling(par1World, chunkX + i1, chunkY, chunkZ + j1 + 1, 3) && this.isSameSapling(par1World, chunkX + i1 + 1, chunkY, chunkZ + j1 + 1, 3))
+                    {
+                        object = new WorldGenDarkTrees(true, 30 + par5Random.nextInt(20), 1, 3);
                         flag = true;
                         break;
                     }
@@ -120,8 +147,28 @@ public class BlockDreamSaplings extends BlockFlower {
             {
                 j1 = 0;
                 i1 = 0;
-                object = new WorldGenBigSparklingTree(true);
+                object = new WorldGenDarkTrees(true, 30 + par5Random.nextInt(20), 1, 3);
             }
+        }
+        else if (l == 4)//Meta Sapling 4
+        {
+            object = new WorldGenFrigidTrees(true);
+            //System.out.println("Sapling grow 4");
+        }
+        else if (l == 5)//Meta Sapling 5
+        {
+            object = new WorldGenInfernalTrees(true);
+            //System.out.println("Sapling grow 5");
+        }
+        else if (l == 6)//Meta Sapling 6
+        {
+            object = new WorldGenLifeTrees(true);
+            //System.out.println("Sapling  grow 6");
+        }
+        else if (l == 7)//Meta Sapling 7
+        {
+            object = new WorldGenDeathTrees(true);
+            //System.out.println("Sapling grow 7");
         }
         else
         {
@@ -132,31 +179,31 @@ public class BlockDreamSaplings extends BlockFlower {
                 object = new WorldGenBigSparklingTree(true);
             }
         }
-
+//Meta Sapling if stops here ********
         if (flag)
         {
-            par1World.setBlock(par2 + i1, par3, par4 + j1, 0, 0, 4);
-            par1World.setBlock(par2 + i1 + 1, par3, par4 + j1, 0, 0, 4);
-            par1World.setBlock(par2 + i1, par3, par4 + j1 + 1, 0, 0, 4);
-            par1World.setBlock(par2 + i1 + 1, par3, par4 + j1 + 1, 0, 0, 4);
+            par1World.setBlock(chunkX + i1, chunkY, chunkZ + j1, 0, 0, 4);
+            par1World.setBlock(chunkX + i1 + 1, chunkY, chunkZ + j1, 0, 0, 4);
+            par1World.setBlock(chunkX + i1, chunkY, chunkZ + j1 + 1, 0, 0, 4);
+            par1World.setBlock(chunkX + i1 + 1, chunkY, chunkZ + j1 + 1, 0, 0, 4);
         }
         else
         {
-            par1World.setBlock(par2, par3, par4, 0, 0, 4);
+            par1World.setBlock(chunkX, chunkY, chunkZ, 0, 0, 4);
         }
 
-        if (!((WorldGenerator)object).generate(par1World, par5Random, par2 + i1, par3, par4 + j1))
+        if (!((WorldGenerator)object).generate(par1World, par5Random, chunkX + i1, chunkY, chunkZ + j1))
         {
             if (flag)
             {
-                par1World.setBlock(par2 + i1, par3, par4 + j1, this.blockID, l, 4);
-                par1World.setBlock(par2 + i1 + 1, par3, par4 + j1, this.blockID, l, 4);
-                par1World.setBlock(par2 + i1, par3, par4 + j1 + 1, this.blockID, l, 4);
-                par1World.setBlock(par2 + i1 + 1, par3, par4 + j1 + 1, this.blockID, l, 4);
+                par1World.setBlock(chunkX + i1, chunkY, chunkZ + j1, this.blockID, l, 4);
+                par1World.setBlock(chunkX + i1 + 1, chunkY, chunkZ + j1, this.blockID, l, 4);
+                par1World.setBlock(chunkX + i1, chunkY, chunkZ + j1 + 1, this.blockID, l, 4);
+                par1World.setBlock(chunkX + i1 + 1, chunkY, chunkZ + j1 + 1, this.blockID, l, 4);
             }
             else
             {
-                par1World.setBlock(par2, par3, par4, this.blockID, l, 4);
+                par1World.setBlock(chunkX, chunkY, chunkZ, this.blockID, l, 4);
             }
         }
     }
@@ -164,9 +211,9 @@ public class BlockDreamSaplings extends BlockFlower {
     /**
      * Determines if the same sapling is present at the given location.
      */
-    public boolean isSameSapling(World par1World, int par2, int par3, int par4, int par5)
+    public boolean isSameSapling(World par1World, int chunkX, int par3, int par4, int par5)
     {
-        return par1World.getBlockId(par2, par3, par4) == this.blockID && (par1World.getBlockMetadata(par2, par3, par4) & 3) == par5;
+        return par1World.getBlockId(chunkX, par3, par4) == this.blockID && (par1World.getBlockMetadata(chunkX, par3, par4) & 7) == par5;
     }
 
     /**
@@ -174,20 +221,25 @@ public class BlockDreamSaplings extends BlockFlower {
      */
     public int damageDropped(int par1)
     {
-        return par1 & 3;
+        return par1 & 7;
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
-        //par3List.add(new ItemStack(par1, 1, 1));
-        //par3List.add(new ItemStack(par1, 1, 2));
-        //par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 4));
+        par3List.add(new ItemStack(par1, 1, 5));
+        par3List.add(new ItemStack(par1, 1, 6));
+        par3List.add(new ItemStack(par1, 1, 7));
     }
 
     @SideOnly(Side.CLIENT)
@@ -198,11 +250,11 @@ public class BlockDreamSaplings extends BlockFlower {
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.saplingIcon = new Icon[field_94370_b.length];
+        this.saplingIcon = new Icon[DreamSaplings.length];
 
         for (int i = 0; i < this.saplingIcon.length; ++i)
         {
-            this.saplingIcon[i] = par1IconRegister.registerIcon(Archive.texture + field_94370_b[i]);
+            this.saplingIcon[i] = par1IconRegister.registerIcon(Archive.texture + DreamSaplings[i]);
         }
     }
     @Override
@@ -213,5 +265,10 @@ public class BlockDreamSaplings extends BlockFlower {
             return true;
         }
         return false;
+    }
+    @Override
+    public boolean isWood(World world, int x, int y, int z)
+    {
+        return true;
     }
 }

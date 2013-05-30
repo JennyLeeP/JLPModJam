@@ -35,7 +35,9 @@ public class ItemLighter extends Item {
         if (blockID == ModBlocks.portalObsidian.blockID){
             ModBlocks.portal.tryToCreatePortal(par3World, par4, par5 + 1, par6);
         }
-
+        if (blockID == ModBlocks.nmCobble.blockID){
+            ModBlocks.nmPortal.tryToCreatePortal(par3World, par4, par5 + 1, par6);
+        }
         return true;
 
     }

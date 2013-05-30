@@ -13,31 +13,30 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dreamLand.DreamLand;
 import dreamLand.utils.Archive;
 
 public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
-	public static final String[] Dream_LEAF_TYPES = new String[] {"sparkling"};
-    public static final String[][] DREAM_LEAF_GRLVL = new String[][] {{"sparkling_leaves"}, {"sparkling_leaves_opaque"}};
-    @SideOnly(Side.CLIENT)
-    private int field_94394_cP;
-    private Icon[][] iconArray = new Icon[2][];
-    int[] adjacentTreeBlocks;
+
+    int adjacentTreeBlocks[];
+
+    Icon[] icons = new Icon[16];
+    Icon[] iconsOpaque = new Icon[16];
 
     protected BlockDreamLeaves(int par1)
     {
         super(par1, Material.leaves, false);
         this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        this.setCreativeTab(DreamLand.tabDreamLand);
     }
 
-    
-
     /**
-     * ejects contained items into the world, and notifies neighbours of an update, as appropriate
+     * ejects contained items into the world, and notifies neighbors of an update, as appropriate
      */
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
@@ -185,14 +184,36 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
-    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    public void randomDisplayTick(World par1World, int chunkX, int chunkY, int chunkZ, Random par5Random)
     {
-        if (par1World.canLightningStrikeAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) && par5Random.nextInt(15) == 1)
+        if (par1World.canLightningStrikeAt(chunkX, chunkY + 1, chunkZ) && !par1World.doesBlockHaveSolidTopSurface(chunkX, chunkY - 1, chunkZ) && par5Random.nextInt(15) == 1)
         {
-            double d0 = (double)((float)par2 + par5Random.nextFloat());
-            double d1 = (double)par3 - 0.05D;
-            double d2 = (double)((float)par4 + par5Random.nextFloat());
+            double d0 = (double)((float)chunkX + par5Random.nextFloat());
+            double d1 = (double)chunkY - 0.05D;
+            double d2 = (double)((float)chunkZ + par5Random.nextFloat());
             par1World.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        }
+        int l = par1World.getBlockMetadata(chunkX, chunkY, chunkZ) & 7;
+        if (l == 0 )
+        {
+            double d0 = (double)((float)chunkX + par5Random.nextFloat());
+            double d1 = (double)chunkY - 0.05D;
+            double d2 = (double)((float)chunkZ + par5Random.nextFloat());
+            par1World.spawnParticle("crit", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        }
+        if (l == 1 )
+        {
+            double d0 = (double)((float)chunkX + par5Random.nextFloat());
+            double d1 = (double)chunkY - 0.05D;
+            double d2 = (double)((float)chunkZ + par5Random.nextFloat());
+            par1World.spawnParticle("smoke", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        }
+        if (l == 5 )
+        {
+            double d0 = (double)((float)chunkX + par5Random.nextFloat());
+            double d1 = (double)chunkY - 0.0D;
+            double d2 = (double)((float)chunkZ + par5Random.nextFloat());
+            par1World.spawnParticle("flame", d0, d1, d2, 0.0D, -0.2D, 0.0D);
         }
     }
 
@@ -262,7 +283,7 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
 
             if ((par5 & 3) == 0 && par1World.rand.nextInt(j1) == 0)
             {
-                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(Item.appleRed, 1, 0));//change for custom drop later
+                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(Item.appleRed, 1, 0));
             }
         }
     }
@@ -281,50 +302,73 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
      */
     public int damageDropped(int par1)
     {
-        return par1 & 3;
+        return par1 & 7;
     }
 
-    /**
-     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
-     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
-     */
+    @Override
     public boolean isOpaqueCube()
     {
-        return !this.graphicsLevel;
+        if(DreamLand.proxy != null)
+            return !DreamLand.proxy.getGraphicsLevel();
+        else
+            return false;
     }
-
     @SideOnly(Side.CLIENT)
-
+    @Override
+    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    {
+        return true;
+    }
+    
+    @SideOnly(Side.CLIENT)
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getIcon(int par1, int par2)
+    @Override
+    public Icon getIcon(int i, int meta)
     {
-        return (par2 & 3) == 1 ? this.iconArray[this.field_94394_cP][1] : ((par2 & 3) == 3 ? this.iconArray[this.field_94394_cP][3] : this.iconArray[this.field_94394_cP][0]);
+        if (DreamLand.proxy.getGraphicsLevel())
+        {
+            return icons[(meta & 7)];
+        }
+        else
+        {
+            return iconsOpaque[(meta & 7)];
+        }    
     }
+    String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal"};
 
     @SideOnly(Side.CLIENT)
-
     /**
-     * Pass true to draw this block using fancy graphics, or false for fast graphics.
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
      */
-    public void setGraphicsLevel(boolean par1)
+    @Override
+    public void registerIcons(IconRegister iconRegisterer)
     {
-        this.graphicsLevel = par1;
-        this.field_94394_cP = par1 ? 0 : 1;
+
+        for(int i = 0; i < 6; i++)
+        {
+            icons[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_leaves");
+            iconsOpaque[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_leaves_opaque");
+        }
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    @Override
+    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
-        //par3List.add(new ItemStack(par1, 1, 1));
-        //par3List.add(new ItemStack(par1, 1, 2));
-        //par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 4));
+        par3List.add(new ItemStack(par1, 1, 5));
     }
 
     /**
@@ -334,25 +378,6 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
     protected ItemStack createStackedBlock(int par1)
     {
         return new ItemStack(this.blockID, 1, par1 & 3);
-    }
-
-    @SideOnly(Side.CLIENT)
-
-    /**
-     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
-     * is the only chance you get to register icons.
-     */
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        for (int i = 0; i < DREAM_LEAF_GRLVL.length; ++i)
-        {
-            this.iconArray[i] = new Icon[DREAM_LEAF_GRLVL[i].length];
-
-            for (int j = 0; j < DREAM_LEAF_GRLVL[i].length; ++j)
-            {
-                this.iconArray[i][j] = par1IconRegister.registerIcon(Archive.texture + DREAM_LEAF_GRLVL[i][j]);
-            }
-        }
     }
 
     @Override

@@ -6,7 +6,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
 public class MapGenBaseDL {
-
 	/** The number of Chunks to gen-check in any given direction. */
     protected int range = 8;
 
@@ -18,20 +17,20 @@ public class MapGenBaseDL {
 
     public void generate(IChunkProvider par1IChunkProvider, World par2World, int par3, int par4, short[] par5ArrayOfByte)
     {
-        int var6 = this.range;
+        int k = this.range;
         this.worldObj = par2World;
         this.rand.setSeed(par2World.getSeed());
-        long var7 = this.rand.nextLong();
-        long var9 = this.rand.nextLong();
+        long l = this.rand.nextLong();
+        long i1 = this.rand.nextLong();
 
-        for (int var11 = par3 - var6; var11 <= par3 + var6; ++var11)
+        for (int j1 = par3 - k; j1 <= par3 + k; ++j1)
         {
-            for (int var12 = par4 - var6; var12 <= par4 + var6; ++var12)
+            for (int k1 = par4 - k; k1 <= par4 + k; ++k1)
             {
-                long var13 = (long)var11 * var7;
-                long var15 = (long)var12 * var9;
-                this.rand.setSeed(var13 ^ var15 ^ par2World.getSeed());
-                this.recursiveGenerate(par2World, var11, var12, par3, par4, par5ArrayOfByte);
+                long l1 = (long)j1 * l;
+                long i2 = (long)k1 * i1;
+                this.rand.setSeed(l1 ^ i2 ^ par2World.getSeed());
+                this.recursiveGenerate(par2World, j1, k1, par3, par4, par5ArrayOfByte);
             }
         }
     }
@@ -43,3 +42,4 @@ public class MapGenBaseDL {
 
 	
 }
+

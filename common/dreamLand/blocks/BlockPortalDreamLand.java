@@ -26,6 +26,7 @@ public class BlockPortalDreamLand extends BlockPortal {
         super(par1);
         this.setCreativeTab(DreamLand.tabDreamLand);
         this.setTickRandomly(true);
+        this.setLightValue(1.0F);
     }
 
     @Override

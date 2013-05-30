@@ -14,4 +14,9 @@ public class CommonProxy {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public boolean getGraphicsLevel() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

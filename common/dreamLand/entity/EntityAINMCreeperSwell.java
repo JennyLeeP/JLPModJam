@@ -16,8 +16,8 @@ public class EntityAINMCreeperSwell extends EntityAIBase {
 	}
 
 	public boolean shouldExecute() {
-		EntityLiving var1 = swellingCreeper.getAttackTarget();
-		return swellingCreeper.getCreeperState() > 0 || var1 != null && swellingCreeper.getDistanceSqToEntity(var1) < 9.0D;
+		EntityLiving entityliving = swellingCreeper.getAttackTarget();
+		return swellingCreeper.getCreeperState() > 0 || entityliving != null && swellingCreeper.getDistanceSqToEntity(entityliving) < 9.0D;
 	}
 
 	public void startExecuting() {

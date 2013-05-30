@@ -40,9 +40,11 @@ public class BlockDreamWall extends BlockWall{
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) 
     {
-        icon = new Icon[2];
+        icon = new Icon[4];
         icon[0] = iconRegister.registerIcon(Archive.texture + Archive.dreamCobble);
         icon[1] = iconRegister.registerIcon(Archive.texture + Archive.nmCobble);
+        icon[2] = iconRegister.registerIcon(Archive.texture + Archive.dreamStoneBrick);
+        icon[3] = iconRegister.registerIcon(Archive.texture + Archive.bloodCobble);
     }
     
     @SuppressWarnings("unchecked")
@@ -51,6 +53,8 @@ public class BlockDreamWall extends BlockWall{
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
         
     }
 }

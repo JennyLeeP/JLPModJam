@@ -3,7 +3,6 @@ package dreamLand;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
@@ -16,23 +15,25 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.registry.GameRegistry;
 import dreamLand.blocks.ModBlocks;
 import dreamLand.items.ModItems;
 import dreamLand.sided.CommonProxy;
 import dreamLand.utils.Archive;
 import dreamLand.utils.Config;
+import dreamLand.utils.Dictionary;
 import dreamLand.utils.DreamLandTabs;
-import dreamLand.utils.DreamLand_EventBonemeal;
 import dreamLand.utils.Registry;
+import dreamLand.utils.handlers.DreamLand_EventBonemeal;
 import dreamLand.utils.handlers.LanguageHandler;
-import dreamLand.world.biome.BiomeDreamLand;
+import dreamLand.world.biome.ModBiomes;
 
 @Mod(modid = Archive.modID, name = Archive.modName, version = Archive.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class DreamLand {
 
-    @Instance(Archive.modID)
+    
+
+	@Instance(Archive.modID)
     public static DreamLand instance;
 
     @SidedProxy(clientSide = Archive.clientProxy, serverSide = Archive.serverProxy)
@@ -44,11 +45,13 @@ public class DreamLand {
     public static EnumToolMaterial toolPhantomIron = EnumHelper.addToolMaterial("PhantomIron", 3,
             2000, 12.0F, 9, 25);
 
-    public static BiomeGenBase dreamIsland;
+    public static dreamLand.world.terrain.MapGenCavesDL worldGen = new dreamLand.world.terrain.MapGenCavesDL();
 
     // Declares a new Creative Tab
     public static CreativeTabs tabDreamLand = new DreamLandTabs(CreativeTabs.getNextID(),
             Archive.tabDreamLand);
+
+	//private IWorldGenerator MapGenCavesDL;
 
     @PreInit
     public void preInit(FMLPreInitializationEvent evt) {
@@ -62,8 +65,8 @@ public class DreamLand {
         // Creates the Blocks
         ModBlocks.init();
         
-        dreamIsland = (new BiomeDreamLand(100)).setColor(6316128).setBiomeName("Dream Land").setMinMaxHeight(0.3F, 2.0F).setTemperatureRainfall(0.2F, 0.3F);
-        GameRegistry.addBiome(DreamLand.dreamIsland);
+        //Creates the Biomes
+        ModBiomes.init();
         
         // Loads Languages
         LanguageHandler.loadLanguages();
@@ -72,6 +75,9 @@ public class DreamLand {
         proxy.initCapes();
         
         MinecraftForge.EVENT_BUS.register(new DreamLand_EventBonemeal());
+        
+        //GameRegistry.registerWorldGenerator(new WorldGenOreDL(60,130));
+        //GameRegistry.registerWorldGenerator(new WorldGenOreNM(60,130));
     }
 
     @Init
@@ -82,7 +88,7 @@ public class DreamLand {
         
         proxy.registerRenderers();
         
-       
+        Dictionary.register();
 
     }
 

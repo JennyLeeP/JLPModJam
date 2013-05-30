@@ -10,7 +10,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.LongHashMap;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.world.PortalPosition;
+import dreamLand.utils.portal.DreamLandPortalPosition;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import dreamLand.blocks.ModBlocks;
@@ -81,12 +81,12 @@ public class DreamLandTeleporter extends Teleporter {
         int k1;
 
         if (field_85191_c.containsItem(j1)){
-            PortalPosition portalposition = (PortalPosition) field_85191_c.getValueByKey(j1);
+            DreamLandPortalPosition portalposition = (DreamLandPortalPosition) field_85191_c.getValueByKey(j1);
             d3 = 0.0D;
             i = portalposition.posX;
             j = portalposition.posY;
             k = portalposition.posZ;
-            portalposition.lastUpdateTime = worldServerInstance.getTotalWorldTime();
+            portalposition.field_85087_d = worldServerInstance.getTotalWorldTime();
             flag = false;
         }else{
             for (k1 = l - short1; k1 <= (l + short1); ++k1){
@@ -429,10 +429,10 @@ public class DreamLandTeleporter extends Teleporter {
 
             while (iterator.hasNext()){
                 Long olong = (Long) iterator.next();
-                PortalPosition portalposition = (PortalPosition) field_85191_c.getValueByKey(olong
+                DreamLandPortalPosition portalposition = (DreamLandPortalPosition) field_85191_c.getValueByKey(olong
                         .longValue());
 
-                if ((portalposition == null) || (portalposition.lastUpdateTime < j)){
+                if ((portalposition == null) || (portalposition.field_85087_d < j)){
                     iterator.remove();
                     field_85191_c.remove(olong.longValue());
                 }

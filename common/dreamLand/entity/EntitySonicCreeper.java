@@ -31,8 +31,8 @@ public class EntitySonicCreeper extends EntityMob{
 	public EntitySonicCreeper(World par1World) {
 		super(par1World);
         this.texture = "/mods/DreamLand/textures/mobs/creeper.png";
-		this.moveSpeed = 0.2F;
-		this.setSize(1.0F, 2.0F);
+		//this.moveSpeed = 0.2F;
+		///this.setSize(1.0F, 2.0F);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomCreeperSwell(this));
         this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 0.25F, false));

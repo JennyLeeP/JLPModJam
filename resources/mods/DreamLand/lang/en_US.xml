@@ -26,5 +26,5 @@
 	<entry key="tile.nmCobble.name">Mara Cobble</entry>
 	<entry key="tile.nmStairs.name">Mara Cobble Stairs</entry>
 	<entry key="tile.dreamStairs.name">Dream Cobble Stairs</entry>
-	<entry key="tile.nmCobbleWall.name">Mara Cobble Wall</entry>
-	<entry key="tile.dreamCobbleWall.name">Dream Cobble Wall</entry></properties>
+	<entry key="tile.dreamWall.nmCobble.name">Mara Cobble Wall</entry>
+	<entry key="tile.dreamWall.dreamCobble.name">Dream Cobble Wall</entry></properties>

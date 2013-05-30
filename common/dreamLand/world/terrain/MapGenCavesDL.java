@@ -3,24 +3,24 @@ package dreamLand.world.terrain;
 import java.util.Random;
 
 import dreamLand.blocks.ModBlocks;
-import dreamLand.world.biome.BiomeDreamLand;
-
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.IChunkProvider;
 
 public class MapGenCavesDL extends MapGenBaseDL{
-
-
-	public void generate(ChunkProviderDreamLand par1chunkProviderDreamLand, World par2World, int par1, int par2) {
-		super.generate(par1chunkProviderDreamLand, par2World, par1, par2, null);
-	}
-    
+	
+	
+	public void generate(IChunkProvider par1IChunkProvider, World par2World, int par3, int par4, short[] blockIDArray)
+    {
+        
+        super.generate(par1IChunkProvider, par2World, par3, par4, blockIDArray);
+    }
 	/**
      * Generates a larger initial cave node than usual. Called 25% of the time.
      */
-    protected void generateLargeCaveNode(long par1, int par3, int par4, byte[] par5ArrayOfByte, double par6, double par8, double par10)
+    protected void generateLargeCaveNode(long par1, int par3, int par4, short[] par5ArrayOfByte, double par6, double par8, double par10)
     {
         this.generateCaveNode(par1, par3, par4, par5ArrayOfByte, par6, par8, par10, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);
     }
@@ -28,8 +28,9 @@ public class MapGenCavesDL extends MapGenBaseDL{
     /**
      * Generates a node in the current cave system recursion tree.
      */
-    protected void generateCaveNode(long par1, int par3, int par4, byte[] par5ArrayOfByte, double par6, double par8, double par10, float par12, float par13, float par14, int par15, int par16, double par17)
+    protected void generateCaveNode(long par1, int par3, int par4, short[] blockIDArray, double par6, double par8, double par10, float par12, float par13, float par14, int par15, int par16, double par17)
     {
+    	//System.out.println("Generating Caves Line 27 MapGenCavesDL");
         double d4 = (double)(par3 * 16 + 8);
         double d5 = (double)(par4 * 16 + 8);
         float f3 = 0.0F;
@@ -80,8 +81,8 @@ public class MapGenCavesDL extends MapGenBaseDL{
 
             if (!flag && par15 == k1 && par12 > 1.0F && par16 > 0)
             {
-                this.generateCaveNode(random.nextLong(), par3, par4, par5ArrayOfByte, par6, par8, par10, random.nextFloat() * 0.5F + 0.5F, par13 - ((float)Math.PI / 2F), par14 / 3.0F, par15, par16, 1.0D);
-                this.generateCaveNode(random.nextLong(), par3, par4, par5ArrayOfByte, par6, par8, par10, random.nextFloat() * 0.5F + 0.5F, par13 + ((float)Math.PI / 2F), par14 / 3.0F, par15, par16, 1.0D);
+                this.generateCaveNode(random.nextLong(), par3, par4, blockIDArray, par6, par8, par10, random.nextFloat() * 0.5F + 0.5F, par13 - ((float)Math.PI / 2F), par14 / 3.0F, par15, par16, 1.0D);
+                this.generateCaveNode(random.nextLong(), par3, par4, blockIDArray, par6, par8, par10, random.nextFloat() * 0.5F + 0.5F, par13 + ((float)Math.PI / 2F), par14 / 3.0F, par15, par16, 1.0D);
                 return;
             }
 
@@ -150,7 +151,7 @@ public class MapGenCavesDL extends MapGenBaseDL{
 
                                 if (i4 >= 0 && i4 < 128)
                                 {
-                                    if (isOceanBlock(par5ArrayOfByte, k3, j3, i4, l3, par3, par4))
+                                    if (isOceanBlock(blockIDArray, k3, j3, i4, l3, par3, par4))
                                     {
                                         flag2 = true;
                                     }
@@ -184,12 +185,12 @@ public class MapGenCavesDL extends MapGenBaseDL{
 
                                         if (d14 > -0.7D && d12 * d12 + d14 * d14 + d13 * d13 < 1.0D)
                                         {
-                                            if (isTopBlock(par5ArrayOfByte, j4, j3, k2, k3, par3, par4))
+                                            if (isTopBlock(blockIDArray, j4, j3, k2, k3, par3, par4))
                                             {
                                                 flag3 = true;
                                             }
 
-                                            digBlock(par5ArrayOfByte, j4, j3, k2, k3, par3, par4, flag3);
+                                            digBlock(blockIDArray, j4, j3, k2, k3, par3, par4, flag3);
                                         }
 
                                         --j4;
@@ -211,7 +212,7 @@ public class MapGenCavesDL extends MapGenBaseDL{
     /**
      * Recursively called by generate() (generate) and optionally by itself.
      */
-    protected void recursiveGenerate(World par1World, int par2, int par3, int par4, int par5, byte[] par6ArrayOfByte)
+    protected void recursiveGenerate(World par1World, int par2, int par3, int par4, int par5, short[] par6ArrayOfByte)
     {
         int i1 = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(40) + 1) + 1);
 
@@ -249,7 +250,7 @@ public class MapGenCavesDL extends MapGenBaseDL{
         }
     }
 
-    protected boolean isOceanBlock(byte[] data, int index, int x, int y, int z, int chunkX, int chunkZ)
+    protected boolean isOceanBlock(short[] data, int index, int x, int y, int z, int chunkX, int chunkZ)
     {
         return data[index] == Block.waterMoving.blockID || data[index] == Block.waterStill.blockID;
     }
@@ -265,11 +266,12 @@ public class MapGenCavesDL extends MapGenBaseDL{
 
     //Determine if the block at the specified location is the top block for the biome, we take into account
     //Vanilla bugs to make sure that we generate the map the same way vanilla does.
-    private boolean isTopBlock(byte[] data, int index, int x, int y, int z, int chunkX, int chunkZ)
+    private boolean isTopBlock(short[] data, int index, int x, int y, int z, int chunkX, int chunkZ)
     {
-        BiomeDreamLand biome = (BiomeDreamLand) worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
+        BiomeGenBase biome = worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
         return (isExceptionBiome(biome) ? data[index] == ModBlocks.dreamGrass.blockID : data[index] == biome.topBlock);
     }
+    
 
     /**
      * Digs out the current block, default implementation removes stone, filler, and top block
@@ -286,18 +288,36 @@ public class MapGenCavesDL extends MapGenBaseDL{
      * @param chunkZ Chunk Y position
      * @param foundTop True if we've encountered the biome's top block. Ideally if we've broken the surface.
      */
-    protected void digBlock(byte[] data, int index, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
+    protected void digBlock(short[] data, int index, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
     {
-        BiomeDreamLand biome = (BiomeDreamLand) worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
-        int top    = (isExceptionBiome(biome) ? ModBlocks.dreamGrass.blockID : biome.topBlock);
-        int filler = (isExceptionBiome(biome) ? ModBlocks.dreamDirt.blockID  : biome.fillerBlock);
+    	//System.out.println("Dig block Map Gen caves DL line 293");
+        BiomeGenBase biome = worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
+        //BiomeGenBase biome = (BiomeGenBase) worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
+        int top    = (isExceptionBiome(biome) ? ModBlocks.dreamGrass.blockID | ModBlocks.nmGrass.blockID : biome.topBlock);
+        int filler = (isExceptionBiome(biome) ? ModBlocks.dreamDirt.blockID  | ModBlocks.nmDirt.blockID: biome.fillerBlock);
         int block  = data[index];
 
-        if (block == Block.stone.blockID || block == filler || block == top)
+        if (block == ModBlocks.dreamStone.blockID || block == filler || block == top)
         {
             if (y < 10)
             {
-                data[index] = (byte)Block.lavaMoving.blockID;
+                data[index] = (byte)Block.lavaMoving.blockID;//TODO Change to custom liquid once done
+            }
+            else
+            {
+                data[index] = 0;
+
+                if (foundTop && data[index - 1] == filler)
+                {
+                    data[index - 1] = (byte)top;
+                }
+            }
+        }
+        if (block == ModBlocks.nmStone.blockID || block == filler || block == top)
+        {
+            if (y < 10)
+            {
+                data[index] = (byte)Block.lavaMoving.blockID;//TODO Change to custom liquid once done
             }
             else
             {

@@ -6,10 +6,12 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldProviderEnd;
+import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import dreamLand.DreamLand;
 import dreamLand.utils.Config;
+import dreamLand.world.biome.ModBiomes;
 import dreamLand.world.terrain.ChunkProviderDreamLand;
 
 public class DreamLandWorldProvider extends WorldProvider {
@@ -24,12 +26,10 @@ public class DreamLandWorldProvider extends WorldProvider {
      */
     @Override
     public void registerWorldChunkManager() {
-        worldChunkMgr = new WorldChunkManagerHell(DreamLand.dreamIsland, 0.8F, 0.1F);
-        dimensionId = Config.dimensionID;
+        this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.dreamIsland, 0.8F, 0.1F);
+        this.dimensionId = Config.dimensionID;
         this.hasNoSky = false;//true = world with normal sky but no light
-
     }
-
     /**
      * Returns a new chunk provider which generates chunks for this world
      */
@@ -61,7 +61,7 @@ public class DreamLandWorldProvider extends WorldProvider {
      */
     public boolean getWorldHasVoidParticles()
     {
-        return false;
+        return true;
     }
     /**
      * True if the player can respawn in this dimension (true = overworld, false = nether).
@@ -70,13 +70,16 @@ public class DreamLandWorldProvider extends WorldProvider {
     {
         return false;
     }
-    
+    public String getSaveFolder()
+    {
+        return "DreamLand";
+    }
     /**
      * Returns 'true' if in the "main surface world", but 'false' if in the Nether or End dimensions.
      */
     public boolean isSurfaceWorld()
     {
-        return false;
+        return true;
     }
     
     /**
@@ -120,10 +123,11 @@ public class DreamLandWorldProvider extends WorldProvider {
         f5 *= f2 * 0.0F + 0.15F;
         return this.worldObj.getWorldVec3Pool().getVecFromPool((double)f3, (double)f4, (double)f5);
     }
+    
     @Override
 	public float getCloudHeight()
 	{
-		return 12.0F;//256.0F Sets cloud height at 256 instead of 128, 0.0F = clouds at Bedrock
+		return 150F;//256.0F Sets cloud height at 256 instead of 128, 0.0F = clouds at Bedrock
 	}
     /**
      * Gets the hard-coded portal location to use when entering this dimension.

@@ -12,21 +12,25 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dreamLand.DreamLand;
 import dreamLand.utils.Archive;
 
 public class BlockDreamLogs extends Block{
 	/** The type of tree this log came from. */
-    public static final String[] DreamWoodType = new String[] {"sparkling"};
-    public static final String[] DreamTreeTextureTypes = new String[] {"sparklingtree_side"};
+    public static final String[] DreamWoodType = new String[] {"sparkling","brilliant","frigid", "life"};
+    public static final String[] DLTreeTextureSides = new String[] {"sparklingtree_side","brilliant_tree_side","frigid_tree_side", "life_tree_side"};
+    public static final String[] DLTreeTextureTops = new String[] {"sparkling_tree_top","brilliant_tree_top","frigid_tree_top", "life_tree_top"};
+    
     @SideOnly(Side.CLIENT)
-    private Icon[] iconArray;
+    private Icon[] iconArrayTS;
+    @SideOnly(Side.CLIENT)
+    private Icon[] iconArrayTT;
     @SideOnly(Side.CLIENT)
     private Icon tree_top;
-
     protected BlockDreamLogs(int par1)
     {
         super(par1, Material.wood);
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(DreamLand.tabDreamLand);
     }
 
     /**
@@ -84,12 +88,12 @@ public class BlockDreamLogs extends Block{
     /**
      * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ, block metadata
      */
-    public int onBlockPlaced(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
+    public int onBlockPlaced(World par1World, int par2, int par3, int par4, int side, float par6, float par7, float par8, int meta)
     {
-        int j1 = par9 & 3;
+        int j1 = meta & 3;
         byte b0 = 0;
 
-        switch (par5)
+        switch (side)
         {
             case 0:
             case 1:
@@ -112,11 +116,13 @@ public class BlockDreamLogs extends Block{
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getIcon(int par1, int par2)
+    public Icon getIcon(int side, int meta)
     {
-        int k = par2 & 12;
-        int l = par2 & 3;
-        return k == 0 && (par1 == 1 || par1 == 0) ? this.tree_top : (k == 4 && (par1 == 5 || par1 == 4) ? this.tree_top : (k == 8 && (par1 == 2 || par1 == 3) ? this.tree_top : this.iconArray[l]));
+        int k = meta & 12 ;
+        int l = meta & 3;
+        //System.out.println("k= "+ k);
+        //System.out.println("l= " + l);
+        return k == 0 && (side == 1 || side == 0) ? this.iconArrayTT[l] : (k == 4 && (side == 5 || side == 4) ? this.iconArrayTT[l] : (k == 8 && (side == 2 || side == 3) ? this.iconArrayTT[l] : this.iconArrayTS[l]));
     }
 
     /**
@@ -135,17 +141,18 @@ public class BlockDreamLogs extends Block{
         return par0 & 3;
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
-        //par3List.add(new ItemStack(par1, 1, 1));
-        //par3List.add(new ItemStack(par1, 1, 2));
-        //par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        
     }
 
     /**
@@ -165,12 +172,17 @@ public class BlockDreamLogs extends Block{
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.tree_top = par1IconRegister.registerIcon(Archive.texture + "sparkling_tree_top");
-        this.iconArray = new Icon[DreamTreeTextureTypes.length];
-
-        for (int i = 0; i < this.iconArray.length; ++i)
+        //this.tree_top = par1IconRegister.registerIcon(Archive.texture + "sparkling_tree_top");
+        this.iconArrayTS = new Icon[DLTreeTextureSides.length];
+        this.iconArrayTT = new Icon[DLTreeTextureTops.length];
+        
+        for (int j = 0; j < this.iconArrayTT.length; ++j)
         {
-            this.iconArray[i] = par1IconRegister.registerIcon(Archive.texture + DreamTreeTextureTypes[i]);
+            this.iconArrayTT[j] = par1IconRegister.registerIcon(Archive.texture + DLTreeTextureTops[j]);
+        }
+        for (int i = 0; i < this.iconArrayTS.length; ++i)
+        {
+            this.iconArrayTS[i] = par1IconRegister.registerIcon(Archive.texture + DLTreeTextureSides[i]);
         }
     }
 

@@ -1,5 +1,6 @@
 package dreamLand.sided;
 
+import net.minecraft.src.ModLoader;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import dreamLand.entity.EntityNMCreeper;
 import dreamLand.entity.EntityPhoenix;
@@ -30,5 +31,11 @@ public class ClientProxy extends CommonProxy {
     DeveloperCapesAPI.getInstance().init("http://pwebg.com/Minecraft/Downloads/capes.txt");
     
     }
-    
+	@SuppressWarnings("static-access")
+    @Override
+	public boolean getGraphicsLevel()
+	{
+		// TODO Auto-generated method stub
+		return ModLoader.getMinecraftInstance().isFancyGraphicsEnabled();
+	}
 }

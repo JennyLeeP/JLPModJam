@@ -11,6 +11,7 @@ public class ModItems {
     public static Item itemLucidity;
     public static Item itemSwordPhantomIron;
     public static Item itemSparklingSapling;
+    public static Item itemMethaneClathrate;
 
     public static void init() {
 
@@ -22,8 +23,8 @@ public class ModItems {
 
         itemLucidity = new DreamLandItems(Config.itemLucidityID - 256)
                 .setUnlocalizedName(Archive.itemLucidity);
-
-        itemSparklingSapling = new sparklingSapling(Config.itemSparklingSaplingID - 256)
-                .setUnlocalizedName(Archive.itemSparklingSapling);
+        
+        itemMethaneClathrate = new DreamLandItems(Config.itemMethaneClathrateID - 256)
+        .setUnlocalizedName(Archive.itemMethaneClathrate);
     }
 }
