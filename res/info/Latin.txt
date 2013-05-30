@@ -1,0 +1,9 @@
+Valeo = Strength
+Infirmitas = weekness
+
+Malum = evil
+Solus = good
+
+Sonus = “noise, sound” or “tone
+
+Terrabona and Terramala (good land, evil land)
