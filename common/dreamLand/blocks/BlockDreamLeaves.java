@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,7 +33,10 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
     {
         super(par1, Material.leaves, false);
         this.setTickRandomly(true);
+        this.setHardness(0.6F);
+        this.setStepSound(Block.soundGrassFootstep);
         this.setCreativeTab(DreamLand.tabDreamLand);
+        setBurnProperties(this.blockID, 5, 20);
     }
 
     /**
@@ -336,7 +340,7 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
             return iconsOpaque[(meta & 7)];
         }    
     }
-    String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal"};
+    String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal", "life", "death"};
 
     @SideOnly(Side.CLIENT)
     /**
@@ -347,7 +351,7 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
     public void registerIcons(IconRegister iconRegisterer)
     {
 
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < TreeTypes.length; i++)
         {
             icons[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_leaves");
             iconsOpaque[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_leaves_opaque");
@@ -363,12 +367,9 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
     @Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
-        par3List.add(new ItemStack(par1, 1, 4));
-        par3List.add(new ItemStack(par1, 1, 5));
+        for(int i = 0; i < TreeTypes.length; i++){
+            par3List.add(new ItemStack(par1, 1, i));
+        }
     }
 
     /**
@@ -379,7 +380,20 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
     {
         return new ItemStack(this.blockID, 1, par1 & 3);
     }
-
+    public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+    {
+        if (metadata == 1 || metadata == 3 || metadata == 5 || metadata == 7)
+            return 0;
+        return blockFlammability[blockID];
+    }
+    
+    public int getFireSpreadSpeed(World world, int x, int y, int z, int metadata, ForgeDirection face)
+    {
+        if (metadata == 1 || metadata == 3 || metadata == 7)
+            return 0;
+        return blockFireSpreadSpeed[blockID];
+    }
+    
     @Override
     public boolean isShearable(ItemStack item, World world, int x, int y, int z)
     {

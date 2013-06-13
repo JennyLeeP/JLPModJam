@@ -507,7 +507,7 @@ public class ChunkProviderDreamLand extends ChunkProviderGenerate {
 								--j1;
 								par3ArrayOfByte[l1] = b2;
 
-								if ((j1 == 0) && (b2 == ModBlocks.dreamGravel.blockID)){
+								if ((j1 == 0) && (b2 == ModBlocks.dreamFalling.blockID)){
 									j1 = rand.nextInt(4);
 									b2 = (short) ModBlocks.dreamStone.blockID;
 								}

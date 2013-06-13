@@ -5,7 +5,7 @@ public class Archive {
     // **************************Mod Stuff***************
     public static final String VERSION = "0.3";
     public static final String modID = "DreamLand";
-    public static final String modName = "Dream Land";
+    public static final String modName = "DreamLand";
 
     // *************************Locations*******************
     public static final String proxy = "dreamLand.sided.";
@@ -32,14 +32,9 @@ public class Archive {
     public static final String dreamSand = "dreamSand";
     public static final String dreamStairs = "dreamStairs";
     public static final String dreamCobbleWall = "dreamCobbleWall";//may not be needed
-    public static final String dreamWall = "dreamWall";
     public static final String oreLucidity = "oreLucidity";
     public static final String oreStarcesium = "oreStarCesium";
     public static final String dreamCobble = "dreamCobble";
-    public static final String dreamLogs = "dreamLogs";
-    public static final String dreamPlanks = "dreamPlanks";
-    public static final String dreamLeaves = "dreamLeaves";
-    public static final String dreamSaplings = "dreamSaplings";
     public static final String nmPortal = "nmPortal";
     public static final String nmGrass = "nmGrass";
     public static final String nmDirt = "nmDirt";
@@ -52,9 +47,18 @@ public class Archive {
     public static final String nmCobbleWall = "nmCobbleWall";//may not be needed
     public static final String bloodCobble = "bloodCobble";
     public static final String bloodStairs = "bloodStairs";
+    public static final String dreamFence = "dreamFence";
     public static final String oreMethaneClathrate = "oreMethaneClathrate";
     
-    //****************************Languages********************
+    // ************************ Meta Blocks ********************
+    public static final String dreamFalling = "dreamFalling";
+    public static final String dreamSaplings = "dreamSaplings";
+    public static final String dreamLogs = "dreamLogs";
+    public static final String dreamPlanks = "dreamPlanks";
+    public static final String dreamLeaves = "dreamLeaves";
+    public static final String dreamWall = "dreamWall";
+    
+    //*************************** Languages ********************
     public static final String tabDreamLand = "tabDreamLand";
     public static String[] langFiles = { 
         // EN Language

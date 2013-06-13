@@ -1,14 +1,16 @@
 package dreamLand.world.biome;
 
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND_PASS2;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIRT;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.GRAVEL;
+import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM;
 import dreamLand.blocks.ModBlocks;
-import dreamLand.world.terrain.WorldGenDLSand;
-import dreamLand.world.terrain.WorldGenNMMinable;
+import dreamLand.world.terrain.WorldGenNMSand;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
@@ -22,9 +24,11 @@ public class BiomeDecoratorNM extends BiomeDecorator {
 
     public BiomeDecoratorNM(BiomeGenBase par1BiomeGenBase) {
         super(par1BiomeGenBase);
-        this.sandGen = new WorldGenDLSand(7, ModBlocks.nmSand.blockID);
-        this.dirtGen = new WorldGenNMMinable(ModBlocks.nmDirt.blockID, 32);
-        this.gravelGen = new WorldGenNMMinable(ModBlocks.nmGravel.blockID, 32);
+        this.sandGen = new WorldGenNMSand(7, ModBlocks.dreamFalling.blockID, 3);
+        this.dirtGen = new WorldGenMinable(ModBlocks.nmDirt.blockID, 0, 32, ModBlocks.nmStone.blockID);
+        //this.gravelGen = new WorldGenMinable(ModBlocks.dreamFalling.blockID, 2, 32, ModBlocks.nmStone.blockID);
+        this.sandPerChunk = 10;
+        this.sandPerChunk = 20;
     }
 
     /**
@@ -46,6 +50,13 @@ public class BiomeDecoratorNM extends BiomeDecorator {
             k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             this.sandGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
         }
+        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, SAND_PASS2);
+        for (i = 0; doGen && i < this.sandPerChunk; ++i)
+        {
+            j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+            k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            this.sandGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
+        }
         int l;
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, TREE);
@@ -57,6 +68,7 @@ public class BiomeDecoratorNM extends BiomeDecorator {
             worldgenerator.setScale(1.0D, 1.0D, 1.0D);
             worldgenerator.generate(this.currentWorld, this.randomGenerator, k, this.currentWorld.getHeightValue(k, l), l);
         }
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(currentWorld, randomGenerator, chunk_X, chunk_Z));
     }
     /**
      * Generates ores in the current chunk
@@ -66,8 +78,8 @@ public class BiomeDecoratorNM extends BiomeDecorator {
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(currentWorld, randomGenerator, chunk_X, chunk_Z));
         if (TerrainGen.generateOre(currentWorld, randomGenerator, dirtGen, chunk_X, chunk_Z, DIRT))
         this.genStandardOre1(20, this.dirtGen, 0, 128);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, gravelGen, chunk_X, chunk_Z, GRAVEL))
-        this.genStandardOre1(10, this.gravelGen, 0, 128);
+        //if (TerrainGen.generateOre(currentWorld, randomGenerator, gravelGen, chunk_X, chunk_Z, CUSTOM))
+        //this.genStandardOre1(10, this.gravelGen, 0, 128);
        
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(currentWorld, randomGenerator, chunk_X, chunk_Z));
     }

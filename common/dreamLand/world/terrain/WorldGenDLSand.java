@@ -15,13 +15,16 @@ public class WorldGenDLSand extends WorldGenerator {
 
 	/** The maximum radius used when generating a patch of blocks. */
 	private int radius;
+	private int metaData;
 
-	public WorldGenDLSand(int par1, int par2)
-	{
-		this.sandID = par2;
-		this.radius = par1;
-	}
-	@Override
+	
+	public WorldGenDLSand(int par1, int par2, int par3) {
+	    this.sandID = par2;
+        this.radius = par1;
+        this.metaData = par3;
+        
+    }
+    @Override
 	public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5) {
 		if (par1World.getBlockMaterial(par3, par4, par5) != Material.water)
 		{
@@ -47,11 +50,9 @@ public class WorldGenDLSand extends WorldGenerator {
 
 							if (j2 == ModBlocks.dreamDirt.blockID || j2 == ModBlocks.dreamGrass.blockID)
 							{
-								par1World.setBlock(i1, i2, j1, this.sandID, 0, 2);
-							}
-							if (j2 == ModBlocks.nmDirt.blockID || j2 == ModBlocks.nmGrass.blockID)
-							{
-								par1World.setBlock(i1, i2, j1, this.sandID, 0, 2);
+							    //System.out.println("Sand DL Meta = "+ metaData);
+							    this.setBlockAndMetadata(par1World, i1, i2, j1, this.sandID, this.metaData);
+								//par1World.setBlockWithMeta(i1, i2, j1, this.sandID, 0, 2);
 							}
 						}
 					}
@@ -60,6 +61,7 @@ public class WorldGenDLSand extends WorldGenerator {
 
 			return true;
 		}
+		
 	}
 
 }

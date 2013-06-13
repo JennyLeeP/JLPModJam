@@ -184,7 +184,7 @@ public class ChunkProviderNightMare extends ChunkProviderGenerate {
 			k1 = k + this.rand.nextInt(16) + 8;
 			l1 = this.rand.nextInt(128);
 			i2 = l + this.rand.nextInt(16) + 8;
-			(new WorldGenLakes(Block.blockGold.blockID)).generate(this.worldObj, this.rand, k1, l1, i2);//water
+			(new WorldGenLakes(Block.waterStill.blockID)).generate(this.worldObj, this.rand, k1, l1, i2);//water
 		}
 
 		if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA) &&
@@ -196,7 +196,7 @@ public class ChunkProviderNightMare extends ChunkProviderGenerate {
 
 			if (l1 < 63 || this.rand.nextInt(10) == 0)
 			{
-				(new WorldGenLakes(Block.blockDiamond.blockID)).generate(this.worldObj, this.rand, k1, l1, i2);//lava
+				(new WorldGenLakes(Block.lavaStill.blockID)).generate(this.worldObj, this.rand, k1, l1, i2);//lava
 			}
 		}
 
@@ -490,7 +490,7 @@ public class ChunkProviderNightMare extends ChunkProviderGenerate {
 								--j1;
 								par3ArrayOfByte[l1] = b2;
 
-								if ((j1 == 0) && (b2 == ModBlocks.nmGravel.blockID)){
+								if ((j1 == 0) && (b2 == ModBlocks.dreamFalling.blockID)){
 									j1 = rand.nextInt(4);
 									b2 = (short) ModBlocks.nmStone.blockID;
 								}

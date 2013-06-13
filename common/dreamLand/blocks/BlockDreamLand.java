@@ -30,6 +30,7 @@ public class BlockDreamLand extends Block {
 
     public BlockDreamLand(int par1, Material par2Material) {
         super(par1, Material.wood);
+        dropid = blockID;
         this.setCreativeTab(DreamLand.tabDreamLand);
     }
 

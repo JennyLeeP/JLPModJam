@@ -31,6 +31,8 @@ public class BlockDreamLogs extends Block{
     {
         super(par1, Material.wood);
         this.setCreativeTab(DreamLand.tabDreamLand);
+        blockFireSpreadSpeed[this.blockID] = 5;
+        blockFlammability[this.blockID] = 20;
     }
 
     /**

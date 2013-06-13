@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
@@ -37,7 +39,11 @@ public class BlockNMGrass extends Block{
         return par1 == 1 ? iconNMGrassTop : (par1 == 0 ? ModBlocks.nmDirt
                 .getBlockTextureFromSide(par1) : blockIcon);
     }
-
+    @Override
+    public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
+    {
+        return true;
+    }
     /**
      * Ticks the block if it's been scheduled
      */

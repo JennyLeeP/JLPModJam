@@ -11,13 +11,14 @@ import dreamLand.entity.EntityNMCreeper;
 import dreamLand.entity.EntityPhoenix;
 import dreamLand.entity.EntitySonicCreeper;
 import dreamLand.items.ItemBlockDreamWall;
-import dreamLand.items.ItemDreamLeaves;
-import dreamLand.items.ItemDreamPlanksBlock;
-import dreamLand.items.ItemDreamSaplingBlock;
+import dreamLand.items.ItemBlockFalling;
 import dreamLand.items.ItemDreamTrees;
+import dreamLand.items.ItemDreamWoodBlock;
 import dreamLand.items.ItemNMTrees;
 import dreamLand.items.ModItems;
 import dreamLand.utils.handlers.DreamLandFuelHandler;
+import dreamLand.utils.handlers.DreamLand_EventBonemeal;
+import dreamLand.utils.handlers.EventHookHandler;
 import dreamLand.utils.handlers.RecipeHandler;
 import dreamLand.world.DreamLandWorldProvider;
 import dreamLand.world.NightMareWorldProvider;
@@ -38,6 +39,8 @@ public class Registry {
         registerDimension();
         
         registerEvents();
+        
+        addHarvestLevels();
 
         RecipeHandler.add();
     }
@@ -54,11 +57,7 @@ public class Registry {
 
         GameRegistry.registerBlock(ModBlocks.dreamDirt, "Dream_Dirt");
 
-        GameRegistry.registerBlock(ModBlocks.dreamGravel, "dreamGravel");
-
         GameRegistry.registerBlock(ModBlocks.dreamGrass, "Dream_Grass");
-        
-        GameRegistry.registerBlock(ModBlocks.dreamSand, "Dream_Sand");
 
         GameRegistry.registerBlock(ModBlocks.oreLucidity, "OreLucidity");
 
@@ -72,13 +71,15 @@ public class Registry {
         
         GameRegistry.registerBlock(ModBlocks.nmLogs, ItemNMTrees.class, "NM_Logs");
         
-        GameRegistry.registerBlock(ModBlocks.dreamPlanks, ItemDreamPlanksBlock.class,"Dream_Planks");
+        GameRegistry.registerBlock(ModBlocks.dreamPlanks, ItemDreamWoodBlock.class,"Dream_Planks");
         
-        GameRegistry.registerBlock(ModBlocks.dreamLeaves, ItemDreamLeaves.class, "Dream_Leaves");
+        GameRegistry.registerBlock(ModBlocks.dreamLeaves, ItemDreamWoodBlock.class, "Dream_Leaves");
         
-        GameRegistry.registerBlock(ModBlocks.dreamSaplings, ItemDreamSaplingBlock.class,"Dream_Saplings");
+        GameRegistry.registerBlock(ModBlocks.dreamSaplings, ItemDreamWoodBlock.class,"Dream_Saplings");
         
         GameRegistry.registerBlock(ModBlocks.dreamWall, ItemBlockDreamWall.class, "Dream_Wall");
+        
+        GameRegistry.registerBlock(ModBlocks.dreamFalling, ItemBlockFalling.class, "Dream_Falling");
         
         GameRegistry.registerBlock(ModBlocks.nmPortal, "NightMare_Portal");
                 
@@ -88,9 +89,9 @@ public class Registry {
         
         GameRegistry.registerBlock(ModBlocks.nmStone, "NM_Stone");
         
-        GameRegistry.registerBlock(ModBlocks.nmGravel, "NM_Gravel");
+        GameRegistry.registerBlock(ModBlocks.dreamFence, ItemDreamWoodBlock.class, "Dream_Fence");
         
-        GameRegistry.registerBlock(ModBlocks.nmSand, "NM_Sand");
+        //GameRegistry.registerBlock(ModBlocks.dreamSlab, ItemDreamWoodBlock.class, "Dream_Fence");
         
         GameRegistry.registerBlock(ModBlocks.nmCobble, "NM_Cobble");
         
@@ -160,6 +161,25 @@ public class Registry {
         DimensionManager.registerDimension(Config.dimensionNMID, Config.dimensionNMID);
     }
     private static void registerEvents(){
-        MinecraftForge.EVENT_BUS.register(new EventHookContainerClass());
+        
+        MinecraftForge.EVENT_BUS.register(new EventHookHandler());
+        
+        MinecraftForge.EVENT_BUS.register(new DreamLand_EventBonemeal());
+    }
+    /** Harvest Levels : 3 = diamond, 2 = iron, 1 = stone and 0 = wood/gold*/
+    public static void addHarvestLevels(){
+     
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.portalObsidian, "pickaxe", 3);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamStone, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.nmStone, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamGrass, "shovel", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamDirt, "shovel", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.nmGrass, "shovel", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.nmDirt, "shovel", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamFalling, "shovel", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamLogs, "axe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.nmLogs, "axe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamPlanks, "axe", 0);
+        
     }
 }

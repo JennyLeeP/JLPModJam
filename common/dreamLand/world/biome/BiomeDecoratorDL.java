@@ -17,13 +17,13 @@ import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.Ev
 
 import dreamLand.blocks.ModBlocks;
 import dreamLand.world.terrain.WorldGenDLFlowers;
-import dreamLand.world.terrain.WorldGenDLMinable;
 import dreamLand.world.terrain.WorldGenDLSand;
 import dreamLand.world.terrain.WorldGenMethIce;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
@@ -49,17 +49,19 @@ public class BiomeDecoratorDL extends BiomeDecorator {
         super(par1BiomeGenBase);
         this.plantYellowGen = new WorldGenDLFlowers(Block.plantYellow.blockID, 1);
         this.plantRedGen = new WorldGenDLFlowers(Block.plantRed.blockID);
-        this.sandGen = new WorldGenDLSand(7, ModBlocks.dreamSand.blockID);
-        this.dirtGen = new WorldGenDLMinable(ModBlocks.dreamDirt.blockID, 32);
-        this.gravelGen = new WorldGenDLMinable(ModBlocks.dreamGravel.blockID, 32);
+        this.sandGen = new WorldGenDLSand(7, ModBlocks.dreamFalling.blockID,0);
+        this.dirtGen = new WorldGenMinable(ModBlocks.dreamDirt.blockID, 0, 32, ModBlocks.dreamStone.blockID);
+        this.gravelGen = new WorldGenMinable(ModBlocks.dreamFalling.blockID, 1, 32, ModBlocks.dreamStone.blockID);
 
-        this.coalGen = new WorldGenDLMinable(Block.oreCoal.blockID, 16);
-        this.ironGen = new WorldGenDLMinable(Block.oreIron.blockID, 8); 
-        this.lapisGen = new WorldGenDLMinable(Block.oreLapis.blockID, 6);
+        this.coalGen = new WorldGenMinable(ModBlocks.oreLucidity.blockID, 0, 16, ModBlocks.dreamStone.blockID);
+        this.ironGen = new WorldGenMinable(ModBlocks.oreStarcesium.blockID,0 , 8, ModBlocks.dreamStone.blockID); 
+        this.lapisGen = new WorldGenMinable(Block.oreLapis.blockID,0 , 6, ModBlocks.dreamStone.blockID);
 
-        this.methIcePerChunk = 1;
+        this.methIcePerChunk = 2;
         this.flowersPerChunk = 2;
         this.grassPerChunk = 1;
+        this.sandPerChunk = 7;
+        this.sandPerChunk2 = 5;
     }
     /**
      * The method that does the work of actually decorating chunks
@@ -74,14 +76,14 @@ public class BiomeDecoratorDL extends BiomeDecorator {
         int k;
 
         boolean doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, SAND);
-        for (i = 0; doGen && i < this.sandPerChunk2; ++i)
+        for (i = 0; doGen && i < this.sandPerChunk; ++i)
         {
             j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             this.sandGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
         }
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, SAND_PASS2);
-        for (i = 0; doGen && i < this.sandPerChunk; ++i)
+        for (i = 0; doGen && i < this.sandPerChunk2; ++i)
         {
             j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;

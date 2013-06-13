@@ -19,6 +19,7 @@ import dreamLand.utils.Archive;
 import dreamLand.world.terrain.trees.WorldGenAshTrees;
 import dreamLand.world.terrain.trees.WorldGenBigSparklingTree;
 import dreamLand.world.terrain.trees.WorldGenBrilliantTrees;
+import dreamLand.world.terrain.trees.WorldGenDLTrees;
 import dreamLand.world.terrain.trees.WorldGenDarkTrees;
 import dreamLand.world.terrain.trees.WorldGenDeathTrees;
 import dreamLand.world.terrain.trees.WorldGenFrigidTrees;
@@ -120,7 +121,7 @@ public class BlockDreamSaplings extends BlockFlower {
             {
                 j1 = 0;
                 i1 = 0;
-                object = new WorldGenTrees(true, 4 + par5Random.nextInt(7), 3, 3, false);
+                object = new WorldGenDLTrees(true, 8 + par5Random.nextInt(7), 1, 2, false,0);
             }
         }
         else if (l == 3)//Meta Sapling 3 = vanilla jungle
@@ -147,7 +148,7 @@ public class BlockDreamSaplings extends BlockFlower {
             {
                 j1 = 0;
                 i1 = 0;
-                object = new WorldGenDarkTrees(true, 30 + par5Random.nextInt(20), 1, 3);
+                object = new WorldGenDLTrees(true, 15 + par5Random.nextInt(20), 1, 3, false,1);
             }
         }
         else if (l == 4)//Meta Sapling 4

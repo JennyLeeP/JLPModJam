@@ -290,11 +290,9 @@ public class MapGenCavesDL extends MapGenBaseDL{
      */
     protected void digBlock(short[] data, int index, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
     {
-    	//System.out.println("Dig block Map Gen caves DL line 293");
         BiomeGenBase biome = worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
-        //BiomeGenBase biome = (BiomeGenBase) worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
-        int top    = (isExceptionBiome(biome) ? ModBlocks.dreamGrass.blockID | ModBlocks.nmGrass.blockID : biome.topBlock);
-        int filler = (isExceptionBiome(biome) ? ModBlocks.dreamDirt.blockID  | ModBlocks.nmDirt.blockID: biome.fillerBlock);
+        int top    = (isExceptionBiome(biome) ? (ModBlocks.dreamGrass.blockID | ModBlocks.nmGrass.blockID): biome.topBlock);
+        int filler = (isExceptionBiome(biome) ? (ModBlocks.dreamDirt.blockID  | ModBlocks.nmDirt.blockID): biome.fillerBlock);
         int block  = data[index];
 
         if (block == ModBlocks.dreamStone.blockID || block == filler || block == top)

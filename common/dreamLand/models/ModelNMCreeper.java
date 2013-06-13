@@ -116,13 +116,13 @@ public class ModelNMCreeper extends ModelBase
     super.setRotationAngles(par1, par2, par3, par4, par5, par6, par7Entity);
     this.head.rotateAngleY = par4 / (180F / (float)Math.PI);
     this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
-    this.LHornL.rotateAngleX = this.head.rotateAngleX;
+    this.LHornL.rotateAngleX = this.head.rotateAngleX + 0.25F;
     this.LHornL.rotateAngleY = this.head.rotateAngleY;
-    this.LHornU.rotateAngleX = this.head.rotateAngleX;
+    this.LHornU.rotateAngleX = this.head.rotateAngleX + 0.408F;
     this.LHornU.rotateAngleY = this.head.rotateAngleY;
-    this.RHornL.rotateAngleX = this.head.rotateAngleX;
+    this.RHornL.rotateAngleX = this.head.rotateAngleX + 0.25F;
     this.RHornL.rotateAngleY = this.head.rotateAngleY;
-    this.RHornU.rotateAngleX = this.head.rotateAngleX;
+    this.RHornU.rotateAngleX = this.head.rotateAngleX + 0.408F;
     this.RHornU.rotateAngleY = this.head.rotateAngleY;
     this.leg1.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
     this.leg2.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;

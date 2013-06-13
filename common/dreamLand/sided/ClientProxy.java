@@ -5,6 +5,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import dreamLand.entity.EntityNMCreeper;
 import dreamLand.entity.EntityPhoenix;
 import dreamLand.entity.EntitySonicCreeper;
+import dreamLand.render.DLFenceRender;
 import dreamLand.render.RenderNMCreeper;
 import dreamLand.render.RenderPhoenix;
 import dreamLand.render.RenderSonicCreeper;
@@ -19,6 +20,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityNMCreeper.class, new RenderNMCreeper());
 		RenderingRegistry.registerEntityRenderingHandler(EntityPhoenix.class, new RenderPhoenix());
 		
+		RenderingRegistry.registerBlockHandler(new DLFenceRender());
 	}
 
     // Code that adds capes :D Github link for it to work:
