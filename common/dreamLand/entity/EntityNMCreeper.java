@@ -2,61 +2,33 @@ package dreamLand.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityNMCreeper extends EntityMob{
+public class EntityNMCreeper extends EntityCreeper{
 
 private int lastActiveTime;
 	
     private int timeSinceIgnited;
     private int fuseTime = 10;//Maybe change to Random Int
     private int explosionRadius = 20;
+    
 
 	public EntityNMCreeper(World par1World) {
 		super(par1World);
         this.texture = "/mods/DreamLand/textures/mobs/NMCreeper.png";
 		this.moveSpeed = 0.5F;
+		this.isImmuneToFire = true;
 		this.setSize(1.0F, 2.0F);
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAINMCreeperSwell(this));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, 0.25F, false));
-        this.tasks.addTask(4, new EntityAIWander(this, 0.2F));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16.0F, 0, true));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        
+        
 	}
 	@SideOnly(Side.CLIENT)
     public String getTexture()
     {
         return "/mods/DreamLand/textures/mobs/NMCreeper.png";
-    }
-	/**
-     * Returns true if the newer Entity AI code should be run
-     */
-    public boolean isAIEnabled()
-    {
-        return true;
-    }
-
-    public int func_82143_as()
-    {
-        return this.getAttackTarget() == null ? 3 : 3 + (this.health - 1);
     }
 
     /**
@@ -77,14 +49,6 @@ private int lastActiveTime;
     {
         return 20;
     }
-
-    protected void entityInit()
-    {
-        super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte) - 1));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
-    }
-
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
@@ -100,7 +64,6 @@ private int lastActiveTime;
         par1NBTTagCompound.setShort("Fuse", (short)this.fuseTime);
         par1NBTTagCompound.setByte("ExplosionRadius", (byte)this.explosionRadius);
     }
-
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
@@ -119,7 +82,6 @@ private int lastActiveTime;
             this.explosionRadius = par1NBTTagCompound.getByte("ExplosionRadius");
         }
     }
-
     /**
      * Called to update the entity's position/logic.
      */
@@ -167,53 +129,6 @@ private int lastActiveTime;
         super.onUpdate();
     }
 
-    protected String getLivingSound()
-    {
-    	return null;
-    }
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
-    protected String getHurtSound()
-    {
-        return "mob.creeper.say";
-    }
-
-    /**
-     * Returns the sound this mob makes on death.
-     */
-    protected String getDeathSound()
-    {
-        return "mob.creeper.death";
-    }
-
-    /**
-     * Called when the mob's health reaches 0.
-     */
-    public void onDeath(DamageSource par1DamageSource)
-    {
-        super.onDeath(par1DamageSource);
-
-        if (par1DamageSource.getEntity() instanceof EntitySkeleton)
-        {
-            int i = Item.record13.itemID + this.rand.nextInt(Item.recordWait.itemID - Item.record13.itemID + 1);
-            this.dropItem(i, 1);
-        }
-    }
-
-    public boolean attackEntityAsMob(Entity par1Entity)
-    {
-        return true;
-    }
-
-    /**
-     * Returns true if the creeper is powered by a lightning bolt.
-     */
-    public boolean getPowered()
-    {
-        return this.dataWatcher.getWatchableObjectByte(17) == 1;
-    }
-
     @SideOnly(Side.CLIENT)
 
     /**
@@ -230,31 +145,6 @@ private int lastActiveTime;
     protected int getDropItemId()
     {
         return Item.gunpowder.itemID;
-    }
-
-    /**
-     * Returns the current state of creeper, -1 is idle, 1 is 'in fuse'
-     */
-    public int getCreeperState()
-    {
-        return this.dataWatcher.getWatchableObjectByte(16);
-    }
-
-    /**
-     * Sets the state of creeper, -1 to idle and 1 to be 'in fuse'
-     */
-    public void setCreeperState(int par1)
-    {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)par1));
-    }
-
-    /**
-     * Called when a lightning bolt hits the entity.
-     */
-    public void onStruckByLightning(EntityLightningBolt par1EntityLightningBolt)
-    {
-        super.onStruckByLightning(par1EntityLightningBolt);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
     }
 
 }
