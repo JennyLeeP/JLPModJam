@@ -11,11 +11,12 @@ DreamLand ChangeLog
 * Reduced # of Used Block ID's
 * added Names for all Blocks and Items in en_US.xml
 * Finished implementing pick block for all blocks
-* Finished added Block Harvest Levels
+* Finished adding Block Harvest Levels
 * added Config option for Biome ID's
 * Registered Biomes in Forge Dictionary
 * Prepped for addition of more Biomes
 * changed water color in DreamLand Biome
+* added tallGrass to both dimensions
 
 **************
 Started ChangeLog 6/28/2013
