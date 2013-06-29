@@ -20,7 +20,7 @@ public class NightMareWorldProvider extends WorldProvider{
      */
     @Override
     public void registerWorldChunkManager() {
-        this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.nightMare, 0.8F, 0.1F);
+        this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.TreacherousHills, 0.8F, 0.1F);
         this.dimensionId = Config.dimensionNMID;
         this.hasNoSky = true;//true = world with normal sky but no light
     }

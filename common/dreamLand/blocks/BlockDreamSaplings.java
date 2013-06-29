@@ -9,7 +9,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import cpw.mods.fml.relauncher.Side;
@@ -270,6 +269,6 @@ public class BlockDreamSaplings extends BlockFlower {
     @Override
     public boolean isWood(World world, int x, int y, int z)
     {
-        return true;
+        return false;
     }
 }

@@ -18,43 +18,40 @@ import net.minecraftforge.common.ForgeDirection;
 public class BlockDreamWall extends BlockWall{
 
 	@SideOnly(Side.CLIENT)
-    private Icon icon[];
+	Icon[] icons = new Icon[16];
+	String[] wallTypes = {"dreamCobble", "dreamStoneBrick","nmCobble", "nmStoneBrick", "bloodCobble", "bloodStoneBrick"};
 	
 	public BlockDreamWall(int par1, Block par2Block) {
 		super(par1, par2Block);
 		this.setCreativeTab(DreamLand.tabDreamLand);
 	}
-	@Override
-    public Icon getIcon(int side, int meta)
-    {
-        return icon[meta];
-    }
-
     @Override
     public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
     {
         return side == ForgeDirection.UP;
+    }
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Icon getIcon(int side, int meta)
+    {
+        return icons[meta];
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) 
     {
-        icon = new Icon[4];
-        icon[0] = iconRegister.registerIcon(Archive.texture + Archive.dreamCobble);
-        icon[1] = iconRegister.registerIcon(Archive.texture + Archive.nmCobble);
-        icon[2] = iconRegister.registerIcon(Archive.texture + Archive.dreamStoneBrick);
-        icon[3] = iconRegister.registerIcon(Archive.texture + Archive.bloodCobble);
+        for(int i = 0; i < wallTypes.length; i++){
+        icons[i] = iconRegister.registerIcon(Archive.texture + wallTypes[i]);
+        }
     }
     
     @SuppressWarnings("unchecked")
 	@Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
-        
+        for(int i = 0; i < wallTypes.length; i++){
+            par3List.add(new ItemStack(par1, 1, i));
+        }  
     }
 }

@@ -73,7 +73,7 @@ public class WorldGenDLDungeons extends WorldGenerator{
                         {
                             if (l1 == par4 - 1 && par2Random.nextInt(4) != 0)
                             {
-                                par1World.setBlock(k1, l1, i2, ModBlocks.bloodCobble.blockID, 0, 2);
+                                par1World.setBlock(k1, l1, i2, ModBlocks.dreamStones1.blockID, 0, 2);
                             }
                             else
                             {

@@ -1,6 +1,7 @@
 package dreamLand.items;
 
 import dreamLand.DreamLand;
+import dreamLand.utils.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -19,8 +20,11 @@ public class ItemDreamBlock extends ItemBlock{
     @Override
     public String getUnlocalizedName(ItemStack itemstack)
     {
-        //System.out.println(getUnlocalizedName()+ "." + MetaNames[itemstack.getItemDamage()]);
-        //System.out.println(getUnlocalizedName().concat("."+ MetaNames[itemstack.getItemDamage()]) + "2");
+        if(Config.enableDebugNaming){
+            System.out.println("[DreamLand]" + getUnlocalizedName()+ "." + MetaNames[itemstack.getItemDamage()]);
+        }
+        
+        
         if(MetaNames != null)
             
             return getUnlocalizedName().concat("."+ MetaNames[itemstack.getItemDamage()]);

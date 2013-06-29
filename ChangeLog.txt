@@ -1,0 +1,21 @@
+DreamLand ChangeLog
+########################
+
+
+6/28/2013
+
+* added Mala Stone Bricks
+* added Blood Bricks
+* added Mala Sone Brick Walls
+* added BloodStone Brick Walls
+* Reduced # of Used Block ID's
+* added Names for all Blocks and Items in en_US.xml
+* Finished implementing pick block for all blocks
+* Finished added Block Harvest Levels
+* added Config option for Biome ID's
+* Registered Biomes in Forge Dictionary
+* Prepped for addition of more Biomes
+* changed water color in DreamLand Biome
+
+**************
+Started ChangeLog 6/28/2013

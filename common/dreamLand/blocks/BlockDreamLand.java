@@ -15,6 +15,7 @@ import dreamLand.utils.Archive;
 public class BlockDreamLand extends Block {
 
     int dropid;
+    int metaData;
     
     public BlockDreamLand(int par1) {
         super(par1, Material.ground);
@@ -22,9 +23,10 @@ public class BlockDreamLand extends Block {
         this.setCreativeTab(DreamLand.tabDreamLand);
     }
 
-    public BlockDreamLand(int id, int drop) {
+    public BlockDreamLand(int id, int drop, int meta) {
         super(id, Material.rock);
         dropid = drop;
+       metaData = meta;
         this.setCreativeTab(DreamLand.tabDreamLand);
     }
 

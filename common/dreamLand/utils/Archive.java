@@ -18,20 +18,15 @@ public class Archive {
     public static final String itemLighter = "itemLighter";
     public static final String itemSwordPhantomIron = "itemSwordPhantomIron";
     public static final String itemLucidity = "itemLucidity";
-    public static final String itemSparklingSapling = "sparklingSapling";
     public static final String itemMethaneClathrate = "itemMethaneClathrate";
 
     // ***************************Blocks********************
     public static final String portal = "portal";
     public static final String portalObsidian = "portalObsidian";
     public static final String dreamStone = "dreamStone";
-    public static final String dreamStoneBrick = "dreamStoneBrick";
     public static final String dreamDirt = "dreamDirt";
-    public static final String dreamGravel = "dreamGravel";
     public static final String dreamGrass = "dreamGrass";
-    public static final String dreamSand = "dreamSand";
     public static final String dreamStairs = "dreamStairs";
-    public static final String dreamCobbleWall = "dreamCobbleWall";//may not be needed
     public static final String oreLucidity = "oreLucidity";
     public static final String oreStarcesium = "oreStarCesium";
     public static final String dreamCobble = "dreamCobble";
@@ -39,18 +34,15 @@ public class Archive {
     public static final String nmGrass = "nmGrass";
     public static final String nmDirt = "nmDirt";
     public static final String nmStone = "nmStone";
-    public static final String nmGravel = "nmGravel";
-    public static final String nmSand = "nmSand";
     public static final String nmCobble = "nmCobble";
     public static final String nmStairs = "nmStairs";
     public static final String nmLogs = "nmLogs";
-    public static final String nmCobbleWall = "nmCobbleWall";//may not be needed
-    public static final String bloodCobble = "bloodCobble";
     public static final String bloodStairs = "bloodStairs";
-    public static final String dreamFence = "dreamFence";
     public static final String oreMethaneClathrate = "oreMethaneClathrate";
     
     // ************************ Meta Blocks ********************
+    public static final String dreamFence = "dreamFence";
+    public static final String dreamStones1 = "dreamStones1";
     public static final String dreamFalling = "dreamFalling";
     public static final String dreamSaplings = "dreamSaplings";
     public static final String dreamLogs = "dreamLogs";

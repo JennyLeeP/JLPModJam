@@ -30,11 +30,11 @@ public class ForestryCompatibility {
     private static void addClimateInfo()
     {
         //Normal Bees
-        EnumTemperature.normalBiomeIds.add(ModBiomes.dreamIsland.biomeID);
-        EnumHumidity.normalBiomeIds.add(ModBiomes.dreamIsland.biomeID);
+        EnumTemperature.normalBiomeIds.add(ModBiomes.LushHills.biomeID);
+        EnumHumidity.normalBiomeIds.add(ModBiomes.LushHills.biomeID);
         //Hell Bees
-        EnumTemperature.hotBiomeIds.add(ModBiomes.nightMare.biomeID);
-        EnumHumidity.aridBiomeIds.add(ModBiomes.nightMare.biomeID);
+        EnumTemperature.hotBiomeIds.add(ModBiomes.TreacherousHills.biomeID);
+        EnumHumidity.aridBiomeIds.add(ModBiomes.TreacherousHills.biomeID);
     }
     private static void addFarmRecipes()
     {

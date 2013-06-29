@@ -12,6 +12,7 @@ import dreamLand.entity.EntityPhoenix;
 import dreamLand.entity.EntitySonicCreeper;
 import dreamLand.items.ItemBlockDreamWall;
 import dreamLand.items.ItemBlockFalling;
+import dreamLand.items.ItemDreamStone;
 import dreamLand.items.ItemDreamTrees;
 import dreamLand.items.ItemDreamWoodBlock;
 import dreamLand.items.ItemNMTrees;
@@ -52,8 +53,8 @@ public class Registry {
         GameRegistry.registerBlock(ModBlocks.portal, "DreamLand_Portal");
 
         GameRegistry.registerBlock(ModBlocks.dreamStone, "Dream_Stone");
-
-        GameRegistry.registerBlock(ModBlocks.dreamQuartz, "Dream_Quartz");
+        
+        GameRegistry.registerBlock(ModBlocks.dreamStones1, ItemDreamStone.class,"DreamStones");
 
         GameRegistry.registerBlock(ModBlocks.dreamDirt, "Dream_Dirt");
 
@@ -97,8 +98,6 @@ public class Registry {
         
         GameRegistry.registerBlock(ModBlocks.nmStairs, "NM_Stairs");
         
-        GameRegistry.registerBlock(ModBlocks.bloodCobble, "Blood_Cobble");
-        
         GameRegistry.registerBlock(ModBlocks.bloodStairs, "Blood_Stairs");
         
         GameRegistry.registerBlock(ModBlocks.oreMethaneClathrate, "Ore_Methane_Clathrate");
@@ -130,12 +129,12 @@ public class Registry {
     	int entityID;
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntitySonicCreeper.class, "SonicCreeper", entityID);
-		EntityRegistry.addSpawn(EntitySonicCreeper.class, 3, 1, 2, EnumCreatureType.creature, ModBiomes.dreamIsland);
+		EntityRegistry.addSpawn(EntitySonicCreeper.class, 3, 1, 2, EnumCreatureType.creature, ModBiomes.LushHills);
 		EntityList.addMapping(EntitySonicCreeper.class, "SonicCreeper", entityID, 0x6E4875, 0x969696);
     	//************NightMare Creeper *******
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityNMCreeper.class, "NightMareCreeper", entityID);
-		EntityRegistry.addSpawn(EntityNMCreeper.class, 3, 1, 2, EnumCreatureType.monster, ModBiomes.nightMare);
+		EntityRegistry.addSpawn(EntityNMCreeper.class, 3, 1, 2, EnumCreatureType.monster, ModBiomes.TreacherousHills);
 		EntityList.addMapping(EntityNMCreeper.class, "NightMareCreeper", entityID, 0x262425, 0x780510);
 		//*************Ibong Adarna************
 		
@@ -176,10 +175,18 @@ public class Registry {
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamDirt, "shovel", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.nmGrass, "shovel", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.nmDirt, "shovel", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamCobble, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.nmCobble, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.bloodStairs, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamStairs, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.nmStairs, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamStones1, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamWall, "pickaxe", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamFalling, "shovel", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamLogs, "axe", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.nmLogs, "axe", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamPlanks, "axe", 0);
-        
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamFence, "axe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.oreMethaneClathrate, "shovel", 0);
     }
 }

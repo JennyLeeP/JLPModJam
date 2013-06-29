@@ -6,7 +6,7 @@ public class ItemDreamStone extends ItemDreamBlock{
         super(par1);
         setMaxDamage(0);
         setHasSubtypes(true);
-        MetaNames = new String[]{"dreamCobble","nmCobble","bloodCobble", "dreamStoneBrick"};
+        MetaNames = new String[]{"bloodCobble", "dreamStoneBrick","nmStoneBrick","bloodBrick"};
     }
 
 }

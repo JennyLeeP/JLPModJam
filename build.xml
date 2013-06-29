@@ -68,7 +68,7 @@
 		
 		<!-- Build the jar -->
 		<mkdir dir="${build.dir.development}\${build.dir.release}\${build.minecraft.version}" />
-		<jar destfile="${build.dir.development}\${build.dir.release}\${build.minecraft.version}\DreamLand-${build.minecraft.version}-${build.mod.version}.${build_number.build_number}.jar">
+		<jar destfile="${build.dir.development}\${build.dir.release}\${build.minecraft.version}\DreamLand\DreamLand-${build.minecraft.version}-${build.mod.version}.${build_number.build_number}.jar">
 			<fileset dir="${build.dir.development}\mcp\src\minecraft\" includes="mcmod.info" />
 			<fileset dir="${build.dir.development}\mcp\reobf\minecraft\" />
 			<fileset dir="${build.dir.development}\source\DreamLand\resources"/>

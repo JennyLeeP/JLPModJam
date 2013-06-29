@@ -12,8 +12,8 @@ public class BCCompatibility {
     }
     private static void excludeOilGeneration()
     {
-        FMLInterModComms.sendMessage("BuildCraft|Energy", "oil-gen-exclude", Integer.toString(ModBiomes.dreamIsland.biomeID));
-        FMLInterModComms.sendMessage("BuildCraft|Energy", "oil-gen-exclude", Integer.toString(ModBiomes.nightMare.biomeID));
+        FMLInterModComms.sendMessage("BuildCraft|Energy", "oil-gen-exclude", Integer.toString(ModBiomes.LushHills.biomeID));
+        FMLInterModComms.sendMessage("BuildCraft|Energy", "oil-gen-exclude", Integer.toString(ModBiomes.TreacherousHills.biomeID));
     }
     private static void addFacades()
     {

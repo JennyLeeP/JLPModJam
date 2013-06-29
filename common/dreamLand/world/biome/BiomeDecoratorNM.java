@@ -1,5 +1,6 @@
 package dreamLand.world.biome;
 
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND_PASS2;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
@@ -21,6 +22,7 @@ public class BiomeDecoratorNM extends BiomeDecorator {
 
     public WorldGenerator dirtGen;
     public WorldGenerator gravelGen;
+    public int grassPerChunk;
 
     public BiomeDecoratorNM(BiomeGenBase par1BiomeGenBase) {
         super(par1BiomeGenBase);
@@ -29,6 +31,8 @@ public class BiomeDecoratorNM extends BiomeDecorator {
         //this.gravelGen = new WorldGenMinable(ModBlocks.dreamFalling.blockID, 2, 32, ModBlocks.nmStone.blockID);
         this.sandPerChunk = 10;
         this.sandPerChunk = 20;
+        this.grassPerChunk = 1;
+        
     }
 
     /**
@@ -67,6 +71,16 @@ public class BiomeDecoratorNM extends BiomeDecorator {
             WorldGenerator worldgenerator = this.biome.getRandomWorldGenForTrees(this.randomGenerator);
             worldgenerator.setScale(1.0D, 1.0D, 1.0D);
             worldgenerator.generate(this.currentWorld, this.randomGenerator, k, this.currentWorld.getHeightValue(k, l), l);
+        }
+        int i1;
+        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, GRASS);
+        for (j = 0; doGen && j < this.grassPerChunk; ++j)
+        {
+            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+            l = this.randomGenerator.nextInt(128);
+            i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            WorldGenerator worldgenerator1 = this.biome.getRandomWorldGenForGrass(this.randomGenerator);
+            worldgenerator1.generate(this.currentWorld, this.randomGenerator, k, l, i1);
         }
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(currentWorld, randomGenerator, chunk_X, chunk_Z));
     }

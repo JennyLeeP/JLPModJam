@@ -18,11 +18,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
 public class BlockDreamFalling extends BlockSand{
+    
     int dropid;
-    
     @SideOnly(Side.CLIENT)
-    private Icon icon[];
-    
+    Icon[] icons = new Icon[16];
+    String[]  fallingBlocks = {"dreamSand","dreamGravel","nmSand","nmGravel"};
+
     public BlockDreamFalling(int id) {
         super(id, Material.sand);
         dropid = blockID;
@@ -44,27 +45,28 @@ public class BlockDreamFalling extends BlockSand{
     @Override
     public Icon getIcon(int side, int meta)
     {
-        return icon[meta];
+        return icons[meta];
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconRegister) {
-        
-        icon = new Icon[4];
-        icon[0] = iconRegister.registerIcon(Archive.texture + Archive.dreamSand);
-        icon[1] = iconRegister.registerIcon(Archive.texture + Archive.dreamGravel); 
-        icon[2] = iconRegister.registerIcon(Archive.texture + Archive.nmSand);
-        icon[3] = iconRegister.registerIcon(Archive.texture + Archive.nmGravel);
+        for(int i = 0; i < fallingBlocks.length; i++)
+        {
+            icons[i] = iconRegister.registerIcon(Archive.texture + fallingBlocks[i]);
+        }
     }
     @SuppressWarnings("unchecked")
     @Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
-        
+        for(int i= 0; i < fallingBlocks.length; i++){
+            par3List.add(new ItemStack(par1, 1, i));
+        }
+    }
+    @Override
+    public int damageDropped (int meta)
+    {
+        return meta;
     }
 }

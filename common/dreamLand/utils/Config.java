@@ -22,7 +22,7 @@ public class Config {
     public static int DreamLandPortalID;
     public static int PortalObsidianID;
     public static int DreamStoneID;
-    public static int DreamStoneBrickID;//maybe change to something else
+    public static int DreamStones1ID;
     public static int DreamDirtID;
     public static int DreamSandID;
     public static int OreLucidityID;
@@ -40,7 +40,6 @@ public class Config {
     public static int NMCobbleID;
     public static int NMStairsID;
     public static int NMLogsID;
-    public static int BloodCobbleID;
     public static int BloodStairsID;
     public static int DreamFenceID;
     // Meta Blocks
@@ -53,9 +52,13 @@ public class Config {
     //Ores
     public static int OreMethaneClathrateID;
 
-    // Enable Dimension
-    public static boolean enableDreamDimension;
+    // Enable Debug
+    public static boolean enableDebug;
+    public static boolean enableDebugNaming;
 
+    // Biome ID's
+    public static int biomeLushHillsID;
+    public static int biomeTreacherousHillsID;
     // Dimension ID
     public static int dimensionID;
     public static int dimensionNMID;
@@ -74,6 +77,8 @@ public class Config {
         try{
             config.load();
 
+            configDebug(config);
+            
             configItems(config);
 
             configBlocks(config);
@@ -90,13 +95,17 @@ public class Config {
                 config.save();
         }
     }
+    private static void configDebug(Configuration config){
+        String debug = "Debug";
+        enableDebug = config.get(debug, "enableDebug", false).getBoolean(false);
+        enableDebugNaming = config.get(debug, "enableDebugNaming", false).getBoolean(false);
+    }
 
     private static void configItems(Configuration config) {
         int iID = 30000;
         itemLighterId = config.getItem(Archive.itemLighter, iID++).getInt();
         swordPhantomId = config.getItem(Archive.itemSwordPhantomIron, iID++).getInt();
         itemLucidityID = config.getItem(Archive.itemLucidity, iID++).getInt();
-        itemSparklingSaplingID = config.getItem(Archive.itemSparklingSapling, iID++).getInt();
         itemMethaneClathrateID = config.getItem(Archive.itemMethaneClathrate, iID++).getInt();
     }
 
@@ -106,6 +115,7 @@ public class Config {
         DreamLandPortalID = config.getBlock(Archive.portal, bID++).getInt();
         PortalObsidianID = config.getBlock(Archive.portalObsidian, bID++).getInt();
         NightMarePortalID = config.getBlock(Archive.nmPortal, bID++).getInt(); 
+        
         // Stone, Grass and Dirt
         DreamStoneID = config.getBlock(Archive.dreamStone, bID++).getInt();
         NMStoneID = config.getBlock(Archive.nmStone, bID++).getInt();
@@ -113,13 +123,15 @@ public class Config {
         DreamDirtID = config.getBlock(Archive.dreamDirt, bID++).getInt();
         NMGrassID = config.getBlock(Archive.nmGrass, bID++).getInt();
         NMDirtID = config.getBlock(Archive.nmDirt, bID++).getInt();
+        
         // Bricks and Cobble
-        DreamStoneBrickID = config.getBlock(Archive.dreamStoneBrick, bID++).getInt();
         DreamCobbleID = config.getBlock(Archive.dreamCobble, bID++).getInt();
         NMCobbleID = config.getBlock(Archive.nmCobble, bID++).getInt();
-        BloodCobbleID = config.getBlock(Archive.bloodCobble, bID++).getInt();       
+        DreamStones1ID = config.getBlock(Archive.dreamStones1, bID++).getInt();
+        
         // Gravel and Sand
-        DreamFallingID = config.getBlock(Archive.dreamFalling, bID++).getInt();//TODO Falling 
+        DreamFallingID = config.getBlock(Archive.dreamFalling, bID++).getInt();
+        
         // Walls and Stairs 
         DreamStairsID = config.getBlock(Archive.dreamStairs, bID++).getInt();
         NMStairsID = config.getBlock(Archive.nmStairs, bID++).getInt();
@@ -127,12 +139,14 @@ public class Config {
         DreamWallID = config.getBlock(Archive.dreamWall, bID++).getInt();
         // Slabs and Fences
         DreamFenceID = config.getBlock(Archive.dreamFence, bID++).getInt();
+        
         // Logs, Leaves and Planks
         DreamLogsID = config.getBlock(Archive.dreamLogs, bID++).getInt();
         NMLogsID = config.getBlock(Archive.nmLogs, bID++).getInt();
         DreamPlanksID = config.getBlock(Archive.dreamPlanks, bID++).getInt();
         DreamLeavesID = config.getBlock(Archive.dreamLeaves, bID++).getInt();
         DreamSaplingsID = config.getBlock(Archive.dreamSaplings, bID++).getInt();
+        
         // Ores
         OreLucidityID = config.getBlock(Archive.oreLucidity, bID++).getInt();
         OreStarCesiumID = config.getBlock(Archive.oreStarcesium, bID++).getInt();
@@ -148,11 +162,12 @@ public class Config {
 
     private static void configGeneral(Configuration config) {
         String general = "General";
-        enableDreamDimension = config.get(general, "enableDreamDimension", true).getBoolean(true);
-
         dimensionID = config.get(general, "Dimension ID: ", 42).getInt();
         dimensionNMID = config.get(general, "NMDimension ID: ", 21).getInt();
-
+        biomeLushHillsID = config.get(general, "BiomeLushHills ID: ", 100).getInt();
+        biomeTreacherousHillsID = config.get(general, "BiomeTreacherousHills ID: ", 101).getInt();
+        
         ids = config.get(general, "White List:", defaultIDs);
     }
+    
 }

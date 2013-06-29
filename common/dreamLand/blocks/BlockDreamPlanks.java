@@ -18,8 +18,9 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class BlockDreamPlanks extends BlockDreamLand{
 
+    @SideOnly(Side.CLIENT)
     Icon[] icons = new Icon[16];
-    
+    String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal", "life", "death"};
     
     public BlockDreamPlanks(int id) {
         super(id, Material.wood);
@@ -36,17 +37,16 @@ public class BlockDreamPlanks extends BlockDreamLand{
     {
             return icons[meta];
     }
-    String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal", "life", "death"};
     
     @SideOnly(Side.CLIENT)
     
     @Override
-    public void registerIcons(IconRegister iconRegisterer)
+    public void registerIcons(IconRegister iconRegister)
     {
         
         for(int i = 0; i < TreeTypes.length; i++)
         {
-            icons[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_Planks");
+            icons[i] = iconRegister.registerIcon(Archive.texture + TreeTypes[i] + "_Planks");
         }
     }
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)

@@ -24,7 +24,7 @@ public class DreamLandWorldProvider extends WorldProvider {
      */
     @Override
     public void registerWorldChunkManager() {
-        this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.dreamIsland, 0.8F, 0.1F);
+        this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.LushHills, 0.8F, 0.1F);
         this.dimensionId = Config.dimensionID;
         this.hasNoSky = false;//true = world with normal sky but no light
     }

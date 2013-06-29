@@ -11,10 +11,10 @@ import dreamLand.entity.EntityNMCreeper;
 import dreamLand.world.terrain.trees.WorldGenAshTrees;
 import dreamLand.world.terrain.trees.WorldGenInfernalTrees;
 
-public class BiomeGenNightMareDL extends BiomeDreamLand{
+public class BiomeGenTreacherousHills extends BiomeDreamLand{
 
 	@SuppressWarnings("unchecked")
-	public BiomeGenNightMareDL(int i)
+	public BiomeGenTreacherousHills(int i)
 	{
 		super(i);
 		this.sTopBlock = (short) ModBlocks.nmGrass.blockID;
@@ -23,7 +23,13 @@ public class BiomeGenNightMareDL extends BiomeDreamLand{
 		this.maxHeight = 0.3F;
 		spawnableCreatureList.clear();
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityNMCreeper.class, 20, 1, 1));
+		this.waterColorMultiplier = 0xE42D17;
 	}
+	public int getBiomeGrassColor()
+    {
+        return 0x4F5251;
+        //return 0x9ab219;
+    }
 	/**
      * Allocate a new BiomeDecorator for this BiomeGenBase
      */

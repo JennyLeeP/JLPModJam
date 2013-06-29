@@ -18,7 +18,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
 import dreamLand.utils.Archive;
 import dreamLand.utils.Config;
-import dreamLand.utils.portal.DreamLandTeleporter;
 import dreamLand.utils.portal.NightMareTeleporter;
 
 public class BlockPortalNightMare extends BlockPortal{
