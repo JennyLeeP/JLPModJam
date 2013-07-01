@@ -1,6 +1,16 @@
 DreamLand ChangeLog
 ########################
 
+7/1/2013
+
+* added Config option to disable Tree Particles
+* Changed around a few of the Config Categories
+* added more debugging code
+* started Thaumcraft Compatibility
+* Finished adding Buildcraft Facades for all Blocks
+* added all Blocks to Coresponding Forestry Backpacks
+* added all Logs to Thermal expansion LumberMill and Pulverizer
+
 
 6/28/2013
 
