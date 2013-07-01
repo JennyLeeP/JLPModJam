@@ -5,8 +5,10 @@ import cpw.mods.fml.common.Loader;
 public class DreamLandCompatibility {
     public static void init()
     {
+        System.out.println("[DreamLand] has started loading Mod Compatibility");
         if (Loader.isModLoaded("Forestry"))
         {
+            
             try {
                 ForestryCompatibility.init();
             }
@@ -32,6 +34,16 @@ public class DreamLandCompatibility {
             }
             catch (Exception e) {
                 System.out.println("[DreamLand] There was an error while initializing BuildCraft Compatibility with DreamLand");
+                e.printStackTrace(System.err);
+            }
+        }
+        if (Loader.isModLoaded("Thaumcraft"))
+        {
+            try {
+                ThaumcraftCompatibility.init();
+            }
+            catch (Exception e) {
+                System.out.println("[DreamLand] There was an error while initializing Thaumcraft Compatibility with DreamLand");
                 e.printStackTrace(System.err);
             }
         }

@@ -62,6 +62,9 @@ public class Config {
     // Dimension ID
     public static int dimensionID;
     public static int dimensionNMID;
+    
+    // Particle effects
+    public static boolean enableTreeParticles;
 
     // IDs to make into cake
     public static int[] defaultIDs;
@@ -78,6 +81,8 @@ public class Config {
             config.load();
 
             configDebug(config);
+            
+            configWorld(config);
             
             configItems(config);
 
@@ -99,6 +104,14 @@ public class Config {
         String debug = "Debug";
         enableDebug = config.get(debug, "enableDebug", false).getBoolean(false);
         enableDebugNaming = config.get(debug, "enableDebugNaming", false).getBoolean(false);
+    }
+    
+    private static void configWorld(Configuration config){
+        String world = "World";
+        dimensionID = config.get(world, "Dream-DimensionID", 42).getInt();
+        dimensionNMID = config.get(world, "NightNare-DimensionID", 21).getInt();
+        biomeLushHillsID = config.get(world, "BiomeLushHillsID", 100).getInt();
+        biomeTreacherousHillsID = config.get(world, "BiomeTreacherousHillsID", 101).getInt();
     }
 
     private static void configItems(Configuration config) {
@@ -162,11 +175,7 @@ public class Config {
 
     private static void configGeneral(Configuration config) {
         String general = "General";
-        dimensionID = config.get(general, "Dimension ID: ", 42).getInt();
-        dimensionNMID = config.get(general, "NMDimension ID: ", 21).getInt();
-        biomeLushHillsID = config.get(general, "BiomeLushHills ID: ", 100).getInt();
-        biomeTreacherousHillsID = config.get(general, "BiomeTreacherousHills ID: ", 101).getInt();
-        
+        enableTreeParticles = config.get(general, "enableTreeParticles", true).getBoolean(true);
         ids = config.get(general, "White List:", defaultIDs);
     }
     

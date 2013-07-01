@@ -97,6 +97,6 @@ public class BlockDreamFence extends BlockFence{
     }
     public int getRenderType()
     {
-        return DLFenceRender.model;
+        return DLFenceRender.fenceModel;
     }
 }

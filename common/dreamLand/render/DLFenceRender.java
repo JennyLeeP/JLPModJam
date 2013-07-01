@@ -10,13 +10,13 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class DLFenceRender implements ISimpleBlockRenderingHandler{
-    public static int model = RenderingRegistry.getNextAvailableRenderId();
+    public static int fenceModel = RenderingRegistry.getNextAvailableRenderId();
 
     @Override
     public boolean renderWorldBlock (IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
 
-        if (modelId == model)
+        if (modelId == fenceModel)
         {
             return renderer.renderBlockFence((BlockFence) block, x, y, z);
         }
@@ -26,7 +26,7 @@ public class DLFenceRender implements ISimpleBlockRenderingHandler{
     @Override
     public void renderInventoryBlock (Block block, int metadata, int modelID, RenderBlocks renderer)
     {
-        if (modelID == model)
+        if (modelID == fenceModel)
         {
             Tessellator tessellator = Tessellator.instance;
 
@@ -97,6 +97,6 @@ public class DLFenceRender implements ISimpleBlockRenderingHandler{
     @Override
     public int getRenderId ()
     {
-        return model;
+        return fenceModel;
     }
 }

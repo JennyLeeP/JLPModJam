@@ -21,6 +21,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
 import dreamLand.utils.Archive;
+import dreamLand.utils.Config;
 
 public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
 
@@ -196,28 +197,30 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
             double d1 = (double)chunkY - 0.05D;
             double d2 = (double)((float)chunkZ + par5Random.nextFloat());
             par1World.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
-        }
-        int l = par1World.getBlockMetadata(chunkX, chunkY, chunkZ) & 7;
-        if (l == 0 )
-        {
-            double d0 = (double)((float)chunkX + par5Random.nextFloat());
-            double d1 = (double)chunkY - 0.05D;
-            double d2 = (double)((float)chunkZ + par5Random.nextFloat());
-            par1World.spawnParticle("crit", d0, d1, d2, 0.0D, 0.0D, 0.0D);
-        }
-        if (l == 1 )
-        {
-            double d0 = (double)((float)chunkX + par5Random.nextFloat());
-            double d1 = (double)chunkY - 0.05D;
-            double d2 = (double)((float)chunkZ + par5Random.nextFloat());
-            par1World.spawnParticle("smoke", d0, d1, d2, 0.0D, 0.0D, 0.0D);
-        }
-        if (l == 5 )
-        {
-            double d0 = (double)((float)chunkX + par5Random.nextFloat());
-            double d1 = (double)chunkY - 0.0D;
-            double d2 = (double)((float)chunkZ + par5Random.nextFloat());
-            par1World.spawnParticle("flame", d0, d1, d2, 0.0D, -0.2D, 0.0D);
+        }   
+        if(Config.enableTreeParticles){
+            int l = par1World.getBlockMetadata(chunkX, chunkY, chunkZ) & 7;
+            if (l == 0 )
+            {
+                double d0 = (double)((float)chunkX + par5Random.nextFloat());
+                double d1 = (double)chunkY - 0.05D;
+                double d2 = (double)((float)chunkZ + par5Random.nextFloat());
+                par1World.spawnParticle("crit", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            }
+            if (l == 1 )
+            {
+                double d0 = (double)((float)chunkX + par5Random.nextFloat());
+                double d1 = (double)chunkY - 0.05D;
+                double d2 = (double)((float)chunkZ + par5Random.nextFloat());
+                par1World.spawnParticle("smoke", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            }
+            if (l == 5 )
+            {
+                double d0 = (double)((float)chunkX + par5Random.nextFloat());
+                double d1 = (double)chunkY - 0.0D;
+                double d2 = (double)((float)chunkZ + par5Random.nextFloat());
+                par1World.spawnParticle("flame", d0, d1, d2, 0.0D, -0.2D, 0.0D);
+            }
         }
     }
 
@@ -323,7 +326,7 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
     {
         return true;
     }
-    
+
     @SideOnly(Side.CLIENT)
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
@@ -386,14 +389,14 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
             return 0;
         return blockFlammability[blockID];
     }
-    
+
     public int getFireSpreadSpeed(World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         if (metadata == 1 || metadata == 3 || metadata == 7)
             return 0;
         return blockFireSpreadSpeed[blockID];
     }
-    
+
     @Override
     public boolean isShearable(ItemStack item, World world, int x, int y, int z)
     {
