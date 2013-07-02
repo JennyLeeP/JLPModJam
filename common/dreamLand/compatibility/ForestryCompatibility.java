@@ -59,7 +59,7 @@ public class ForestryCompatibility {
         BackpackManager.backpackItems[MINER].add(new ItemStack(ModBlocks.nmStone, 1, 0));
         BackpackManager.backpackItems[MINER].add(new ItemStack(ModBlocks.dreamCobble, 1, 0));
         BackpackManager.backpackItems[MINER].add(new ItemStack(ModBlocks.nmCobble, 1, 0));
-        BackpackManager.backpackItems[MINER].add(new ItemStack(ModBlocks.dreamStones1, 1, 0));
+        BackpackManager.backpackItems[MINER].add(new ItemStack(ModBlocks.dreamStones, 1, 0));
         
         // Digger's Backpack
         BackpackManager.backpackItems[DIGGER].add(new ItemStack(ModBlocks.dreamDirt, 1, 1));

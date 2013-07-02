@@ -8,5 +8,4 @@ public class ItemDreamStone extends ItemDreamBlock{
         setHasSubtypes(true);
         MetaNames = new String[]{"bloodCobble", "dreamStoneBrick","nmStoneBrick","bloodBrick"};
     }
-
 }

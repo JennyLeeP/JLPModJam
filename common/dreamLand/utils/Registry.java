@@ -54,7 +54,7 @@ public class Registry {
 
         GameRegistry.registerBlock(ModBlocks.dreamStone, "Dream_Stone");
         
-        GameRegistry.registerBlock(ModBlocks.dreamStones1, ItemDreamStone.class,"DreamStones");
+        GameRegistry.registerBlock(ModBlocks.dreamStones, ItemDreamStone.class,"Dream_Stones");
 
         GameRegistry.registerBlock(ModBlocks.dreamDirt, "Dream_Dirt");
 
@@ -180,7 +180,7 @@ public class Registry {
         MinecraftForge.setBlockHarvestLevel(ModBlocks.bloodStairs, "pickaxe", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamStairs, "pickaxe", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.nmStairs, "pickaxe", 0);
-        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamStones1, "pickaxe", 0);
+        MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamStones, "pickaxe", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamWall, "pickaxe", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamFalling, "shovel", 0);
         MinecraftForge.setBlockHarvestLevel(ModBlocks.dreamLogs, "axe", 0);

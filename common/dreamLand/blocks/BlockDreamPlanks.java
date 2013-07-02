@@ -18,8 +18,8 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class BlockDreamPlanks extends BlockDreamLand{
 
-    @SideOnly(Side.CLIENT)
     Icon[] icons = new Icon[16];
+    
     String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal", "life", "death"};
     
     public BlockDreamPlanks(int id) {

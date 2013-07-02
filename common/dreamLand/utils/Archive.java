@@ -42,7 +42,7 @@ public class Archive {
     
     // ************************ Meta Blocks ********************
     public static final String dreamFence = "dreamFence";
-    public static final String dreamStones1 = "dreamStones1";
+    public static final String dreamStones = "dreamStones";
     public static final String dreamFalling = "dreamFalling";
     public static final String dreamSaplings = "dreamSaplings";
     public static final String dreamLogs = "dreamLogs";

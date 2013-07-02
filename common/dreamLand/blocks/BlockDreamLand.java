@@ -40,7 +40,7 @@ public class BlockDreamLand extends Block {
     public int idDropped(int var1, Random var2, int var3) {
         return dropid;
     }
-
+    @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
         blockIcon = par1IconRegister.registerIcon(Archive.texture

@@ -10,7 +10,7 @@ public class ModBlocks {
 
     public static Block portalObsidian;
     public static Block dreamStone;
-    public static Block dreamStones1;
+    public static Block dreamStones;
     public static Block dreamDirt;
     public static Block dreamGrass;
     public static Block dreamCobble;
@@ -47,7 +47,7 @@ public class ModBlocks {
 
         dreamStone = new BlockDreamLand(Config.DreamStoneID, Config.DreamCobbleID,0).setUnlocalizedName(Archive.dreamStone).setHardness(1.5F).setResistance(10.0F);
 
-        dreamStones1 = new BlockDreamStone(Config.DreamStones1ID).setUnlocalizedName(Archive.dreamStones1).setHardness(1.5F).setResistance(10.0F);
+        dreamStones = new BlockDreamStone(Config.DreamStonesID).setUnlocalizedName(Archive.dreamStones);
 
         dreamDirt = new BlockDreamLand(Config.DreamDirtID).setUnlocalizedName(Archive.dreamDirt).setStepSound(Block.soundGrassFootstep).setHardness(0.6F);
 
@@ -71,9 +71,9 @@ public class ModBlocks {
         
         nmStairs = (new BlockDreamStairs(Config.NMStairsID, nmCobble, 0)).setUnlocalizedName(Archive.nmStairs).setHardness(2.0F).setStepSound(Block.soundStoneFootstep);
         
-        bloodStairs = (new BlockDreamStairs(Config.BloodStairsID, dreamStones1, 0)).setUnlocalizedName(Archive.bloodStairs).setHardness(2.0F).setStepSound(Block.soundStoneFootstep);
+        bloodStairs = (new BlockDreamStairs(Config.BloodStairsID, dreamStones, 0)).setUnlocalizedName(Archive.bloodStairs).setHardness(2.0F).setStepSound(Block.soundStoneFootstep);
         
-        dreamWall = (new BlockDreamWall(Config.DreamWallID, dreamStones1)).setUnlocalizedName(Archive.dreamWall).setHardness(0.3F);
+        dreamWall = (new BlockDreamWall(Config.DreamWallID, dreamStones)).setUnlocalizedName(Archive.dreamWall).setHardness(0.3F);
         
         // Slabs and Fences
         dreamFence = (new BlockDreamFence(Config.DreamFenceID, "wood", Material.wood)).setUnlocalizedName(Archive.dreamFence);

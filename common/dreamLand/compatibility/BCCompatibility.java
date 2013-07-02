@@ -55,10 +55,10 @@ public class BCCompatibility {
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.nmStone.blockID + "@" + 0);
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamCobble.blockID + "@" + 0);
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.nmCobble.blockID + "@" + 0);
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones1.blockID + "@" + 0);
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones1.blockID + "@" + 1);
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones1.blockID + "@" + 2);
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones1.blockID + "@" + 3);
+        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones.blockID + "@" + 0);
+        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones.blockID + "@" + 1);
+        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones.blockID + "@" + 2);
+        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.dreamStones.blockID + "@" + 3);
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ModBlocks.portalObsidian.blockID + "@" + 0);
 
         //Dirt, Sand and Gravel

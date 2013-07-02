@@ -22,7 +22,7 @@ public class Config {
     public static int DreamLandPortalID;
     public static int PortalObsidianID;
     public static int DreamStoneID;
-    public static int DreamStones1ID;
+    public static int DreamStonesID;
     public static int DreamDirtID;
     public static int DreamSandID;
     public static int OreLucidityID;
@@ -140,7 +140,7 @@ public class Config {
         // Bricks and Cobble
         DreamCobbleID = config.getBlock(Archive.dreamCobble, bID++).getInt();
         NMCobbleID = config.getBlock(Archive.nmCobble, bID++).getInt();
-        DreamStones1ID = config.getBlock(Archive.dreamStones1, bID++).getInt();
+        DreamStonesID = config.getBlock(Archive.dreamStones, bID++).getInt();
         
         // Gravel and Sand
         DreamFallingID = config.getBlock(Archive.dreamFalling, bID++).getInt();

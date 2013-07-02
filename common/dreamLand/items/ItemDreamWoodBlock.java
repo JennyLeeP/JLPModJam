@@ -7,7 +7,5 @@ public class ItemDreamWoodBlock extends ItemDreamBlock{
         setMaxDamage(0);
         setHasSubtypes(true);
         MetaNames = new String[]{"sparkling", "ash", "brilliant","dark", "frigid", "infernal", "life", "death"};
-    }
-
-    
+    }   
 }

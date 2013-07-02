@@ -17,8 +17,8 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class BlockDreamWall extends BlockWall{
 
-	@SideOnly(Side.CLIENT)
-	Icon[] icons = new Icon[16];
+    @SideOnly(Side.CLIENT)
+    private Icon icon[];
 	String[] wallTypes = {"dreamCobble", "dreamStoneBrick","nmCobble", "nmStoneBrick", "bloodCobble", "bloodStoneBrick"};
 	
 	public BlockDreamWall(int par1, Block par2Block) {
@@ -34,15 +34,16 @@ public class BlockDreamWall extends BlockWall{
     @Override
     public Icon getIcon(int side, int meta)
     {
-        return icons[meta];
+        return icon[meta];
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) 
     {
+        icon = new Icon[16];
         for(int i = 0; i < wallTypes.length; i++){
-        icons[i] = iconRegister.registerIcon(Archive.texture + wallTypes[i]);
+        icon[i] = iconRegister.registerIcon(Archive.texture + wallTypes[i]);
         }
     }
     

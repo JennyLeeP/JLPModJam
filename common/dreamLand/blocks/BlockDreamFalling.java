@@ -21,7 +21,7 @@ public class BlockDreamFalling extends BlockSand{
     
     int dropid;
     @SideOnly(Side.CLIENT)
-    Icon[] icons = new Icon[16];
+    private Icon icon[];
     String[]  fallingBlocks = {"dreamSand","dreamGravel","nmSand","nmGravel"};
 
     public BlockDreamFalling(int id) {
@@ -45,15 +45,15 @@ public class BlockDreamFalling extends BlockSand{
     @Override
     public Icon getIcon(int side, int meta)
     {
-        return icons[meta];
+        return icon[meta];
     }
-
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
+        icon = new Icon[4];
         for(int i = 0; i < fallingBlocks.length; i++)
         {
-            icons[i] = iconRegister.registerIcon(Archive.texture + fallingBlocks[i]);
+            icon[i] = iconRegister.registerIcon(Archive.texture + fallingBlocks[i]);
         }
     }
     @SuppressWarnings("unchecked")
