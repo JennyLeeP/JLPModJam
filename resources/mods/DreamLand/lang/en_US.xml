@@ -14,10 +14,10 @@
 	<entry key="tile.nmStone.name">Mala Stone</entry>
 	<entry key="tile.dreamCobble.name">Dream Cobble</entry>
 	<entry key="tile.nmCobble.name">Mala Cobble</entry>
-	<entry key="tile.dreamStones1.bloodCobble.name">Blood Cobble</entry>
-	<entry key="tile.dreamStones1.dreamStoneBrick.name">Dream StoneBrick</entry>
-	<entry key="tile.dreamStones1.nmStoneBrick.name">Mala StoneBrick</entry>
-	<entry key="tile.dreamStones1.bloodBrick.name">BloodStone Brick</entry>
+	<entry key="tile.dreamStones.bloodCobble.name">Blood Cobble</entry>
+	<entry key="tile.dreamStones.dreamStoneBrick.name">Dream StoneBrick</entry>
+	<entry key="tile.dreamStones.nmStoneBrick.name">Mala StoneBrick</entry>
+	<entry key="tile.dreamStones.bloodBrick.name">BloodStone Brick</entry>
 	<entry key="tile.oreLucidity.name">Lucidity Ore</entry>
 	<entry key="tile.oreMethaneClathrate.name">Frozen Methane Ore</entry>
 	<entry key="tile.nmStairs.name">Mala Cobble Stairs</entry>
