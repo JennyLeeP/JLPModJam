@@ -21,6 +21,8 @@ public class BiomeDreamLand extends BiomeGenBase {
         super(par1);
         this.worldGeneratorBigSparklingTree = new WorldGenBigSparklingTree(false);
         this.worldGeneratorAshTrees = new WorldGenAshTrees(false);
+        topBlock = (byte) sTopBlock;
+        fillerBlock = (byte) sFillerBlock;
     }
     @Override
 	public void decorate(World par1World, Random par2Random, int par3, int par4)

@@ -2,6 +2,7 @@ package dreamLand.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dreamLand.utils.Reference;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -19,7 +20,6 @@ public class EntityPhoenix extends EntityTameable{
 
 	public EntityPhoenix(World par1World) {
 		super(par1World);
-        this.texture = "/mods/DreamLand/textures/mobs/creeper.png";
 		this.moveSpeed = 0.2F;
 		this.setSize(1.0F, 2.0F);
         this.tasks.addTask(1, new EntityAISwimming(this));
@@ -33,7 +33,7 @@ public class EntityPhoenix extends EntityTameable{
 	@SideOnly(Side.CLIENT)
     public String getTexture()
     {
-        return "/mods/DreamLand/textures/mobs/phoenix.png";
+        return Reference.mobTexture + "phoenix.png";
     }
 
 	@Override

@@ -1,9 +1,9 @@
 package dreamLand.utils;
 
-public class Archive {
+public class Reference {
 
     // **************************Mod Stuff***************
-    public static final String VERSION = "1.9";
+    public static final String VERSION = "2.1";
     public static final String modID = "DreamLand";
     public static final String modName = "DreamLand";
 
@@ -12,6 +12,8 @@ public class Archive {
     public static final String clientProxy =  proxy+ "ClientProxy";
     public static final String serverProxy = proxy + "CommonProxy";
     public static final String texture = modID + ":";
+    public static final String mobTexture = "/mods/DreamLand/textures/mobs/";
+    public static final String tileTexture = "/mods/DreamLand/textures/tiles/";
     public static final String lang = "/mods/DreamLand/lang/";
 
     // **************************Items**********************
@@ -19,6 +21,10 @@ public class Archive {
     public static final String itemSwordPhantomIron = "itemSwordPhantomIron";
     public static final String itemLucidity = "itemLucidity";
     public static final String itemMethaneClathrate = "itemMethaneClathrate";
+    public static final String whiteSeeds = "whiteSeeds";
+    public static final String whiteFlower = "WhiteFlower";
+
+
 
     // ***************************Blocks********************
     public static final String portal = "portal";
@@ -39,7 +45,8 @@ public class Archive {
     public static final String nmLogs = "nmLogs";
     public static final String bloodStairs = "bloodStairs";
     public static final String oreMethaneClathrate = "oreMethaneClathrate";
-    
+    public static final String blockDreamOres = "blockDreamOres";
+
     // ************************ Meta Blocks ********************
     public static final String dreamFence = "dreamFence";
     public static final String dreamStones = "dreamStones";
@@ -49,7 +56,13 @@ public class Archive {
     public static final String dreamPlanks = "dreamPlanks";
     public static final String dreamLeaves = "dreamLeaves";
     public static final String dreamWall = "dreamWall";
-    
+    public static final String dreamWoodSlabs = "dreamWoodSlabs";
+    public static final String dreamStoneSlabs = "dreamStoneSlabs";
+    public static final String dreamWoodDBLSlabs = "dreamWoodDBLSlabs";
+    public static final String dreamStoneDBLSlabs = "dreamStoneDBLSlabs";
+    public static final String dreamFlowers = "dreamFlowers";
+    // ************************ Custom Blocks ********************
+    public static final String chickenAlter = "chickenAlter";
     //*************************** Languages ********************
     public static final String tabDreamLand = "tabDreamLand";
     public static String[] langFiles = { 
@@ -57,4 +70,5 @@ public class Archive {
         lang + "en_US.xml", 
         // ES Language
         lang + "es_ES.xml" };
+
 }

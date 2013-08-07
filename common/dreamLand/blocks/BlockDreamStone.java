@@ -11,14 +11,14 @@ import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 
 public class BlockDreamStone extends BlockDreamLand{
 
     @SideOnly(Side.CLIENT)
     private Icon icon[];
     
-    String[] StoneTypes = {"bloodCobble", "dreamStoneBrick","nmStoneBrick","bloodBrick"};
+    String[] StoneTypes = {"bloodCobble", "bloodBrick", "dreamStoneBrick", "dreamStoneMossBrick", "dreamStoneCrackedBrick", "dreamStoneChiseledBrick","nmBrick","nmCrackedBrick","nmChiseledBrick", "marble", "granite", "cursedStone"};
     
     public BlockDreamStone(int id) {
         super(id, Material.rock);
@@ -37,9 +37,9 @@ public class BlockDreamStone extends BlockDreamLand{
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) 
     {
-        icon = new Icon[4];
+        icon = new Icon[16];
         for(int i = 0; i < StoneTypes.length; i++){
-            icon[i] = iconRegister.registerIcon(Archive.texture + StoneTypes[i]);
+            icon[i] = iconRegister.registerIcon(Reference.texture + StoneTypes[i]);
         }
     }
     @Override

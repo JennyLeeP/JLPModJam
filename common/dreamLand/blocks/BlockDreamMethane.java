@@ -4,7 +4,7 @@ import java.util.Random;
 
 import dreamLand.DreamLand;
 import dreamLand.items.ModItems;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -36,7 +36,7 @@ public class BlockDreamMethane extends Block{
     }
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(Archive.texture
+        blockIcon = par1IconRegister.registerIcon(Reference.texture
                 + this.getUnlocalizedName2());
     }
 }

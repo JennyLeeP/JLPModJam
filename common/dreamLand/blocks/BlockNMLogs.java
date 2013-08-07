@@ -13,13 +13,13 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 
 public class BlockNMLogs extends Block{
     /** The type of tree this log came from. */
     public static final String[] NightMareWoodType = new String[] {"ash", "dark", "infernal", "death"};
-    public static final String[] NMTreeTextureSides = new String[] {"ash_tree_side", "dark_tree_side", "infernal_tree_side", "death"};
-    public static final String[] NMTreeTextureTops = new String[] {"ash_tree_top", "dark_tree_top", "infernal_tree_top", "death"};
+    public static final String[] NMTreeTextureSides = new String[] {"ash_tree_side", "dark_tree_side", "infernal_tree_side", "death_tree_side"};
+    public static final String[] NMTreeTextureTops = new String[] {"ash_tree_top", "dark_tree_top", "infernal_tree_top", "death_tree_top"};
     
     @SideOnly(Side.CLIENT)
     private Icon[] iconArrayTS;
@@ -149,9 +149,9 @@ public class BlockNMLogs extends Block{
      */
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
+        for(int i = 0; i < NightMareWoodType.length; i++){
+            par3List.add(new ItemStack(par1, 1, i));
+            }
     }
 
     /**
@@ -177,11 +177,11 @@ public class BlockNMLogs extends Block{
         
         for (int j = 0; j < this.iconArrayTT.length; ++j)
         {
-            this.iconArrayTT[j] = par1IconRegister.registerIcon(Archive.texture + NMTreeTextureTops[j]);
+            this.iconArrayTT[j] = par1IconRegister.registerIcon(Reference.texture + NMTreeTextureTops[j]);
         }
         for (int i = 0; i < this.iconArrayTS.length; ++i)
         {
-            this.iconArrayTS[i] = par1IconRegister.registerIcon(Archive.texture + NMTreeTextureSides[i]);
+            this.iconArrayTS[i] = par1IconRegister.registerIcon(Reference.texture + NMTreeTextureSides[i]);
         }
     }
 

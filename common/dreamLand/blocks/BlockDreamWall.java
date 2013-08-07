@@ -5,7 +5,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -19,7 +19,7 @@ public class BlockDreamWall extends BlockWall{
 
     @SideOnly(Side.CLIENT)
     private Icon icon[];
-	String[] wallTypes = {"dreamCobble", "dreamStoneBrick","nmCobble", "nmStoneBrick", "bloodCobble", "bloodStoneBrick"};
+	String[] wallTypes = {"dreamCobble", "dreamStoneBrick", "dreamStoneMossBrick", "dreamStoneCrackedBrick","nmCobble", "nmBrick", "nmCrackedBrick", "bloodCobble", "bloodBrick","marble", "granite"};
 	
 	public BlockDreamWall(int par1, Block par2Block) {
 		super(par1, par2Block);
@@ -43,7 +43,7 @@ public class BlockDreamWall extends BlockWall{
     {
         icon = new Icon[16];
         for(int i = 0; i < wallTypes.length; i++){
-        icon[i] = iconRegister.registerIcon(Archive.texture + wallTypes[i]);
+        icon[i] = iconRegister.registerIcon(Reference.texture + wallTypes[i]);
         }
     }
     

@@ -2,6 +2,7 @@ package dreamLand.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dreamLand.utils.Reference;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +19,7 @@ private int lastActiveTime;
 
 	public EntityNMCreeper(World par1World) {
 		super(par1World);
-        this.texture = "/mods/DreamLand/textures/mobs/NMCreeper.png";
+        this.texture = Reference.texture + "NMCreeper.png";
 		this.moveSpeed = 0.5F;
 		this.isImmuneToFire = true;
 		this.setSize(1.0F, 2.0F);

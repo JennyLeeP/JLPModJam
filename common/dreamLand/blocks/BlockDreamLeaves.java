@@ -20,7 +20,7 @@ import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import dreamLand.utils.Config;
 
 public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
@@ -343,7 +343,7 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
             return iconsOpaque[(meta & 7)];
         }    
     }
-    String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal", "life", "death"};
+    String[] TreeTypes = {"sparkling","ash","brilliant", "dark", "frigid", "infernal", "life"};
 
     @SideOnly(Side.CLIENT)
     /**
@@ -356,8 +356,8 @@ public class BlockDreamLeaves extends BlockLeavesBase implements IShearable{
 
         for(int i = 0; i < TreeTypes.length; i++)
         {
-            icons[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_leaves");
-            iconsOpaque[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_leaves_opaque");
+            icons[i] = iconRegisterer.registerIcon(Reference.texture + TreeTypes[i] + "_leaves");
+            iconsOpaque[i] = iconRegisterer.registerIcon(Reference.texture + TreeTypes[i] + "_leaves_opaque");
         }
     }
 

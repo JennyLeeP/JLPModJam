@@ -16,7 +16,7 @@ import net.minecraft.world.WorldServer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import dreamLand.utils.Config;
 import dreamLand.utils.portal.DreamLandTeleporter;
 
@@ -31,7 +31,7 @@ public class BlockPortalDreamLand extends BlockPortal {
 
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(Archive.texture
+        blockIcon = par1IconRegister.registerIcon(Reference.texture
                 + this.getUnlocalizedName2());
     }
 

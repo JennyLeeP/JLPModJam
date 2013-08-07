@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import dreamLand.utils.Config;
 
 public class ItemDreamSword extends ItemSword {
@@ -26,7 +26,7 @@ public class ItemDreamSword extends ItemSword {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(Archive.texture
+        this.itemIcon = par1IconRegister.registerIcon(Reference.texture
                 + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 

@@ -8,9 +8,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 
 public class BlockDreamLand extends Block {
 
@@ -43,9 +45,14 @@ public class BlockDreamLand extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(Archive.texture
+        blockIcon = par1IconRegister.registerIcon(Reference.texture
                 + this.getUnlocalizedName2());
     }
     @SideOnly(Side.CLIENT)
     private Icon[] icons;
+
+    public TileEntity createNewTileEntity(World world) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

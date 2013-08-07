@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
 import dreamLand.render.DLFenceRender;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
@@ -52,7 +52,7 @@ public class BlockDreamFence extends BlockFence{
 
         for(int i = 0; i < TreeTypes.length; i++)
         {
-            icons[i] = iconRegisterer.registerIcon(Archive.texture + TreeTypes[i] + "_Planks");
+            icons[i] = iconRegisterer.registerIcon(Reference.texture + TreeTypes[i] + "_Planks");
         }
     }
     public static boolean isIdAFence(int par0)

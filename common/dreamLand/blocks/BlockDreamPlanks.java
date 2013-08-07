@@ -5,7 +5,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -46,7 +46,7 @@ public class BlockDreamPlanks extends BlockDreamLand{
         
         for(int i = 0; i < TreeTypes.length; i++)
         {
-            icons[i] = iconRegister.registerIcon(Archive.texture + TreeTypes[i] + "_Planks");
+            icons[i] = iconRegister.registerIcon(Reference.texture + TreeTypes[i] + "_Planks");
         }
     }
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)

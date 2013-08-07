@@ -14,26 +14,28 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import dreamLand.blocks.ModBlocks;
 import dreamLand.compatibility.DreamLandCompatibility;
 import dreamLand.items.ModItems;
 import dreamLand.sided.CommonProxy;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import dreamLand.utils.Config;
 import dreamLand.utils.Dictionary;
 import dreamLand.utils.DreamLandTabs;
 import dreamLand.utils.Registry;
 import dreamLand.utils.handlers.LanguageHandler;
 import dreamLand.world.biome.ModBiomes;
+import dreamLand.world.village.VillagerTrades;
 
-@Mod(modid = Archive.modID, name = Archive.modName, version = Archive.VERSION)
+@Mod(modid = Reference.modID, name = Reference.modName, version = Reference.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class DreamLand {
 
-	@Instance(Archive.modID)
+	@Instance(Reference.modID)
     public static DreamLand instance;
 
-    @SidedProxy(clientSide = Archive.clientProxy, serverSide = Archive.serverProxy)
+    @SidedProxy(clientSide = Reference.clientProxy, serverSide = Reference.serverProxy)
     public static CommonProxy proxy;
 
     public static EnumArmorMaterial armorMalumnite = EnumHelper.addArmorMaterial("PhantomIron", 29,
@@ -51,7 +53,7 @@ public class DreamLand {
     public static dreamLand.world.terrain.MapGenCavesDL worldGen = new dreamLand.world.terrain.MapGenCavesDL();
 
     // Declares a new Creative Tab
-    public static CreativeTabs tabDreamLand = new DreamLandTabs(CreativeTabs.getNextID(), Archive.tabDreamLand);
+    public static CreativeTabs tabDreamLand = new DreamLandTabs(CreativeTabs.getNextID(), Reference.tabDreamLand);
 
 	//private IWorldGenerator MapGenCavesDL;
 
@@ -96,6 +98,5 @@ public class DreamLand {
     @PostInit
     public void postInit(FMLPostInitializationEvent evt) {
         // TODO stuff
-
     }
 }

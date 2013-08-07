@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
 import dreamLand.blocks.ModBlocks;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 
 public class ItemLighter extends Item {
 
@@ -23,7 +23,7 @@ public class ItemLighter extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(Archive.texture
+        this.itemIcon = par1IconRegister.registerIcon(Reference.texture
                 + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 

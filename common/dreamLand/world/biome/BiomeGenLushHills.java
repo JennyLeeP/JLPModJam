@@ -15,19 +15,28 @@ import dreamLand.world.terrain.trees.WorldGenBrilliantTrees;
 
 
 public class BiomeGenLushHills extends BiomeDreamLand{
+    
+    private BiomeDecoratorDL customBiomeDecorator;
     @SuppressWarnings("unchecked")
-    public BiomeGenLushHills(int i)
+    public BiomeGenLushHills(int par1)
     {
-        super(i);
+        super(par1);
+        theBiomeDecorator = new BiomeDecoratorDL(this);
+        customBiomeDecorator = (BiomeDecoratorDL)theBiomeDecorator;
         this.sTopBlock = (short) ModBlocks.dreamGrass.blockID;
         this.sFillerBlock = (short) ModBlocks.dreamDirt.blockID;
         this.minHeight = 0.1F;
         this.maxHeight = 0.3F;
-        this.theBiomeDecorator.treesPerChunk = 7;
         spawnableCreatureList.clear();
         this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntitySonicCreeper.class, 10, 1, 2));
         this.waterColorMultiplier = 8900670;
+        this.customBiomeDecorator.blueFlowersPerChunk = 3;
+        this.customBiomeDecorator.grayFlowersPerChunk = 2;
+        this.customBiomeDecorator.purpleFlowersPerChunk = 3;
+        this.customBiomeDecorator.treesPerChunk = 7;
+        this.customBiomeDecorator.nodesPerChunk = 3;
+
 
     }
     public int getBiomeGrassColor()
@@ -48,7 +57,7 @@ public class BiomeGenLushHills extends BiomeDreamLand{
      */
     public WorldGenerator getRandomWorldGenForTrees(Random par1Random)
     {
-        return (WorldGenerator)(par1Random.nextInt(10) == 4 ? this.worldGeneratorBigSparklingTree : (par1Random.nextInt(2) == 0 ? new WorldGenShrub(3, 0) : (par1Random.nextInt(3) == 0 ? new WorldGenBrilliantTrees(false) : new WorldGenBigSparklingTree(true))));
+        return (WorldGenerator)(par1Random.nextInt(10) == 4 ? new WorldGenBigSparklingTree(false) : (par1Random.nextInt(2) == 0 ? new WorldGenShrub(3, 0) : (par1Random.nextInt(3) == 0 ? new WorldGenBrilliantTrees(false) : new WorldGenBigSparklingTree(true))));
     }
 
 }

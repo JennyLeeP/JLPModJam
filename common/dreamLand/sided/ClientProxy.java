@@ -1,16 +1,18 @@
 package dreamLand.sided;
 
+import jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 import net.minecraft.src.ModLoader;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import dreamLand.entity.EntityNMCreeper;
 import dreamLand.entity.EntityPhoenix;
 import dreamLand.entity.EntitySonicCreeper;
 import dreamLand.render.DLFenceRender;
+import dreamLand.render.RenderChickenAlter;
 import dreamLand.render.RenderNMCreeper;
 import dreamLand.render.RenderPhoenix;
 import dreamLand.render.RenderSonicCreeper;
-
-import jadarstudios.api.developercapesapi.DeveloperCapesAPI;
+import dreamLand.tileEntity.TileChickenAlter;
 
 public class ClientProxy extends CommonProxy {
 	
@@ -21,8 +23,9 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityPhoenix.class, new RenderPhoenix());
 		
 		RenderingRegistry.registerBlockHandler(new DLFenceRender());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileChickenAlter.class, new RenderChickenAlter());
 	}
-
+	
     // Code that adds capes :D Github link for it to work:
     // https://github.com/jadar/DeveloperCapesAPI
 	

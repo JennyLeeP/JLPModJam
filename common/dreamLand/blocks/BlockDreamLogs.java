@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 
 public class BlockDreamLogs extends Block{
 	/** The type of tree this log came from. */
@@ -151,9 +151,9 @@ public class BlockDreamLogs extends Block{
      */
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
     {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
+        for(int i = 0; i < DreamWoodType.length; i++){
+        par3List.add(new ItemStack(par1, 1, i));
+        }
         
     }
 
@@ -174,17 +174,16 @@ public class BlockDreamLogs extends Block{
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-        //this.tree_top = par1IconRegister.registerIcon(Archive.texture + "sparkling_tree_top");
         this.iconArrayTS = new Icon[DLTreeTextureSides.length];
         this.iconArrayTT = new Icon[DLTreeTextureTops.length];
         
         for (int j = 0; j < this.iconArrayTT.length; ++j)
         {
-            this.iconArrayTT[j] = par1IconRegister.registerIcon(Archive.texture + DLTreeTextureTops[j]);
+            this.iconArrayTT[j] = par1IconRegister.registerIcon(Reference.texture + DLTreeTextureTops[j]);
         }
         for (int i = 0; i < this.iconArrayTS.length; ++i)
         {
-            this.iconArrayTS[i] = par1IconRegister.registerIcon(Archive.texture + DLTreeTextureSides[i]);
+            this.iconArrayTS[i] = par1IconRegister.registerIcon(Reference.texture + DLTreeTextureSides[i]);
         }
     }
 

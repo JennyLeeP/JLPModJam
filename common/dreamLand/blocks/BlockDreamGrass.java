@@ -13,7 +13,7 @@ import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 
 public class BlockDreamGrass extends Block {
 
@@ -105,12 +105,12 @@ public class BlockDreamGrass extends Block {
      * is the only chance you get to register icons.
      */
     public void registerIcons(IconRegister par1IconRegister) {
-        blockIcon = par1IconRegister.registerIcon(Archive.texture + this.getUnlocalizedName2()
+        blockIcon = par1IconRegister.registerIcon(Reference.texture + this.getUnlocalizedName2()
                 + "_side");
-        iconDreamGrassTop = par1IconRegister.registerIcon(Archive.texture
+        iconDreamGrassTop = par1IconRegister.registerIcon(Reference.texture
                 + this.getUnlocalizedName2() + "_top");
         // this.iconSnowSide = par1IconRegister.registerIcon("snow_side");
-        iconDreamGrassSideOverlay = par1IconRegister.registerIcon(Archive.texture
+        iconDreamGrassSideOverlay = par1IconRegister.registerIcon(Reference.texture
                 + this.getUnlocalizedName2() + "_side_overlay");
     }
 

@@ -14,7 +14,7 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dreamLand.DreamLand;
-import dreamLand.utils.Archive;
+import dreamLand.utils.Reference;
 import dreamLand.world.terrain.trees.WorldGenAshTrees;
 import dreamLand.world.terrain.trees.WorldGenBigSparklingTree;
 import dreamLand.world.terrain.trees.WorldGenBrilliantTrees;
@@ -28,7 +28,7 @@ import dreamLand.world.terrain.trees.WorldGenLifeTrees;
 public class BlockDreamSaplings extends BlockFlower {
 
 	public static final String[] DREAM_WOOD_TYPES = new String[] {"sparkling", "ash", "brilliant", "dark", "frigid", "infernal","life","death"};
-    private static final String[] DreamSaplings = new String[] {"sparkling_sapling", "ash_sapling", "brilliant_sapling", "dark_sapling", "frigid_sapling", "infernal_sapling","life_sapling","death sapling"};
+    private static final String[] DreamSaplings = new String[] {"sparkling_sapling", "ash_sapling", "brilliant_sapling", "dark_sapling", "frigid_sapling", "infernal_sapling","life_sapling","death_sapling"};
     @SideOnly(Side.CLIENT)
     private Icon[] saplingIcon;
 
@@ -254,7 +254,7 @@ public class BlockDreamSaplings extends BlockFlower {
 
         for (int i = 0; i < this.saplingIcon.length; ++i)
         {
-            this.saplingIcon[i] = par1IconRegister.registerIcon(Archive.texture + DreamSaplings[i]);
+            this.saplingIcon[i] = par1IconRegister.registerIcon(Reference.texture + DreamSaplings[i]);
         }
     }
     @Override
